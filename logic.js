@@ -48,7 +48,7 @@
             }
 
             // PLAYER CARD LOGIC HQ
-            function showCardHQ(name, championship, pos, award, team, hometown, year, reason) {
+            function showCardHQ(name, championship, pos, award, team, college, year, reason) {
                 const grid = document.getElementById('infoGrid');
                 const tags = document.getElementById('cardTags');
                 
@@ -62,7 +62,7 @@
                 grid.innerHTML = `
                     <div class="info-item"><span>No. of Year With National Team</span><strong>${year}</strong></div>
                     <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
-                    <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
+                    <div class="info-item"><span>College</span><strong>${college}</strong></div>
                     <div class="info-item"><span>Championship Ring</span><strong>${championship}</strong></div>
                 `;
 
@@ -122,30 +122,23 @@
                 }
             }
 
-        function filterTable() {
-            // Get the search string from the text input
-            const nameQuery = document.getElementById("nameSearch").value.toLowerCase();
+        function filterRankings() {
+            // 1. Get values using the NEW UNIQUE IDs
+            const nameQuery = document.getElementById("rankNameSearch").value.toLowerCase().trim();
+            const teamQuery = document.getElementById("rankTeamFilter").value.toLowerCase();
             
-            // Get the value from the dropdown
-            const teamQuery = document.getElementById("teamFilter").value.toLowerCase();
-            
-            const table = document.getElementById("playerTable"); 
+            // 2. Target the NEW TABLE ID
+            const table = document.getElementById("rankingsTable"); 
             const rows = table.getElementsByTagName("tr");
 
-            // Loop starts at 1 to skip the table header
             for (let i = 1; i < rows.length; i++) { 
+                // Index [1] is Name, Index [2] is Team in THIS table
                 const nameCell = rows[i].cells[1].innerText.toLowerCase(); 
                 const teamCell = rows[i].cells[2].innerText.toLowerCase(); 
                 
-                // Check Name match
                 const matchesName = nameCell.includes(nameQuery);
-                
-                // Check Team match
-                // If "all" is selected, it's always true. 
-                // Otherwise, it checks if the team name in the table contains the dropdown value.
                 const matchesTeam = (teamQuery === "all") || teamCell.includes(teamQuery);
 
-                // Display row only if both conditions are met
                 if (matchesName && matchesTeam) {
                     rows[i].style.display = "";
                 } else {
@@ -154,24 +147,59 @@
             }
         }
 
-        function filterTeamsByLeague() {
-            // 1. Get the league selected in the dropdown
-            const selectedLeague = document.getElementById("leagueFilter").value.toLowerCase();
-            
-            // 2. Target the Team Ranking table
+        function filterTeamsByLeagueRank() {
+            // 1. Get the specific Team Ranking elements
+            const leagueSelect = document.getElementById("teamLeagueFilter");
             const table = document.getElementById("teamRankingTable");
-            const rows = table.getElementsByTagName("tr");
 
-            // 3. Loop through rows (skip header)
-            for (let i = 1; i < rows.length; i++) {
-                // League is in the 3rd column (index 2)
-                const leagueCell = rows[i].cells[2].textContent.toLowerCase();
-
-                // 4. Show if "all" is selected OR if the cell text matches the selection
-                if (selectedLeague === "all" || leagueCell.includes(selectedLeague)) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
+            if (!leagueSelect || !table) {
+                console.error("Team table or filter not found");
+                return;
             }
+
+            const filterValue = leagueSelect.value.toUpperCase();
+            const rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                // League is the 4th column (index 3)
+                const leagueCell = row.cells[3].textContent.toUpperCase().trim();
+
+                // Logical Check
+                if (filterValue === "ALL" || leagueCell === filterValue) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        function filterAlasRoster() {
+            // 1. Get the specific Alas elements
+            const nameInput = document.getElementById("alasNameSearch");
+            const teamSelect = document.getElementById("alasTeamFilter");
+            const table = document.getElementById("alasTable");
+
+            if (!nameInput || !teamSelect || !table) return;
+
+            const nameQuery = nameInput.value.toLowerCase().trim();
+            const teamQuery = teamSelect.value.toLowerCase();
+            
+            // Get all rows in the body
+            const rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                // In THIS table: Name is Index 1, Team is Index 3
+                const nameCell = row.cells[1].textContent.toLowerCase();
+                const teamCell = row.cells[3].textContent.toLowerCase();
+
+                const matchesName = nameCell.includes(nameQuery);
+                const matchesTeam = (teamQuery === "all") || teamCell.includes(teamQuery);
+
+                // Update row visibility
+                if (matchesName && matchesTeam) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
         }

@@ -244,24 +244,25 @@
                             </div>
                      </div>
             </section>
+
             <section id="rankings-view" class="window">
                 <div class="filter-bar">
                     <div class="filter-group">
                         <i class="fas fa-filter"></i>
                         <span>Filter by:</span>
-                            <select id="teamFilter" onchange="filterTable()">
-                                <option value="all">All Teams</option>
-                                <option value="Choco">Choco Mucho</option> 
-                                <option value="Petro">Petro Gazz</option>
-                                <option value="Alas">Alas Pilipinas</option>
-                                <option value="Creamline">Creamline</option>
-                                <option value="DLSU">DLSU</option>
-                            </select>
+                        <select id="rankTeamFilter" onchange="filterRankings()" style="color: black !important; background-color: white;">
+                            <option value="all">All Teams</option>
+                            <option value="Choco">Choco Mucho</option> 
+                            <option value="Petro">Petro Gazz</option>
+                            <option value="Alas">Alas Pilipinas</option>
+                            <option value="Creamline">Creamline</option>
+                            <option value="DLSU">DLSU</option>
+                        </select>
                     </div>
 
                     <div class="search-group">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="nameSearch" onkeyup="filterTable()" placeholder="Search Players...">
+                        <input type="text" id="rankNameSearch" onkeyup="filterRankings()" placeholder="Search Players...">
                     </div>
                 </div>
                                     <div class="ranking-header">
@@ -269,7 +270,7 @@
                                         <span class="ranking-date">(as of December 24, 2025)</span>
                                     </div>                                
                                     <div class="table-wrapper">
-                                    <table class="data-table" id="playerTable">
+                                    <table class="data-table" id="rankingsTable">
                                     <thead>
                                         <tr>
                                             <th>Rank</th>
@@ -302,6 +303,7 @@
                                             <td>21</td>
                                             <td>#2 OH</td>
                                             <td>DLSU</td>
+                                            <td>5</td>
                                         </tr>
                                         <tr onclick="showCard('Jia De Guzman', '5\'7', 'S', 'CREAM', 'The 8-time Best Setter remains the gold standard.')">
                                             <td>3</td>
@@ -311,6 +313,7 @@
                                             <td>29</td>
                                             <td>#1 S</td>
                                             <td>Ateneo</td>
+                                            <td>5</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -319,28 +322,27 @@
             </section>
             
             <section id="teams-view" class="window">
-               
-
                 <div class="filter-bar">
-                    <div class="filter-group">
-                        <i class="fas fa-trophy"></i>
-                        <span>Filter by League:</span>
-                            <select id="leagueFilter" onchange="filterTeamsByLeague()" style="color: black !important; background-color: white;">
+                        <div class="filter-group">
+                            <i class="fas fa-trophy"></i>
+                            <span>Filter by League:</span>
+                            <select id="teamLeagueFilter" onchange="filterTeamsByLeagueRank()" style="color: black !important; background-color: white;">
                                 <option value="all">All Leagues</option>
                                 <option value="PVL">PVL</option>
                                 <option value="UAAP">UAAP</option>
                                 <option value="NCAA">NCAA</option>
                                 <option value="MPVA">MPVA</option>
                             </select>
+                        </div>
                     </div>
-                </div>
-                                    <div class="ranking-header">
-                                        <h2>Team Power Rankings</h2>
-                                        <span class="ranking-date">(as of December 24, 2025)</span>
-                                    </div>                                
 
-                <div class="table-wrapper">
-                    <table class="data-table" id="teamRankingTable">
+                    <div class="ranking-header">
+                        <h2>Team Power Rankings</h2>
+                        <span class="ranking-date">(as of December 24, 2025)</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="data-table" id="teamRankingTable">
                         <thead>
                             <tr>
                                 <th>Rank</th>
@@ -355,28 +357,37 @@
                             <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
                                 <td>1</td>
                                 <td>Creamline Cool Smashers</td>
+                                <td>12-3</td>
                                 <td>PVL</td>
+                                <td>1st</td>
                                 <td>Professional</td>
                             </tr>
 
                             <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                <td>2</td>
-                                <td>NU Lady Bulldogs</td>
+                                <td>1</td>
+                                <td>Creamline Cool Smashers</td>
+                                <td>12-3</td>
                                 <td>UAAP</td>
-                                <td>Champion</td>
-                                <td>Collegiate</td>
+                                <td>1st</td>
+                                <td>Professional</td>
                             </tr>
 
                             <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                <td>3</td>
-                                <td>Petro Gazz Angels</td>
-                                <td>PVL</td><td>Professional</td>
+                                <td>1</td>
+                                <td>Creamline Cool Smashers</td>
+                                <td>12-3</td>
+                                <td>UAAP</td>
+                                <td>1st</td>
+                                <td>Professional</td>
                             </tr>
 
                             <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                <td>4</td>
-                                <td>UST Golden Tigresses</td>
-                                <td>UAAP</td><td>Collegiate</td>
+                                <td>1</td>
+                                <td>Creamline Cool Smashers</td>
+                                <td>12-3</td>
+                                <td>UAAP</td>
+                                <td>1st</td>
+                                <td>Professional</td>
                             </tr>
                         </tbody>
                     </table>
@@ -384,10 +395,29 @@
             </section>
 
             <section id="alas-view" class="window">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter by:</span>
+                        <select id="alasTeamFilter" onchange="filterAlasRoster()" style="color: black !important; background-color: white;">
+                            <option value="all">All Teams</option>
+                            <option value="Choco">Choco Mucho</option> 
+                            <option value="Petro">Petro Gazz</option>
+                            <option value="Alas">Alas Pilipinas</option>
+                            <option value="Creamline">Creamline</option>
+                            <option value="DLSU">DLSU</option>
+                        </select>
+                    </div>
+
+                    <div class="search-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="alasNameSearch" onkeyup="filterAlasRoster()" placeholder="Search Players...">
+                    </div>
+                </div>
                 <h2 class="section-title">🇵🇭 Alas Pilipinas Roster | Sea Games Thailand 2025</h2>
                 <div class="alas-dashboard">
                             <div class="table-wrapper">
-                                <table class="data-table">
+                                <table class="data-table" id="alasTable">
                                     <thead>
                                         <tr>
                                             <th>Jersey No.</th>
@@ -396,7 +426,7 @@
                                             <th>Team</th>
                                             <th>Height</th>
                                             <th>Age</th>
-                                            <th>College</th>
+                                            <th>Pro Experience</th>
                                             <th>World Ranking</th>
                                         </tr>
                                     </thead>
@@ -404,6 +434,7 @@
                                         <tr onclick="showCardHQ('Brooke Van Sickle', '3x Champion', 'OH', 'Most Valuable Player', 'PGA', 'Hawaii', '2 Years', 'The league\'s most versatile attacker.')">
                                             <td>1</td>
                                             <td>Sisi Rondina</td>
+                                            <td>Outside Hitter</td>    
                                             <td>Choco Mucho</td>
                                             <td>5'6"</td>
                                             <td>27</td>
