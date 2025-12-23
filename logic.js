@@ -25,7 +25,7 @@
             }
 
             // PLAYER CARD LOGIC PLAYER RANKING
-            function showCardRanking(name, pos, award, team, hometown, jerseyno, draft, reason) {
+            function showCardRanking(name, pos, award, team, hometown, jerseyno, draft, reason, level) {
                 const grid = document.getElementById('infoGrid');
                 const tags = document.getElementById('cardTags');
                 
@@ -34,7 +34,7 @@
                 document.getElementById('descTitle').innerText = "Scouting Report";
                 document.getElementById('cardDescText').innerText = reason;
 
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span>`;
+                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
                 
                 grid.innerHTML = `
                     <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
@@ -48,7 +48,7 @@
             }
 
             // PLAYER CARD LOGIC HQ
-            function showCardHQ(name, championship, pos, award, team, college, year, reason) {
+            function showCardHQ(name, championship, pos, award, team, college, year, reason, level) {
                 const grid = document.getElementById('infoGrid');
                 const tags = document.getElementById('cardTags');
                 
@@ -57,7 +57,7 @@
                 document.getElementById('descTitle').innerText = "Scouting Report";
                 document.getElementById('cardDescText').innerText = reason;
 
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span>`;
+                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
                 
                 grid.innerHTML = `
                     <div class="info-item"><span>No. of Year With National Team</span><strong>${year}</strong></div>
