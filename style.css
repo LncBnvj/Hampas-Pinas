@@ -40,58 +40,6 @@ body {
     margin-top: 15px;
 }
 
-/* General Mobile Reset */
-@media (max-width: 600px) {
-    /* 1. The Modal Card Container */
-    #infoCard {
-        padding: 10px;
-        justify-content: center; /* Center the card on screen */
-    }
-
-    /* 2. The Title and Header */
-    #cardTitle {
-        font-size: 1.5rem; /* Scale down long team names */
-        text-align: center;
-    }
-
-    /* 3. The Grid: Force 2 columns to prevent overlap */
-    #infoGrid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important; /* Forces 2 equal columns */
-        gap: 8px !important;
-        width: 100% !important;
-    }
-
-    /* 4. Individual Info Boxes */
-    .info-item {
-        margin: 0 !important;
-        padding: 10px !important;
-        width: auto !important; /* Let the grid handle width */
-    }
-
-    .info-item span {
-        font-size: 0.7rem; /* Labels like "HEAD COACH" stay small */
-    }
-
-    .info-item strong {
-        font-size: 0.9rem; /* Content like "Alyssa Valdez" stays readable */
-        display: block;
-        word-wrap: break-word; /* Prevents long names from breaking the box */
-    }
-
-    /* 5. Hide Sidebar/Side Content on very small screens or move to bottom */
-    .alas-side-content {
-        display: block;
-        width: 100%;
-        padding: 0;
-    }
-
-    .glass-card {
-        margin: 10px 0;
-        width: 100%;
-    }
-}
-
 .player-glass-frame {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
