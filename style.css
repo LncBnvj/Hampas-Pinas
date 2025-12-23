@@ -294,6 +294,35 @@ body {
     color: #888;
 }
 
+.ranking-header {
+    display: flex;
+    align-items: baseline; /* Keeps the text aligned at the bottom of the letters */
+    gap: 15px;            /* Adds space between the title and the date */
+    margin-bottom: 20px;
+    border-left: 4px solid #b30000; /* Maintains your red accent line */
+    padding-left: 15px;
+}
+
+.ranking-header h2 {
+    margin: 0;
+    color: #ffcc00;       /* Your gold/yellow color */
+    font-size: 1.8rem;
+}
+
+.ranking-date {
+    color: #ffffff;
+    font-size: 0.9rem;
+    opacity: 0.8;         /* Makes the date slightly more subtle than the title */
+}
+
+/* Ensure it fits on a phone screen */
+@media (max-width: 600px) {
+    .ranking-header {
+        flex-direction: column; /* Stacks them if the screen is too small */
+        gap: 5px;
+    }
+}
+
 .card-header-grid { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
 #cardIcon { font-size: 50px; color: #ffcc00; }
 
