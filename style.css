@@ -237,6 +237,62 @@ body {
     justify-content: center;
 }
 
+.tag.underrated {
+    margin-right: 8px; /* Adds a gap between the two tags */
+    display: inline-block;
+}
+
+.upcoming-tournaments {
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.tournament-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #35408f; /* Alas Pilipinas Blue */
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 0 8px 8px 0;
+    transition: 0.3s;
+}
+
+.tournament-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tournament-card.highlight {
+    border-left-color: #ffcc00; /* Gold for major games like Asian Games */
+}
+
+.tourney-status {
+    background: #ce1126; /* PH Flag Red */
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.tourney-date {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.tourney-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    margin: 3px 0;
+}
+
+.tourney-location {
+    font-size: 12px;
+    color: #888;
+}
 
 .card-header-grid { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
 #cardIcon { font-size: 50px; color: #ffcc00; }
