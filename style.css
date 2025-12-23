@@ -40,6 +40,41 @@ body {
     margin-top: 15px;
 }
 
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Stack the info grid into 1 or 2 columns instead of 4 */
+    #infoGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns for phone */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    /* Make the modal card take up more screen width */
+    #infoCard {
+        padding: 15px;
+        align-items: flex-end; /* Slides up from bottom on mobile */
+    }
+
+    .info-item {
+        width: 100%; /* Ensure boxes fill their grid space */
+        min-height: 80px;
+    }
+
+    /* Make the "Close" button easier to tap with a thumb */
+    button#closeBtn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    /* Stack the side content (videos) below the main table */
+    .alas-side-content {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
 .player-glass-frame {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
