@@ -183,6 +183,61 @@ body {
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
+.headline-item {
+    margin-bottom: 30px; /* Adjust this number to increase the gap */
+}
+
+.tag.rising {
+    display: inline-block; /* Required for margins to work on spans */
+    margin-top: 25px;      /* Creates space above the blue tag */
+}
+
+/* To ensure the very first tag doesn't have a gap at the top */
+.tag.rising:first-child {
+    margin-top: 0;
+}
+
+.card-photo {
+    width: 100%;       /* Makes the image fill the width of the container */
+    height: 200px;     /* Set a fixed height */
+    object-fit: cover; /* This prevents the image from looking stretched */
+    border-radius: 10px 10px 0 0; /* Rounds the top corners to match your cards */
+}
+
+.video-placeholder {
+    position: relative; /* This keeps the contents inside the box */
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Ensures text is visible */
+}
+
+.thumb-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Lowest layer */
+}
+
+.video-overlay-content {
+    position: relative;
+    z-index: 2; /* Higher layer (sits on top of image) */
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4); /* Darkens the image so text is easy to read */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 .card-header-grid { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
 #cardIcon { font-size: 50px; color: #ffcc00; }
 

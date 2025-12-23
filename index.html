@@ -39,14 +39,22 @@
             <section id="home-view" class="window">
                 <div class="home-headline-grid">
                     <div class="headline-hero">
-                        <span class="tag rising">Latest Headline</span>
-                        <h1>Alas Pilipinas Secures Historic Bronze in AVC Challenge Cup</h1>
-                        <p>The Philippine national team breaks a decades-long drought, proving the new era of Pinoy volleyball is here.</p>
+                        <div class="headline-item">
+                            <span class="tag rising">Latest Headline</span>
+                            <h1>Alas Pilipinas Secures...</h1>
+                            <p>The Philippine national team...</p>
+                        </div>
+
+                        <div class="headline-item">
+                            <span class="tag rising">Latest Headline</span>
+                            <h2>Alas Pilipinas Secures...</h2>
+                            <p>The Philippine national team...</p>
+                        </div>
                     </div>
                     
                     <div class="weekly-lists">
                         <div class="glass-card main-list-container">
-                            <h3>⭐ Top 10 Players of the Week</h3>
+                            <h3>Top 5 Players of the Week</h3>
                             <div class="player-glass-grid">
                                 <div class="player-glass-frame header-frame">
                                     <span class="p-rank">Rank</span>
@@ -82,29 +90,107 @@
                                     <span class="p-team">ZUS</span>
                                     <span class="p-last">#3</span>
                                 </div>
+                                
+                                <div class="player-glass-frame">
+                                    <span class="p-rank rank-down"><i class="fas fa-caret-down trend-icon"></i>4</span>
+                                    <span class="p-name">Thea Gagate</span>
+                                    <span class="p-team">ZUS</span>
+                                    <span class="p-last">#3</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="dream-team-section">
-                        <h3>🌈 Dream Team of the Week</h3>
-                        <div class="dream-grid">
-                            <div class="dream-player"><span>S</span> Jia De Guzman</div>
-                            <div class="dream-player"><span>OH</span> Rondina</div>
-                            <div class="dream-player"><span>OH</span> Van Sickle</div>
-                            <div class="dream-player"><span>MB</span> Gagate</div>
-                            <div class="dream-player"><span>MB</span> P. Pontillas</div>
-                            <div class="dream-player"><span>OPP</span> Solomon</div>
-                            <div class="dream-player"><span>L</span> Catindig</div>
-                        </div>
+                        <h3>Dream Team of the Week</h3>
+                                <div class="table-wrapper">
+                                    <table class="data-table" id="playerTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Position</th>
+                                            <th>Name</th>
+                                            <th>Team</th>
+                                            <th>Age</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr onclick="showCard('Brooke Van Sickle', '5\'9', 'OH', 'PGA', 'The league\'s most versatile attacker.')">
+                                            <td>Setter</td>
+                                            <td>Petro Gazz</td>
+                                            <td>5'9"</td>
+                                            <td>25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opposite Attacker</td>
+                                            <td>Angel Canino</td>
+                                            <td>DLSU / Alas</td>
+                                            <td>5'11"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Outside Hitter 1</td>
+                                            <td>Jia De Guzman</td>
+                                            <td>Creamline</td>
+                                            <td>5'7"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Outside Hitter 2</td>
+                                            <td>Petro Gazz</td>
+                                            <td>5'9"</td>
+                                            <td>25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Middle Blocker 1</td>
+                                            <td>Angel Canino</td>
+                                            <td>DLSU / Alas</td>
+                                            <td>5'11"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Middle Blocker 2</td>
+                                            <td>Jia De Guzman</td>
+                                            <td>Creamline</td>
+                                            <td>5'7"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Libero</td>
+                                            <td>Jia De Guzman</td>
+                                            <td>Creamline</td>
+                                            <td>5'7"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coach</td>
+                                            <td>Jia De Guzman</td>
+                                            <td>Creamline</td>
+                                            <td>5'7"</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
 
                     <div class="team-spotlight glass-card">
-                        <h3>🏆 Team of the Week</h3>
-                        <h4>Creamline Cool Smashers</h4>
-                        <p>Undefeated in the All-Filipino Conference Opening.</p>
-                    </div>
-                </div>
+                        <h3>Team of the Week</h3>
+                            <div class="table-wrapper">
+                                    <table class="data-table" id="playerTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Team</th>
+                                            <th>Win/Loss Record</th>
+                                            <th>Standing</th>
+                                            <th>League</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Setter</td>
+                                            <td>Petro Gazz</td>
+                                            <td>5'9"</td>
+                                            <td>25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                     </div>
             </section>
             <section id="rankings-view" class="window">
                 <div class="filter-bar">
@@ -247,6 +333,7 @@
                                         <tr>
                                             <th>Jersey No.</th>
                                             <th>Name</th>
+                                            <th>Position</th>
                                             <th>Team</th>
                                             <th>Height</th>
                                             <th>Age</th>
@@ -294,23 +381,29 @@
                         <a href="https://www.youtube.com/watch?v=BLbi_41BIRQ" target="_blank" class="card-link">
                             <div class="alas-main-video">
                                 <div class="video-placeholder video-thumb">
-                                    <i class="fas fa-play-circle"></i>
-                                    <p>Trending: Inside the Training Camp in Japan</p>
+                                    <img src="Features Picture/11-19-24-DI-POW-Olivia-Babcock-banner.jpg" class="thumb-img">
+                                    
+                                    <div class="video-overlay-content">
+                                        <i class="fas fa-play-circle"></i>
+                                        <p>Trending: Inside the Training Camp in Japan</p>
+                                    </div>
                                 </div>
                             </div>
                         </a>
 
-                        <a href="https://www.youtube.com/watch?v=ddn0uZLFcY8" target="_blank" class="card-link">
+                        <a target="_blank" class="card-link">
                             <div class="glass-card">
                                 <h3>Exclusive Interview</h3>
                                 <p>"We are building a culture, not just a team." - Coach Jorge Souza de Brito</p>
+                                <a href="https://www.youtube.com/watch?v=BLbi_41BIRQ" class="read-more">Watch Full Highlight&rarr;</a>   
                             </div>
                         </a>
 
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" class="card-link">
+                        <a target="_blank" class="card-link">
                             <div class="glass-card">
                                 <h3>Match Highlight</h3>
                                 <p>Watch Angel Canino's 25-point explosion vs Vietnam.</p>
+                                <a href="https://www.youtube.com/watch?v=BLbi_41BIRQ" class="read-more">Watch Full Highlight&rarr;</a>
                             </div>
                         </a>
                     </div>
@@ -356,7 +449,9 @@
                 <h2 class="section-title">✍️ Volleyball Features</h2>
                 <div class="features-list">
                     <div class="feature-card">
-                        <div class="feat-img"></div>
+                        <div class="feat-img">
+                            <img src="Features Picture/11-19-24-DI-POW-Olivia-Babcock-banner.jpg" alt="Alas Pilipinas Team" class="card-photo">
+                        </div>
                         <div class="feat-info">
                             <h3>The Evolution of the Libero</h3>
                             <p>A deep dive into how defensive specialists are changing the tempo of the modern PVL game.</p>
@@ -364,7 +459,9 @@
                         </div>
                     </div>
                     <div class="feature-card">
-                        <div class="feat-img"></div>
+                        <div class="feat-img">
+                            <img src="Features Picture/11-19-24-DI-POW-Olivia-Babcock-banner.jpg" alt="Alas Pilipinas Team" class="card-photo">
+                        </div>
                         <div class="feat-info">
                             <h3>UAAP Season 87 Preview</h3>
                             <p>With star rookies entering the scene, we analyze which collegiate powerhouse will claim the crown this year.</p>
@@ -372,11 +469,13 @@
                         </div>
                     </div>
                     <div class="feature-card">
-                        <div class="feat-img"></div>
+                        <div class="feat-img">
+                            <img src="Features Picture/11-19-24-DI-POW-Olivia-Babcock-banner.jpg" alt="Alas Pilipinas Team" class="card-photo">
+                        </div>
                         <div class="feat-info">
                             <h3>Nutrition of an Elite Spiker</h3>
                             <p>Exclusive look into the diet and training regimen of Alas Pilipinas' top scorers.</p>
-                            <a href="#" class="read-more">Read Full Article &rarr;</a>
+                            <a href="https://www.ncaa.com/news/volleyball-women/article/2025-12-19/pittsburghs-olivia-babcock-repeats-avca-division-i-womens-player-year" class="read-more">Read Full Article &rarr;</a>
                         </div>
                     </div>
                 </div>
