@@ -40,38 +40,55 @@ body {
     margin-top: 15px;
 }
 
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    /* Stack the info grid into 1 or 2 columns instead of 4 */
-    #infoGrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Two columns for phone */
-        gap: 10px;
-        padding: 10px;
-    }
-
-    /* Make the modal card take up more screen width */
+/* General Mobile Reset */
+@media (max-width: 600px) {
+    /* 1. The Modal Card Container */
     #infoCard {
-        padding: 15px;
-        align-items: flex-end; /* Slides up from bottom on mobile */
+        padding: 10px;
+        justify-content: center; /* Center the card on screen */
     }
 
+    /* 2. The Title and Header */
+    #cardTitle {
+        font-size: 1.5rem; /* Scale down long team names */
+        text-align: center;
+    }
+
+    /* 3. The Grid: Force 2 columns to prevent overlap */
+    #infoGrid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Forces 2 equal columns */
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    /* 4. Individual Info Boxes */
     .info-item {
-        width: 100%; /* Ensure boxes fill their grid space */
-        min-height: 80px;
+        margin: 0 !important;
+        padding: 10px !important;
+        width: auto !important; /* Let the grid handle width */
     }
 
-    /* Make the "Close" button easier to tap with a thumb */
-    button#closeBtn {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.1rem;
+    .info-item span {
+        font-size: 0.7rem; /* Labels like "HEAD COACH" stay small */
     }
 
-    /* Stack the side content (videos) below the main table */
+    .info-item strong {
+        font-size: 0.9rem; /* Content like "Alyssa Valdez" stays readable */
+        display: block;
+        word-wrap: break-word; /* Prevents long names from breaking the box */
+    }
+
+    /* 5. Hide Sidebar/Side Content on very small screens or move to bottom */
     .alas-side-content {
+        display: block;
         width: 100%;
-        margin-top: 20px;
+        padding: 0;
+    }
+
+    .glass-card {
+        margin: 10px 0;
+        width: 100%;
     }
 }
 
