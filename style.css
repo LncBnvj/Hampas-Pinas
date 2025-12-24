@@ -401,6 +401,35 @@ body {
     color: #888;
 }
 
+.tournament-list {
+    max-height: 300px; /* Adjust this height to fit exactly 3 cards */
+    overflow-y: auto;
+    padding-right: 10px; /* Space for the scrollbar */
+    display: flex;
+    flex-direction: column;
+    gap: 0.00001px;
+}
+
+/* Modern Scrollbar Styling */
+.tournament-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tournament-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.tournament-list::-webkit-scrollbar-thumb {
+    background: #ffcc00; /* Matching your gold theme */
+    border-radius: 10px;
+}
+
+.tournament-list::-webkit-scrollbar-thumb:hover {
+    background: #e6b800;
+}
+
+
 .ranking-header {
     display: flex;
     align-items: baseline; /* Keeps the text aligned at the bottom of the letters */
@@ -844,9 +873,41 @@ td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 }
 
 /* Modal Styling */
-.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; z-index: 1000; }
-.modal-content.profile-view { width: 90%; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; }
-.modal-scroll-area { padding: 40px; height: 100%; overflow-y: auto; }
+/* 1. Target the specific scroll area inside your modal */
+.modal-scroll-area {
+    padding: 40px;
+    height: 100%;
+    overflow-y: auto !important; /* Ensure scrolling is enabled here */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ffcc00 rgba(0, 0, 0, 0.2); /* Firefox */
+}
+
+/* 2. Chrome, Edge, and Safari Styling */
+.modal-scroll-area::-webkit-scrollbar {
+    width: 8px !important; /* Total width of the scrollbar */
+}
+
+.modal-scroll-area::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important; /* Dark subtle track */
+    border-radius: 10px !important;
+}
+
+.modal-scroll-area::-webkit-scrollbar-thumb {
+    background: #ffcc00 !important; /* Your brand gold */
+    border-radius: 10px !important;
+    border: 2px solid rgba(10, 10, 10, 0.8) !important; /* Creates a gap effect around the gold */
+    background-clip: content-box;
+}
+
+.modal-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #ffd633 !important; /* Brighter gold when hovering */
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.5); /* Glowing effect */
+}
+
+/* 3. Aesthetic Polish: Prevent the scrollbar from appearing on the parent card */
+.profile-view {
+    overflow: hidden !important; 
+}
 
 /* Profile Layout */
 .profile-header-section { display: grid; grid-template-columns: 250px 1fr; gap: 30px; margin-bottom: 30px; }
@@ -894,6 +955,134 @@ td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Total Blackout for the Section */
+.rankings-restricted-mode {
+    background: #000 !important; /* True OLED Black */
+    position: relative;
+    
+    /* CENTERING LOGIC */
+    display: flex !important;   /* Uses Flexbox */
+    align-items: center;        /* Centers vertically */
+    justify-content: center;    /* Centers horizontally */
+    
+    /* Ensure it fills the screen so it CAN center */
+    min-height: 100vh;          /* 100% of the viewport height */
+    width: 100%;
+    
+    overflow: hidden;
+    border-radius: 20px;
+}
+/* 2. THE OVERLAY (Acts as a middle-man) */
+.blackout-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+/* Hide the inside content completely */
+.restricted-content-hidden {
+    display: none; /* Content is invisible and un-interactable */
+}
+
+/* The Central Aesthetic Card */
+.aesthetic-lock-card {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    border-radius: 40px;
+    max-width: 450px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+}
+
+/* The Lock Visual Icon */
+.lock-visual {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffcc00;
+    font-size: 2.5rem;
+}
+
+.shimmer-circle {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #ffcc00;
+    border-radius: 50%;
+    animation: circle-glow 3s infinite ease-in-out;
+}
+
+/* Text Styling */
+.status-top {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.lock-text h2 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.lock-text p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+/* Recalibrating Indicator */
+.recalibrating-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    background: rgba(255, 204, 0, 0.05);
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    border-radius: 100px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.dot-pulse {
+    width: 8px;
+    height: 8px;
+    background: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffcc00;
+    animation: dot-blink 1.5s infinite;
+}
+
+/* Animations */
+@keyframes circle-glow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 20px #ffcc00; }
+}
+
+@keyframes dot-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+
 
 /* --- WINDOW LOGIC --- */
 input[type="radio"] { display: none; }
