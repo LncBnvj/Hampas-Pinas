@@ -749,17 +749,120 @@ body {
     padding: 20px;
 }
 
-/* Tables */
-table { width: 100%; border-collapse: collapse; }
-th { text-align: left; color: #888; font-size: 0.8rem; padding-bottom: 15px; text-transform: uppercase; }
-td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+/* Container Spacing */
+.side-panel {
+    padding: 20px; /* Adds space around the ranking content */
+    margin-bottom: 20px;
+}
+.side-title {
+    margin-bottom: 20px; /* Adjust this value for more/less space */
+    color: #fff;
+    font-size: 1.2rem;
+}
+/* Base Table Styling */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
 
-/* Row Hover */
-.portal-table tbody tr:hover { background: rgba(255,255,255,0.05); cursor: pointer; }
+th { 
+    text-align: left; 
+    color: #ffcc00; 
+    font-size: 0.6rem; 
+    padding-bottom: 15px; 
+    text-transform: uppercase; 
+}
 
-/* Side Table Styling */
-.s-rank-val { color: var(--accent); font-weight: bold; width: 50px; }
-.score-val { color: var(--accent); font-weight: bold; text-align: right; }
+td { 
+    padding: 15px 0; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+}
+
+/* Specific Header Styling: Score */
+.header-score {
+    text-align: right;
+    color: #ffcc00;      /* Your requested color */
+    font-weight: 400;   /* Makes it not bold */
+}
+
+/* Row Hover Effect */
+tbody tr:hover { 
+    background: rgba(255,255,255,0.05); 
+    cursor: pointer; 
+}
+
+/* Column Specifics */
+.s-rank-val { 
+    color: var(--accent); 
+    width: 50px; 
+}
+
+.score-val { 
+    color: var(--accent); 
+    text-align: right; 
+    font-weight: bold;
+}
+
+/* Hide dropdown by default */
+.dropdown-content {
+    display: none;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.dropdown-content.show {
+    display: table-row;
+    animation: slideDown 0.4s ease forwards;
+}
+
+/* Recruit Container Styling */
+.recruit-container {
+    padding: 10px 20px 20px 50px; /* Aligns with Team name */
+}
+
+.recruit-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.r-rank {
+    font-size: 0.7rem;
+    color: #ffcc00;
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+.r-name {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.r-pos {
+    margin: 0;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Aesthetic Animation */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover effect for the main row */
+.team-row {
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+.team-row:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
 
 /* Container that holds the image and the name info */
 .player-cell {
@@ -1151,18 +1254,191 @@ input[type="radio"] { display: none; }
 .video-placeholder i { font-size: 50px; margin-bottom: 10px; }
 
 /* --- FEATURES SECTION --- */
-.feature-card {
-    display: flex; background: rgba(255,255,255,0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden;
+/* The Parent Container */
+.features-list {
+    display: grid;
+    /* This creates two equal columns */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; /* Space between the cards */
+    padding: 20px 0;
 }
-.feat-img { width: 200px; background: #333; }
-.feat-info { padding: 25px; }
-.read-more { color: #ffcc00; text-decoration: none; font-size: 12px; font-weight: bold; margin-top: 10px; display: block; }
 
+/* The Individual Card */
+.feature-card {
+    display: flex; 
+    flex-direction: column; /* Stack image on top of text for better 2-column fit */
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 15px; 
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Image Adjustment */
+.feat-img { 
+    width: 100%; /* Take full width of the column */
+    height: 200px; 
+    background: #333; 
+}
+
+.feat-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image stretching */
+}
+
+.feat-info { 
+    padding: 20px; 
+}
+
+.feat-info h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.read-more { 
+    color: #ffcc00; 
+    text-decoration: none; 
+    font-size: 12px; 
+    font-weight: bold; 
+    margin-top: 15px; 
+    display: block; 
+}
+
+/* Responsive: Back to 1 column on mobile */
+@media (max-width: 768px) {
+    .features-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: row; /* Image left, text right */
+}
+
+.feat-img {
+    width: 200px; /* Smaller width to allow room for text */
+    flex-shrink: 0; /* Prevents the image from squishing */
+}
 /* --- ABOUT SECTION --- */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.about-mvgo { display: grid; gap: 20px; }
-.mvgo-item i { color: #ffcc00; margin-right: 10px; }
-.mvgo-item h4 { margin-bottom: 5px; color: #ffcc00; }
+/* Container & Grid */
+#about-view {
+    padding: 50px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    margin-top: 30px;
+}
+
+/* Typography & Narrative */
+.section-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background: var(--accent); /* #ffcc00 */
+    border-radius: 2px;
+}
+
+.lead-glow {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: justify;
+    text-justify: inter-word;
+    
+}
+
+.narrative-body p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.community-highlight {
+    padding: 20px;
+    background: rgba(255, 204, 0, 0.1);
+    border-left: 3px solid var(--accent);
+    color: #fff !important;
+    font-style: italic;
+}
+
+/* Objective Cards */
+.about-objectives {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.objective-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.objective-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.highlight-card {
+    background: rgba(255, 204, 0, 0.05);
+    border-color: rgba(255, 204, 0, 0.2);
+}
+
+.obj-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+    background: rgba(255, 204, 0, 0.15);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.obj-content h4 {
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+}
+
+.obj-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+}
 
 /* --- FOOTER --- */
 .site-footer {

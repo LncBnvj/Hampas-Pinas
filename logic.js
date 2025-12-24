@@ -282,3 +282,15 @@
                 if(searchInput) searchInput.focus();
             }, 1000);
         }
+
+    function toggleDropdown(id) {
+        // Optional: Close all other open dropdowns first
+        const allDropdowns = document.querySelectorAll('.dropdown-content');
+        allDropdowns.forEach(dd => {
+            if (dd.id !== id) dd.classList.remove('show');
+        });
+
+        // Toggle the clicked dropdown
+        const target = document.getElementById(id);
+        target.classList.toggle('show');
+    }
