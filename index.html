@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="Vw-V8YnjA66lTf0ew0mXRZn-8Mv7i8vXdc0t8A9UAuo" />
-    <title>Hampas Pinas | Official Volleyball Hub</title>
+    <title>Hampas Pinas | Official PVP Volleyball Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <div id="welcome-portal" class="welcome-portal">
+        <div class="glass-hero">
+            <div class="hero-content">
+                <div class="badge">Elite Scouting v2.5</div>
+                <h1>Hampas <span class="accent-text">Pinas</span></h1>
+                <p>Step into the future of Philippine Volleyball scouting. Professional data, refined for the modern scout.</p>
+                
+                <div class="action-zone">
+                    <button class="prime-btn" onclick="launchPortal()">
+                        Enter Hub <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+    </div>
     <div class="main">
         <input type="radio" name="window-ctrl" id="tab-home" checked>
         <input type="radio" name="window-ctrl" id="tab-rankings">
@@ -690,6 +708,17 @@
 
 
             <section id="transfer-view" class="window">
+                <div id="welcome-overlay" class="welcome-overlay">
+                    <div class="welcome-card glass-effect">
+                        <div class="welcome-icon">
+                            <i class="fas fa-volleyball-ball fa-spin-slow"></i>
+                        </div>
+                        <h1>Welcome to the Transfer Portal</h1>
+                        <p>Your elite scouting and transfer hub for the 2025/26 season.</p>
+                        <button class="enter-btn" onclick="closeWelcome()">Explore Prospects</button>
+                        <div class="welcome-footer">Authenticated by Philippine Volleyball ProPulse</div>
+                    </div>
+                </div>
 
                     <div class="glass-bg"></div>
 

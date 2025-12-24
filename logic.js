@@ -249,3 +249,34 @@
                 }
             }
         }
+
+        function closeWelcome() {
+            const overlay = document.getElementById('welcome-overlay');
+            overlay.classList.add('overlay-hidden');
+            
+            // Optional: Auto-trigger the Transfer Portal tab after welcome
+            document.getElementById('tab-transfer').checked = true;
+        }
+
+        // Optional: Auto-close after 5 seconds if they don't click
+        /*
+        setTimeout(() => {
+            closeWelcome();
+        }, 5000);
+        */
+
+        function launchPortal() {
+            const portal = document.getElementById('welcome-portal');
+            
+            // Add exit class
+            portal.classList.add('portal-exit');
+            
+            // After animation, remove from DOM to save performance
+            setTimeout(() => {
+                portal.style.display = 'none';
+                
+                // Bonus: Auto-focus the search bar in your actual table
+                const searchInput = document.getElementById('portalSearch');
+                if(searchInput) searchInput.focus();
+            }, 1000);
+        }
