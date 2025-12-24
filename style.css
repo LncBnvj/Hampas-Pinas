@@ -148,19 +148,19 @@ body {
 }
 
 .player-glass-frame {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 12px 15px;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 0.5fr; /* Controls column widths */
+    grid-template-columns: 1fr 1.5fr 2.5fr 2fr 0.5fr; /* Controls column widths */
     align-items: center;
     transition: 0.3s ease;
 }
 
 .player-glass-frame:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 255, 0.15);
     border-color: #ffcc00;
     transform: translateX(5px);
 }
@@ -186,6 +186,10 @@ body {
     font-weight: bold;
 }
 
+.p-wrank {
+    font-size: 12px;
+    font-weight: 600;
+}
 .p-name {
     font-size: 12px;
     font-weight: 600;
@@ -1082,8 +1086,6 @@ td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-
-
 /* --- WINDOW LOGIC --- */
 input[type="radio"] { display: none; }
 .window { display: none; animation: fadeIn 0.5s ease forwards; }
@@ -1177,8 +1179,13 @@ input[type="radio"] { display: none; }
 }
 .section-title { color: #ffcc00; font-size: 32px; margin-bottom: 30px; border-left: 5px solid #8b0000; padding-left: 15px; }
 .tag { font-size: 10px; padding: 3px 8px; border-radius: 5px; text-transform: uppercase; font-weight: bold; margin-bottom: 10px; display: inline-block; }
-.prospect { background: #ffcc00; color: #000; }
-.rising { background: #0066ff; color: #fff; }
-.underrated { background: #8b0000; color: #fff; }
+.prospect { background: #0018f1; color: #f8f8f8; }
+.rising { background: #ffcc00; color: #000000; }
+.league { background: #ffcc00; color: #000000; }
+.underrated { background: #ff0000; color: #ffffff; }
+.team { background: #000000; color: #ffffff; }
+.headline { background: #001bb1; color: #ffffff; }
+.pvl { background: #001bb1; color: #ffffff; }
+.level { background: #001bb1; color: #ffffff; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

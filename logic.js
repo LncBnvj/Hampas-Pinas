@@ -57,7 +57,7 @@
                 document.getElementById('descTitle').innerText = "Scouting Report";
                 document.getElementById('cardDescText').innerText = reason;
 
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
+                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag level">${level}</span>`;
                 
                 grid.innerHTML = `
                     <div class="info-item"><span>No. of Year With National Team</span><strong>${year}</strong></div>
@@ -92,16 +92,18 @@
                 document.getElementById('infoCard').style.display = "flex";
             }
             // TEAM CARD LOGIC HOME
-            function showTeamCardHome(teamName, bestplayer, captain, coach, achievement, league) {
+            function showTeamCardHome(teamName, bestplayer, captain, coach, rank, achievement, league, seasonnote
+
+            ) {
                 const grid = document.getElementById('infoGrid');
                 const tags = document.getElementById('cardTags');
 
                 document.getElementById('cardTitle').innerText = teamName;
                 document.getElementById('cardIcon').className = "fas fa-shield-halved";
                 document.getElementById('descTitle').innerText = "Season Notes";
-                document.getElementById('cardDescText').innerText = "This team has shown consistent growth in the current conference.";
+                document.getElementById('cardDescText').innerText = seasonnote;
 
-                tags.innerHTML = `<span class="tag underrated">Rank: ${achievement}</span>`;
+                tags.innerHTML = `<span class="tag underrated">Rank: ${rank}</span>`;
                 tags.innerHTML += `<span class="tag underrated">League: ${league}</span>`;
 
                 grid.innerHTML = `
@@ -190,7 +192,7 @@
             rows.forEach(row => {
                 // In THIS table: Name is Index 1, Team is Index 3
                 const nameCell = row.cells[1].textContent.toLowerCase();
-                const teamCell = row.cells[3].textContent.toLowerCase();
+                const teamCell = row.cells[2].textContent.toLowerCase();
 
                 const matchesName = nameCell.includes(nameQuery);
                 const matchesTeam = (teamQuery === "all") || teamCell.includes(teamQuery);
