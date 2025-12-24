@@ -422,7 +422,7 @@ body {
     align-items: center;
     padding: 10px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 .filter-group, .search-group {
@@ -436,7 +436,7 @@ body {
 .filter-bar select, .filter-bar input {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
+    border-radius: 20px;
     padding: 8px 12px;
     color: white;
     outline: none;
@@ -502,6 +502,215 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
+:root {
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --accent: #ffcc00;
+}
+
+body {
+    background: #0f172a; /* Dark sleek background */
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 380px; /* Table on left, Rankings on right */
+    gap: 20px;
+    padding: 25px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; color: #888; font-size: 0.8rem; padding-bottom: 15px; text-transform: uppercase; }
+td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+/* Row Hover */
+.portal-table tbody tr:hover { background: rgba(255,255,255,0.05); cursor: pointer; }
+
+/* Side Table Styling */
+.s-rank-val { color: var(--accent); font-weight: bold; width: 50px; }
+.score-val { color: var(--accent); font-weight: bold; text-align: right; }
+
+/* Container that holds the image and the name info */
+.player-cell {
+    display: flex;          /* This puts children (img and div) in a row */
+    align-items: center;    /* Vertically centers the name with the middle of the photo */
+    justify-content: flex-start; /* Keeps everything grouped to the left side */
+    gap: 12px;              /* Creates space between the photo and the text */
+}
+
+/* YOUR TABLE THUMBNAIL FIX */
+.player-thumb {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 0, 0.5);
+    /* margin-right is no longer strictly needed because of 'gap' above, 
+       but keeping it doesn't hurt */
+    margin-right: 4px; 
+    flex-shrink: 0;         /* Prevents the image from getting squished */
+}
+
+/* Ensure the text container doesn't have extra margins */
+.player-info {
+    display: flex;
+    flex-direction: column; /* Stack name and stars vertically */
+    text-align: left;       /* Keep text aligned to the left */
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.profile-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        gap: 20px; /* Space between the two boxes */
+        margin-top: 20px;
+    }
+
+    /* Style for the individual boxes */
+    .detail-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
+    }
+
+    .detail-box h3 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        color: #ffffff;
+        border-bottom: 2px solid #3a3635; /* Accent color */
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Table Styling */
+    .transfer-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .transfer-table th, .transfer-table td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Mobile Responsive: Stack them on top of each other on small screens */
+    @media (max-width: 768px) {
+        .profile-details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: 300px;
+}
+
+.search-icon {
+    color: rgba(255, 255, 255, 0.6);
+    margin-right: 10px;
+}
+
+#portalSearch {
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+    padding: 8px 0;
+}
+
+#portalSearch::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Adjust header to layout title and search side-by-side */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+/* Modal Styling */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; z-index: 1000; }
+.modal-content.profile-view { width: 90%; max-width: 1000px; height: 85vh; padding: 0; overflow: hidden; }
+.modal-scroll-area { padding: 40px; height: 100%; overflow-y: auto; }
+
+/* Profile Layout */
+.profile-header-section { display: grid; grid-template-columns: 250px 1fr; gap: 30px; margin-bottom: 30px; }
+.profile-main-img img { width: 100%; border-radius: 10px; border: 1px solid var(--glass-border); }
+.quick-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+.q-stat { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border: 1px solid var(--glass-border); }
+.q-stat span { display: block; font-size: 0.7rem; color: #aaa; }
+
+.profile-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.full-width { grid-column: span 2; }
+.detail-box { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); }
+
+/* Timeline */
+.timeline-item { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+.time-point { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: white; }
+.highlight-btn { background: var(--accent); border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+.article-link { color: var(--accent); text-decoration: none; font-weight: bold; }
+.title-container {
+    display: flex;
+    align-items: baseline; /* Aligns text along the bottom edge */
+    gap: 15px;            /* Space between title and date */
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #ffcc00; /* Match your navbar accent color */
+}
+
+.as-of-date {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+    font-style: italic;
+}
+
+/* Ensure the header spreads title and search bar apart */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* --- WINDOW LOGIC --- */
 input[type="radio"] { display: none; }
 .window { display: none; animation: fadeIn 0.5s ease forwards; }
@@ -512,6 +721,7 @@ input[type="radio"] { display: none; }
 #tab-alas:checked ~ .window-container #alas-view,
 #tab-watchlist:checked ~ .window-container #watchlist-view,
 #tab-features:checked ~ .window-container #features-view,
+#tab-transfer:checked ~ .window-container #transfer-view,
 #tab-about:checked ~ .window-container #about-view { display: block; }
 
 #tab-home:checked ~ .navbar label[for="tab-home"],
@@ -520,6 +730,7 @@ input[type="radio"] { display: none; }
 #tab-alas:checked ~ .navbar label[for="tab-alas"],
 #tab-watchlist:checked ~ .navbar label[for="tab-watchlist"],
 #tab-features:checked ~ .navbar label[for="tab-features"],
+#tab-transfer:checked ~ .navbar label[for="tab-transfer"],
 #tab-about:checked ~ .navbar label[for="tab-about"] {
     color: #ffcc00; border-bottom: 2px solid #ffcc00;
 }

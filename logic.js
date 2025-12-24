@@ -203,3 +203,49 @@
                 }
             });
         }
+
+        function openProfile(name, pos, experience, league) {
+            const modal = document.getElementById("playerModal");
+            
+            // Set dynamic content
+            document.getElementById("p-name").innerText = name;
+            document.getElementById("p-pos").innerText = pos;
+            document.getElementById("p-experience").innerText = experience;
+            document.getElementById("p-league").innerText = league;
+
+            modal.style.display = "flex";
+        }
+
+        function closeProfile() {
+            document.getElementById("playerModal").style.display = "none";
+        }
+
+        // Close if clicking outside the card
+        window.onclick = function(event) {
+            const modal = document.getElementById("playerModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function filterPortal() {
+            // Get the search input
+            const input = document.getElementById("portalSearch");
+            const filter = input.value.toLowerCase();
+            
+            // Target only the rows inside the tbody
+            const tableBody = document.querySelector(".portal-table tbody");
+            const rows = tableBody.getElementsByTagName("tr");
+
+            // Loop through all table rows
+            for (let i = 0; i < rows.length; i++) {
+                // textContent gets all text inside the row (Name, Pos, Status, etc.)
+                const rowText = rows[i].textContent.toLowerCase();
+                
+                if (rowText.includes(filter)) {
+                    rows[i].style.display = ""; // Show the row
+                } else {
+                    rows[i].style.display = "none"; // Hide the row
+                }
+            }
+        }
