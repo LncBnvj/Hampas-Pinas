@@ -607,76 +607,126 @@ body {
     background-color: #ffffff; /* Ensures the dropdown list background is solid white */
 }
 
-/* Full screen background blur */
+/* Full screen background - Opaque enough to hide background content */
 .welcome-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(30, 60, 114, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
-    backdrop-filter: blur(15px); /* Strong blur for the home screen behind */
+    /* Solid dark gradient ensures content behind is not visible */
+    background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
+    backdrop-filter: blur(40px); /* Extreme blur for a clean slate */
+    -webkit-backdrop-filter: blur(40px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* The Glass Welcome Card */
+/* The Glass Welcome Card - Refined Modern Look */
 .welcome-card {
     text-align: center;
-    padding: 50px 40px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    max-width: 450px;
-    animation: slideUp 1s ease-out;
+    padding: 60px 40px;
+    border-radius: 40px;
+    /* Deeper glass effect */
+    background: rgba(255, 255, 255, 0.03); 
+    /* The "Lit" edge - vital for modern aesthetics */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Add a subtle glow behind the card for depth */
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .welcome-card h1 {
-    color: #ffcc00; /* Matching your gold accent */
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    /* Gradient text for a modern touch */
+    background: linear-gradient(to bottom, #fff 0%, #ffcc00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .welcome-card p {
-    color: white;
+    color: rgba(255, 255, 255, 0.6);
     font-size: 1.1rem;
-    opacity: 0.8;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Animated Button */
+/* Animated Button - Clean & Minimalist */
 .enter-btn {
     background: #ffcc00;
-    color: #111;
+    color: #000;
     border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-weight: bold;
+    padding: 16px 45px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+    box-shadow: 0 10px 20px rgba(255, 204, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .enter-btn:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
     background: #fff;
+    box-shadow: 0 15px 25px rgba(255, 255, 255, 0.2);
 }
 
-/* Animations */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+.enter-btn:active {
+    transform: translateY(0);
 }
 
+/* Sophisticated Spin */
 .fa-spin-slow {
-    font-size: 3rem;
-    color: #ffcc00;
-    margin-bottom: 20px;
-    animation: fa-spin 5s infinite linear;
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ffcc00, #ff8800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.3));
+    animation: fa-spin 8s infinite linear;
+}
+
+/* Smooth Entrance Animation */
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(40px) scale(0.95); 
+        filter: blur(10px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+        filter: blur(0);
+    }
 }
 
 /* Class to hide the overlay */
@@ -969,6 +1019,51 @@ tbody tr:hover {
 
 #portalSearch::placeholder {
     color: rgba(255, 255, 255, 0.4);
+}
+/* Table Rows as Cards */
+.portal-table tbody tr {
+    cursor: pointer;
+    transition: 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.portal-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.01);
+}
+
+/* Modal Layout Fix */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.profile-header-section {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-main-img img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 /* Adjust header to layout title and search side-by-side */
@@ -1465,3 +1560,4 @@ input[type="radio"] { display: none; }
 .level { background: #001bb1; color: #ffffff; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+

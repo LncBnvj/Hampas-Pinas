@@ -294,3 +294,104 @@
         const target = document.getElementById(id);
         target.classList.toggle('show');
     }
+
+// 1. DATA HUB - Input your players here
+const playerData = {
+    "bella-belen": {
+        name: "Bella Belen",
+        img: "Tranfer Portal/bella-belen-october-13-2025.webp",
+        stars: 5,
+        pos: "OH",
+        league: "UAAP",
+        exp: "Junior",
+        video: "https://www.youtube.com/watch?v=qhcb7uk4DeA",
+        report: `<p><strong>Strengths:</strong> Explosive vertical, elite court awareness.</p>
+                 <p><strong>Weaknesses:</strong> Consistency on out-of-system sets.</p>`,
+        probs: [
+            { rank: 1, team: "Petro Gazz", pct: "85%" },
+            { rank: 2, team: "Creamline", pct: "60%" }
+        ],
+        timeline: [
+            { date: "Dec 23, 2025", event: "Entered the transfer portal." },
+            { date: "Dec 24, 2025", event: "Officially visited DLSU." }
+        ],
+        media: {
+            title: "The Future of the League",
+            link: "https://sports.inquirer.net/...",
+            source: "VolleyNews Asia"
+        }
+    },
+    "angel-canino": {
+        name: "Angel Canino",
+        img: "Tranfer Portal/canino.webp",
+        stars: 5,
+        pos: "OH",
+        league: "UAAP",
+        exp: "Junior",
+        video: "https://youtube.com/...",
+        report: `<p><strong>Strengths:</strong> Explosive vertical, elite court awareness.</p>
+                 <p><strong>Weaknesses:</strong> Consistency on out-of-system sets.</p>`,
+        probs: [
+            { rank: 1, team: "DLSU", pct: "95%" }
+        ],
+        timeline: [
+            { date: "Dec 20", event: "Season MVP confirmed." }
+        ],
+        media: { 
+            title: "Canino's Choice", 
+            link: "#", 
+            source: "Sports Hub" 
+        }
+    }
+};
+
+// 2. THE OPEN FUNCTION
+function openProfile(playerId) {
+    const p = playerData[playerId];
+    if (!p) return;
+
+    // Basic Info
+    document.getElementById("p-name").innerText = p.name;
+    document.getElementById("p-img").src = p.img;
+    document.getElementById("p-rating").innerText = "⭐".repeat(p.stars);
+    document.getElementById("p-pos").innerText = p.pos;
+    document.getElementById("p-league").innerText = p.league;
+    document.getElementById("p-experience").innerText = p.exp;
+    document.getElementById("p-video-link").href = p.video;
+    document.getElementById("p-report").innerHTML = p.report;
+
+    // Probabilities Table
+    const probBody = document.getElementById("p-probs-body");
+    probBody.innerHTML = p.probs.map(item => `
+        <tr>
+            <td>${item.rank}</td>
+            <td>${item.team}</td>
+            <td>${item.pct}</td>
+        </tr>
+    `).join('');
+
+    // Timeline
+    const timelineContainer = document.getElementById("p-timeline");
+    timelineContainer.innerHTML = p.timeline.map(item => `
+        <div class="timeline-item">
+            <div class="time-point"></div>
+            <div class="time-info"><strong>${item.date}</strong> - ${item.event}</div>
+        </div>
+    `).join('');
+
+    // Media
+    const mediaContainer = document.getElementById("p-media");
+    mediaContainer.innerHTML = `
+        <div class="article-item">
+            <a href="${p.media.link}" class="article-link">${p.media.title}</a>
+            <p>Latest updates on ${p.name}'s status.</p>
+            <small>Source: ${p.media.source}</small>
+        </div>
+    `;
+
+    document.getElementById("playerModal").style.display = "flex";
+}
+
+function closeProfile() {
+    document.getElementById("playerModal").style.display = "none";
+}

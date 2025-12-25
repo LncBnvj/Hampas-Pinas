@@ -822,6 +822,7 @@
             <section id="transfer-view" class="window">
                 <div id="welcome-overlay" class="welcome-overlay">
                     <div class="welcome-card glass-effect">
+                        <div class="badge">PHILIPPINE VOLLEYBALL PROPULSE V1.0</div>
                         <div class="welcome-icon">
                             <i class="fas fa-volleyball-ball fa-spin-slow"></i>
                         </div>
@@ -859,7 +860,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr onclick="openProfile('Bella Belen', 'OH', '5\'7 / 140 lbs', 'Junior', 'UAAP')">
+                                        <tr onclick="openProfile('bella-belen')">
                                             <td class="rank-col">#1</td>
                                             <td>
                                                 <div class="player-cell">
@@ -877,7 +878,7 @@
                                                 <span>NU</span> <i class="fas fa-arrow-right"></i> <span>DLSU?</span>
                                             </td>
                                         </tr>
-                                        <tr onclick="openProfile('Angel Canino', 'OH', '5\'7 / 140 lbs', 'Junior', 'UAAP')">
+                                        <tr onclick="openProfile('angel-canino')">
                                             <td class="rank-col">#1</td>
                                             <td>
                                                 <div class="player-cell">
@@ -961,98 +962,69 @@
                     </div>
                 </section>   
 
-        <div id="playerModal" class="modal">
-            <div class="modal-content glass-card profile-view">
-                <span class="close-btn" onclick="closeProfile()">&times;</span>
-                
-                <div class="modal-scroll-area">
-                    <section class="profile-header-section">
-                        <div class="profile-main-img">
-                            <img src="Tranfer Portal/bella-belen-october-13-2025.webp" id="p-img" alt="Player Large">
-                        </div>
-                        <div class="profile-core-info">
-                            <h1 id="p-name">Player Name</h1>
-                            <div class="p-rating">⭐⭐⭐⭐⭐</div>
-                            <div class="quick-stats-grid">
-                                <div class="q-stat"><span>Position</span><strong id="p-pos">OH</strong></div>
-                                <div class="q-stat"><span>League</span><strong id="p-league">PVL</strong></div>
-                                <div class="q-stat"><span>Experience</span><strong id="p-experience">Junior</strong></div>
+            <div id="playerModal" class="modal">
+                <div class="modal-content glass-card profile-view">
+                    <span class="close-btn" onclick="closeProfile()">&times;</span>
+                    
+                    <div class="modal-scroll-area">
+                        <section class="profile-header-section">
+                            <div class="profile-main-img">
+                                <img src="" id="p-img" alt="Player Photo">
                             </div>
-                                <a href="https://www.youtube.com/watch?v=qhcb7uk4DeA" target="_blank" style="text-decoration: none;">
+                            <div class="profile-core-info">
+                                <h1 id="p-name">Loading...</h1>
+                                <div id="p-rating" class="p-rating"></div>
+                                
+                                <div class="quick-stats-grid">
+                                    <div class="q-stat"><span>Position</span><strong id="p-pos"></strong></div>
+                                    <div class="q-stat"><span>League</span><strong id="p-league"></strong></div>
+                                    <div class="q-stat"><span>Experience</span><strong id="p-experience"></strong></div>
+                                </div>
+                                
+                                <a href="#" id="p-video-link" target="_blank" style="text-decoration: none;">
                                     <button class="highlight-btn">
                                         <i class="fas fa-play"></i> Watch Highlights
                                     </button>
                                 </a>                        
                             </div>
-                    </section>
+                        </section>
 
-                    <div class="profile-details-grid">
-
-                        <div class="detail-box">
-                            <h3><i class="fas fa-exchange-alt"></i> Transfer Probabilities</h3>
-                            <table class="transfer-table">
-                                <thead>
-                                    <tr>
-                                        <th>Rank</th>
-                                        <th>Team</th>
-                                        <th>Prob (%)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Petro Gazz</td>
-                                        <td>85%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Creamline</td>
-                                        <td>60%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Capital 1</td>
-                                        <td>45%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="detail-box">
-                            <h3><i class="fas fa-file-contract"></i> Scouting Report</h3>
-                            <div class="report-content">
-                                <p><strong>Strengths:</strong> Explosive vertical, elite court awareness, and reliable transition defense.</p>
-                                <p><strong>Weaknesses:</strong> Consistency on out-of-system sets.</p>
-                                <p><strong>Play Style:</strong> High-volume scorer with leadership qualities.</p>
+                        <div class="profile-details-grid">
+                            <div class="detail-box">
+                                <h3> Transfer Probabilities</h3>
+                                <table class="transfer-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Team</th>
+                                            <th>Prob (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="p-probs-body"></tbody>
+                                </table>
                             </div>
-                        </div>
 
-                        <div class="detail-box full-width">
-                            <h3><i class="fas fa-history"></i> Transfer Timeline</h3>
-                            <div class="timeline-container">
-                                <div class="timeline-item">
-                                    <div class="time-point"></div>
-                                    <div class="time-info"><strong>Dec 23, 2025</strong> - Player entered the transfer portal.</div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="time-point"></div>
-                                    <div class="time-info"><strong>Dec 24, 2025</strong> - Officially visited DLSU.</div>
-                                </div>
+                            <div class="detail-box">
+                                <h3>Scouting Report</h3>
+                                <div class="report-content" id="p-report">
+                                    </div>
                             </div>
-                        </div>
 
-                        <div class="detail-box full-width">
-                            <h3><i class="fas fa-newspaper"></i> Media Coverage</h3>
-                            <div class="article-item">
-                                <a href="https://sports.inquirer.net/653038/sea-games-bella-belen-stays-positive-despite-alas-pilipinas-loss" class="article-link">The Future of the League: A Deep Dive</a>
-                                <p>Analyzing how this move shifts the power balance of the season.</p>
-                                <small>Source: VolleyNews Asia</small>
+                            <div class="detail-box full-width">
+                                <h3>Timeline</h3>
+                                <div class="timeline-container" id="p-timeline">
+                                    </div>
+                            </div>
+
+                            <div class="detail-box full-width">
+                                <h3>Media Coverage</h3>
+                                <div id="p-media">
+                                    </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
             <section id="about-view" class="window glass-card">
