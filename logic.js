@@ -297,28 +297,34 @@
 
 // 1. DATA HUB - Input your players here
 const playerData = {
-    "bella-belen": {
-        name: "Bella Belen",
-        img: "Tranfer Portal/bella-belen-october-13-2025.webp",
+    "eya-laure": {
+        name: "Eya Laure",
+        img: "Tranfer Portal/images (27).jpg",
         stars: 5,
         pos: "OH",
-        league: "UAAP",
-        exp: "Junior",
-        video: "https://www.youtube.com/watch?v=qhcb7uk4DeA",
-        report: `<p><strong>Strengths:</strong> Explosive vertical, elite court awareness.</p>
-                 <p><strong>Weaknesses:</strong> Consistency on out-of-system sets.</p>`,
+        league: "PVL",
+        exp: "3 Yeats",
+        video: "https://www.youtube.com/watch?v=Vo1m0lvDT9c",
+        report: `<p><strong>Championship:</strong> Explosive vertical, elite court awareness.</p>
+                <p><strong>Awards:</strong> </p>
+                <p><strong></strong>[Awards]</p>
+                <p><strong></strong>[Awards]</p>`,
         probs: [
-            { rank: 1, team: "Petro Gazz", pct: "85%" },
-            { rank: 2, team: "Creamline", pct: "60%" }
+            { rank: 1, team: "Capital 1", pct: "-" },
+            { rank: 2, team: "Chocomucho", pct: "-" }
         ],
         timeline: [
-            { date: "Dec 23, 2025", event: "Entered the transfer portal." },
-            { date: "Dec 24, 2025", event: "Officially visited DLSU." }
+            { date: "UAAP Juniors Season 75 - 80", event: "Played for UST Junior Tigresses" },
+            { date: "2017", event: "Played for Youth Team of the of Philippine National Womens Volleyball Team at ASEAN School Games" },
+            { date: "UAAP Seniors Season 81-82, 84-85", event: "Played for UST Golden Tigresses" },
+            { date: "2019", event: "Played for Senior Team of Philippine National Womens Volleyball Team at Sea Games 2019" },
+            { date: "2023", event: "Debuted on 2023 Premier Volleyball League Invitational Conference with Chery Tiggo Crossovers" },
+            { date: "2024", event: "She parted ways with Cherry Tiggo Crossovers" },        
         ],
         media: {
-            title: "The Future of the League",
-            link: "https://sports.inquirer.net/...",
-            source: "VolleyNews Asia"
+            title: "Tug of war looms for PVL star Eya Laure",
+            link: "https://www.philstar.com/sports/2024/10/14/2392477/tug-war-looms-pvl-star-eya-laure",
+            source: "Philstar.com"
         }
     },
     "angel-canino": {
@@ -384,7 +390,7 @@ function openProfile(playerId) {
     mediaContainer.innerHTML = `
         <div class="article-item">
             <a href="${p.media.link}" class="article-link">${p.media.title}</a>
-            <p>Latest updates on ${p.name}'s status.</p>
+            <p>Latest updates on ${p.name}</p>
             <small>Source: ${p.media.source}</small>
         </div>
     `;

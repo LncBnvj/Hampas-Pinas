@@ -947,6 +947,168 @@ tbody tr:hover {
     font-size: 1rem;
     color: #ffffff;
 }
+/* 1. Force alignment and consistent padding */
+.portal-table th, 
+.portal-table td {
+    text-align: left; /* Ensure both header and data start at the same point */
+    padding: 12px 15px; 
+    box-sizing: border-box;
+}
+/* Base Structure for all Status Pills */
+.status-pill {
+    /* Change display to flex to allow fixed dimensions */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Keeps text centered */
+    
+    /* Set fixed dimensions */
+    width: 140px;  /* Adjust this value based on your longest text */
+    height: 32px;  /* Adjust height as needed */
+    
+    /* Keep your existing styling */
+    padding: 0; /* Remove horizontal padding since width is fixed */
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    
+    /* Prevent text from wrapping or overflowing */
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Status: [Year] Draft Prospect (Gold/Amber) */
+.status-draft {
+    background: rgba(255, 204, 0, 0.1);
+    color: #ffcc00;
+    border-color: rgba(255, 204, 0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.05);
+}
+
+/* Status: Committed / Signed (Cyan/Blue) */
+.status-committed {
+    background: rgba(0, 242, 255, 0.1);
+    color: #0011ff;
+    border-color: rgba(0, 242, 255, 0.2);
+}
+
+/* Status: Hot Prospect / High Interest (Red/Pink) */
+.status-hot {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+    border-color: rgba(255, 71, 87, 0.2);
+    animation: pulse-red 2s infinite;
+
+}
+
+/* --- FREE AGENT: Modern Purple/Indigo Glow --- */
+.status-free {
+    background: rgba(162, 155, 254, 0.15); /* Soft Purple background */
+    color: #a29bfe; /* Bright Lavender/Indigo text */
+    border: 1px solid rgba(162, 155, 254, 0.4);
+    box-shadow: 0 0 12px rgba(162, 155, 254, 0.2);
+    font-weight: 650;
+    letter-spacing: 0.5px;
+    animation: pulse-purple 2s infinite;
+}
+
+/* Status: Evaluating / Undecided (Purple) */
+.status-evaluating {
+    background: rgba(162, 155, 254, 0.1);
+    color: #a29bfe;
+    border-color: rgba(162, 155, 254, 0.2);
+}
+
+/* Status: Stayed / Renewed (Gray/White) */
+.status-stayed {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Proffesional Volleyball */
+.status-pro {
+    background: rgba(0, 242, 255, 0.1);
+    color: #00f2ff;
+    border: 1px solid rgba(0, 242, 255, 0.4);
+}
+
+/* Collegiate Volleyball */
+.status-college {
+    background: rgba(0, 242, 255, 0.1);
+    color: #73ff00;
+    border: 1px solid rgba(217, 255, 0, 0.4);
+}
+
+/* --- Rumor Transfer: Warning Orange with a slow pulse --- */
+.status-rumor {
+    background: rgba(255, 152, 0, 0.1);
+    color: #ff9800;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    animation: pulse-orange 2.5s infinite;
+}
+
+/* --- MEDICAL REDSHIRT: Clinical Blue/Gray --- */
+.status-medical {
+    background: rgba(148, 163, 184, 0.15);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-style: italic;
+}
+/* Container for the status pills within the <td> */
+.status-container {
+    display: flex;
+    flex-direction: column; /* Stacks them vertically */
+    gap: 4px;               /* Space between the two pills */
+    align-items: flex-start; /* Aligns them to the left */
+}
+
+@keyframes pulse-purple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(162, 155, 254, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(162, 155, 254, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(162, 155, 254, 0);
+    }
+}
+
+/* Animation for "Hot" Status */
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+}
+/* 2. Column Spacing Controller */
+/* Change the width percentages below to adjust your spacing */
+.portal-table th:nth-child(1), .portal-table td:nth-child(1) { width: 4%; }  /* Rank */
+.portal-table th:nth-child(2), .portal-table td:nth-child(2) { width: 15%; } /* Player */
+.portal-table th:nth-child(3), .portal-table td:nth-child(3) { width: 4%; }  /* Age */
+.portal-table th:nth-child(4), .portal-table td:nth-child(4) { width: 10%; } /* Pos */
+.portal-table th:nth-child(5), .portal-table td:nth-child(5) { width: 10%; } /* HT / WT */
+.portal-table th:nth-child(6), .portal-table td:nth-child(6) { width: 10%; } /* Status */
+.portal-table th:nth-child(7), .portal-table td:nth-child(7) { width: 19%; } /* Movement */
+
+/* 3. The "Alignment Insurance" */
+.portal-table {
+    width: 100%;
+    table-layout: fixed; /* Crucial: Forces columns to strictly follow the widths set above */
+    border-collapse: collapse;
+}
+
+/* Fix for the Player Cell alignment */
+.player-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
 
 .profile-details-grid {
         display: grid;
@@ -1046,8 +1208,8 @@ tbody tr:hover {
 
 .modal-content {
     width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
+    max-width: 1000px;
+    max-height: 950vh;
     overflow-y: auto;
     border-radius: 20px;
     padding: 30px;
@@ -1061,7 +1223,7 @@ tbody tr:hover {
 
 .profile-main-img img {
     width: 180px;
-    height: 180px;
+    height: 210px;
     object-fit: cover;
     border-radius: 15px;
 }
@@ -1122,9 +1284,78 @@ tbody tr:hover {
 .full-width { grid-column: span 2; }
 .detail-box { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); }
 
-/* Timeline */
-.timeline-item { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-.time-point { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+/* 1. The Timeline Window (The Box) */
+.timeline-container {
+    width: 100%;
+    height: 150px;            /* Your height (fixed at 150px or 100px) */
+    overflow-y: auto;         /* Vertical scroll on */
+    overflow-x: hidden;
+    padding: 10px 20px;       /* Breathing room inside */
+}
+
+/* 2. The Inner Wrapper (The Fix) */
+#p-timeline {
+    position: relative;
+    /* The line is now part of the left border of this container */
+    padding-left: 35px;
+    margin-left: 10px;        /* Pull it away from the edge */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 3. The Modern Timeline Item */
+.timeline-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 4. The Dot (Anchored to the border) */
+.time-point {
+    position: absolute;
+    left: -26px;              /* Perfectly overlays the border-left */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: #ffcc00;      /* Your accent gold color */
+    border-radius: 50%;
+    z-index: 5;
+    
+    /* THE GLOW: Multiple layers of shadow for a soft light effect */
+    box-shadow: 
+        0 0 5px #ffcc00,      /* Core glow */
+        0 0 10px #ffcc00,     /* Middle glow */
+        0 0 20px rgba(255, 204, 0, 0.4); /* Wide faint glow */
+
+    /* Animation: Makes it breathe */
+    animation: point-glow 2s infinite ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+/* Hover Effect: Intensifies the glow */
+.timeline-item:hover .time-point {
+    transform: scale(1.4);
+    box-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00;
+}
+
+/* The Pulse Animation Keyframes */
+@keyframes point-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px #ffcc00, 0 0 10px rgba(255, 204, 0, 0.6);
+        opacity: 1;
+    }
+    50% {
+        /* The glow expands and softens */
+        box-shadow: 0 0 12px #ffcc00, 0 0 25px rgba(255, 204, 0, 0.2);
+        opacity: 0.8;
+    }
+}
+
+.timeline-item:hover .time-point {
+    transform: scale(1.3);    /* Interactive pop when hovering */
+}
+
 
 .close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: white; }
 .highlight-btn { background: var(--accent); border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
