@@ -131,37 +131,6 @@
             });
         }
 
-        function filterAlasRoster() {
-            // 1. Get the specific Alas elements
-            const nameInput = document.getElementById("alasNameSearch");
-            const teamSelect = document.getElementById("alasTeamFilter");
-            const table = document.getElementById("alasTable");
-
-            if (!nameInput || !teamSelect || !table) return;
-
-            const nameQuery = nameInput.value.toLowerCase().trim();
-            const teamQuery = teamSelect.value.toLowerCase();
-            
-            // Get all rows in the body
-            const rows = table.querySelectorAll("tbody tr");
-
-            rows.forEach(row => {
-                // In THIS table: Name is Index 1, Team is Index 3
-                const nameCell = row.cells[1].textContent.toLowerCase();
-                const teamCell = row.cells[2].textContent.toLowerCase();
-
-                const matchesName = nameCell.includes(nameQuery);
-                const matchesTeam = (teamQuery === "all") || teamCell.includes(teamQuery);
-
-                // Update row visibility
-                if (matchesName && matchesTeam) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
-
         function openProfile(name, pos, experience, league) {
             const modal = document.getElementById("playerModal");
             
@@ -183,28 +152,6 @@
             const modal = document.getElementById("playerModal");
             if (event.target == modal) {
                 modal.style.display = "none";
-            }
-        }
-
-        function filterPortal() {
-            // Get the search input
-            const input = document.getElementById("portalSearch");
-            const filter = input.value.toLowerCase();
-            
-            // Target only the rows inside the tbody
-            const tableBody = document.querySelector(".portal-table tbody");
-            const rows = tableBody.getElementsByTagName("tr");
-
-            // Loop through all table rows
-            for (let i = 0; i < rows.length; i++) {
-                // textContent gets all text inside the row (Name, Pos, Status, etc.)
-                const rowText = rows[i].textContent.toLowerCase();
-                
-                if (rowText.includes(filter)) {
-                    rows[i].style.display = ""; // Show the row
-                } else {
-                    rows[i].style.display = "none"; // Hide the row
-                }
             }
         }
 
@@ -381,8 +328,8 @@ function updateSliderUI() {
     track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
 
     // Update Titles
-    if (currentSlide === 0) title.innerText = "Hampas Pinas Dream Team";
-    else if (currentSlide === 1) title.innerText = "Hampas Pinas: Next Gen";
+    if (currentSlide === 0) title.innerText = "Hampas Pinas: Alas Team";
+    else if (currentSlide === 1) title.innerText = "Hampas Pinas: Reserves";
     else if (currentSlide === 2) title.innerText = "Hampas Pinas: Rising Stars";
 
     updateDots();
@@ -417,4 +364,108 @@ sliderContainer.addEventListener('touchend', e => {
 function handleGesture() {
     if (touchendX < touchstartX - 50) moveSlider(1); // Swipe Left
     if (touchendX > touchstartX + 50) moveSlider(-1); // Swipe Right
+}
+
+function filterPortal() {
+    const searchText = document.getElementById("portalSearch").value.toLowerCase();
+    const statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+    
+    const tableBody = document.querySelector(".portal-table tbody");
+    const rows = tableBody.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const rowText = row.textContent.toLowerCase();
+        
+        // Check if the row matches the text search
+        const matchesSearch = rowText.includes(searchText);
+        
+        // Check if the row matches the selected status
+        // If 'all' is selected, it's always true.
+        const matchesStatus = (statusFilter === "all" || rowText.includes(statusFilter));
+
+        // Show row only if both conditions are met
+        if (matchesSearch && matchesStatus) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+function switchLineup() {
+    const selectedYear = document.getElementById("lineupYearSelect").value;
+    const allBodies = document.querySelectorAll(".roster-body");
+    const rosterTitle = document.getElementById("rosterTitle");
+
+    // Hide all lineup bodies
+    allBodies.forEach(body => {
+        body.style.display = "none";
+    });
+
+    // Show the selected lineup body
+    const activeBody = document.getElementById("lineup-" + selectedYear);
+    if (activeBody) {
+        activeBody.style.display = "table-row-group";
+    }
+
+    // Update the Section Title based on selection
+    const titles = {
+        "2025": "🇵🇭 Alas Pilipinas Roster | Sea Games Thailand 2025",
+        "2025AVC": "🇵🇭 Alas Pilipinas Roster | 2025 AVC Volleyball Nation Cup"
+        };
+    rosterTitle.innerHTML = titles[selectedYear];
+    
+    // Clear search and filters when switching years for better UX
+    document.getElementById("alasNameSearch").value = "";
+    document.getElementById("alasTeamFilter").value = "all";
+}
+
+function filterAlasRoster() {
+    const nameFilter = document.getElementById("alasNameSearch").value.toLowerCase().trim();
+    const posFilter = document.getElementById("alasTeamFilter").value.toLowerCase().trim();
+    
+    const activeBody = Array.from(document.querySelectorAll(".roster-body"))
+                            .find(body => window.getComputedStyle(body).display !== "none") 
+                            || document.getElementById("lineup-2025");
+                    
+    const rows = activeBody.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.getElementsByTagName("td");
+        if (cells.length < 3) continue;
+
+        // .trim() removes hidden spaces that break matching
+        const nameValue = cells[1].textContent.toLowerCase().trim();
+        const posValue = cells[2].textContent.toLowerCase().trim();
+
+        const matchesName = nameValue.includes(nameFilter);
+        
+        // Exact match after converting both to lowercase
+        const matchesPos = (posFilter === "all" || posValue === posFilter);
+
+        row.style.display = (matchesName && matchesPos) ? "" : "none";
+    }
+}
+
+function filterByCategory() {
+    const selectedCategory = document.getElementById('statusFilter').value;
+    const cards = document.querySelectorAll('.watch-glass-frame');
+
+    cards.forEach(card => {
+        // Find the tag element inside the card
+        const tag = card.querySelector('.tag');
+        
+        if (selectedCategory === 'all') {
+            card.classList.remove('hidden');
+        } else {
+            // Check if the tag has the matching class (prospect, rising, etc.)
+            if (tag.classList.contains(selectedCategory)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        }
+    });
 }

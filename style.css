@@ -1084,6 +1084,8 @@ tbody tr:hover {
     70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
 }
+
+
 /* 2. Column Spacing Controller */
 /* Change the width percentages below to adjust your spacing */
 .portal-table th:nth-child(1), .portal-table td:nth-child(1) { width: 4%; }  /* Rank */
@@ -1560,7 +1562,7 @@ input[type="radio"] { display: none; }
 }
 .dream-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
 .dream-player { background: #222; padding: 10px; border-radius: 8px; border: 1px solid #444; font-size: 12px; }
-.dream-player span { color: #ffcc00; font-weight: bold; margin-right: 5px; }
+.dream-player span { color: #ffcc00; font-weight: bold; margin-right: 10px; }
 
 /* --- RANKINGS & TABLES --- */
 .ranking-tabs h3 { color: #ffcc00; margin-bottom: 15px; text-transform: uppercase; }
@@ -1569,6 +1571,37 @@ input[type="radio"] { display: none; }
 .data-table { width: 100%; border-collapse: collapse; }
 .data-table th { color: #ffcc00; padding: 15px; text-align: left; border-bottom: 2px solid #8b0000; font-size: 12px; }
 .data-table td { padding: 15px; border-bottom: 1px solid #222; font-size: 14px; }
+
+/* 1. Force the table to obey your width rules */
+#alasTable {
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* 2. Target specific columns */
+/* Jersey No. */
+#alasTable th:nth-child(1), 
+#alasTable td:nth-child(1) { width: 80px; text-align: center; } 
+
+/* Name */
+#alasTable th:nth-child(2),
+#alasTable td:nth-child(2) { width: 25%; } 
+#alasTable td:nth-child(2) { width: 80px; text-align: left; } 
+
+/* Position */
+#alasTable th:nth-child(3), 
+#alasTable td:nth-child(3) { width: 15%; } 
+
+/* Team */
+#alasTable th:nth-child(4),
+#alasTable td:nth-child(4) { width: 18%; } 
+
+/* Height/Age/Exp/Ranking (Remaining space) */
+#alasTable th:nth-child(5), #alasTable td:nth-child(5) { width: 10%; } /* Height */
+#alasTable th:nth-child(6), #alasTable td:nth-child(6) { width: 7%; }  /* Age */
+#alasTable th:nth-child(7), #alasTable td:nth-child(7) { width: 20%; } /* Pro Exp */
+#alasTable th:nth-child(8), #alasTable td:nth-child(8) { width: 13%; } /* Ranking */
+
 
 /* --- ALAS WATCH DASHBOARD --- */
 .alas-dashboard { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
@@ -1785,6 +1818,7 @@ input[type="radio"] { display: none; }
 .rising { background: #ffcc00; color: #000000; }
 .league { background: #ffcc00; color: #000000; }
 .underrated { background: #ffcc00; color: #000000; }
+.undertheradar { background: #ff0800; color: #f7f2f2fa; }
 .team { background: #000000; color: #ffffff; }
 .headline { background: #001bb1; color: #ffffff; }
 .pvl { background: #001bb1; color: #ffffff; }
@@ -1885,8 +1919,38 @@ input[type="radio"] { display: none; }
 }
 
 .table-wrapper {
-    width: 100%;
     overflow-x: auto; /* Ensures tables don't break the slide width */
+    min-width: 100%; /* Ensures each slide is exactly the same size as the window */
+    box-sizing: border-box;
+}
+
+/* Force all tables in the slider to have the same layout */
+.team-slider-track table {
+    table-layout: fixed; /* This is the secret ingredient */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Set specific widths for each column (%) */
+/* Total must equal 100% */
+.team-slider-track th:nth-child(1), 
+.team-slider-track td:nth-child(1) { width: 25%; } /* Position */
+
+.team-slider-track th:nth-child(2), 
+.team-slider-track td:nth-child(2) { width: 35%; } /* Name */
+
+.team-slider-track th:nth-child(3), 
+.team-slider-track td:nth-child(3) { width: 30%; } /* Team */
+
+.team-slider-track th:nth-child(4), 
+.team-slider-track td:nth-child(4) { width: 10%; } /* Age */
+
+/* Handle long names so they don't break the layout */
+.team-slider-track td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if name is too long */
+    padding: 12px 8px;
 }
 
 /* Arrow Styling */
@@ -1925,4 +1989,115 @@ input[type="radio"] { display: none; }
     background: var(--accent); /* Your gold color */
     transform: scale(1.3);
     box-shadow: 0 0 10px var(--accent);
+}
+
+.search-controls-wrapper {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 450px; /* Limits the total width so it's not too lengthy */
+}
+
+.search-container {
+    flex: 2; /* Search bar takes more space */
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filter-container {
+    flex: 1; /* Dropdown takes less space */
+}
+
+#statusFilter {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+
+#statusFilter option {
+    background: #121212; /* Matches your dark theme */
+}
+
+.search-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.glass-search-bar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.search-controls-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.one-liner-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Prevents the label and select from jumping to two lines */
+    flex-wrap: nowrap; 
+}
+
+.filter-label-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    /* Forces text to stay on one line */
+    white-space: nowrap; 
+    flex-shrink: 0;
+}
+
+#statusFilter {
+    background-color: #ffffff;
+    color: #333333;
+    border: none;
+    border-radius: 20px; /* Pill shape from image */
+    padding: 6px 35px 6px 15px; /* Extra right padding for the arrow */
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Custom chevron arrow from your reference UI */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    min-width: 150px;
+    height: 38px;
+}
+
+/* Ensure the dropdown list is readable */
+#statusFilter option {
+    background: #ffffff;
+    color: #333333;
+}
+
+/* Hide card logic */
+.watch-glass-frame.hidden {
+    display: none;
 }
