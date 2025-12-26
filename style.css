@@ -1784,7 +1784,7 @@ input[type="radio"] { display: none; }
 .prospect { background: #0018f1; color: #f8f8f8; }
 .rising { background: #ffcc00; color: #000000; }
 .league { background: #ffcc00; color: #000000; }
-.underrated { background: #ff0000; color: #ffffff; }
+.underrated { background: #ffcc00; color: #000000; }
 .team { background: #000000; color: #ffffff; }
 .headline { background: #001bb1; color: #ffffff; }
 .pvl { background: #001bb1; color: #ffffff; }
@@ -1792,3 +1792,137 @@ input[type="radio"] { display: none; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+.portal-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8); /* Darken background */
+    align-items: center;
+    justify-content: center;
+}
+
+.portal-modal-content {
+    width: 90%;
+    max-width: 500px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container: Default Player Style (Circular) */
+.card-img-container {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%; /* Circle */
+    border: 2px solid rgba(255, 204, 0, 0.4); /* Gold Border */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.portal-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Player photo fills the circle */
+}
+
+/* MODIFIER: Team Logo Look (Transparent & Borderless) */
+.card-img-container.is-team {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible;
+}
+
+.card-img-container.is-team .portal-main-img {
+    object-fit: contain; /* Logo stays proportional */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); /* Gives logos a subtle pop */
+}
+
+
+/* Header Flex for Title and Arrows */
+.section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Safety fix for the grid item containing the slider */
+/* Add this to the specific grid column holding the slider */
+.home-headline-grid > div {
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* The container stays at the width of your grid column */
+.team-slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-slider-track {
+    display: flex;
+    width: 300%; /* Total width for 3 slides */
+    transition: transform 0.5s ease-in-out;
+}
+
+.team-slide {
+    width: 33.333%; /* Essential: 100% divided by 3 slides */
+    flex-shrink: 0;
+    min-width: 33.333%;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Ensures tables don't break the slide width */
+}
+
+/* Arrow Styling */
+.nav-btn {
+    background: rgba(255, 204, 0, 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: var(--accent); /* Your gold color */
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--accent);
+}

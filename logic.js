@@ -1,129 +1,85 @@
-            function closeCard() {
-                document.getElementById('infoCard').style.display = "none";
+        // Function to close the card
+        function closeCard() {
+            document.getElementById('portalCard').style.display = "none";
+        }
+
+        // Universal function updated to handle Image Sources and Styling Toggles
+        function updatePortalCard(name, imgSrc, title, reason, tagsHTML, gridHTML, isTeam = false) {
+            document.getElementById('portalCardTitle').innerText = name;
+            
+            const imgElement = document.getElementById('portalCardImg');
+            const container = imgElement.parentElement; // Gets the .card-img-container
+            
+            imgElement.src = imgSrc; 
+
+            // TOGGLE TEAM LOGO STYLE: if isTeam is true, add the class; otherwise remove it
+            if (isTeam) {
+                container.classList.add('is-team');
+            } else {
+                container.classList.remove('is-team');
             }
 
-            // PLAYER CARD LOGIC HOME
-            function showCard(name, almamater, pos, award, team, hometown, jerseyno, reason) {
-                const grid = document.getElementById('infoGrid');
-                const tags = document.getElementById('cardTags');
-                
-                document.getElementById('cardTitle').innerText = name;
-                document.getElementById('cardIcon').className = "fas fa-user-astronaut"; 
-                document.getElementById('descTitle').innerText = "Scouting Report";
-                document.getElementById('cardDescText').innerText = reason;
+            document.getElementById('portalDescTitle').innerText = title;
+            document.getElementById('portalCardDescText').innerText = reason;
+            document.getElementById('portalCardTags').innerHTML = tagsHTML;
+            document.getElementById('portalInfoGrid').innerHTML = gridHTML;
+            document.getElementById('portalCard').style.display = "flex";
+        }
 
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span>`;
-                
-                grid.innerHTML = `
-                    <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
-                    <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
-                    <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
-                    <div class="info-item"><span>College</span><strong>${almamater}</strong></div>
-                `;
+        // 1. PLAYER CARD - (isTeam = false)
+        function showCard(name, playerImg, almamater, pos, award, team, hometown, jerseyno, reason) {
+            const tags = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span>`;
+            const grid = `
+                <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
+                <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
+                <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
+                <div class="info-item"><span>College</span><strong>${almamater}</strong></div>
+            `;
+            updatePortalCard(name, playerImg, "Scouting Report", reason, tags, grid, false);
+        }
 
-                document.getElementById('infoCard').style.display = "flex";
+        // 2. PLAYER RANKING CARD - (isTeam = false)
+        function showCardRanking(name, playerImg, pos, award, team, hometown, jerseyno, draft, reason, level) {
+            const tags = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
+            const grid = `
+                <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
+                <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
+                <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
+                <div class="info-item"><span>Draft Class</span><strong>${draft}</strong></div>
+            `;
+            updatePortalCard(name, playerImg, "Scouting Report", reason, tags, grid, false);
+        }
+
+        // 3. TEAM CARD - (isTeam = true)
+        function showTeamCard(teamName, teamLogo, setratio, captain, coach, league, championship) {
+            const tags = `<span class="tag underrated">League: ${league}</span>`;
+            const grid = `
+                <div class="info-item"><span>Head Coach</span><strong>${coach}</strong></div>
+                <div class="info-item"><span>Team Captain</span><strong>${captain}</strong></div>
+                <div class="info-item"><span>Championship</span><strong>${championship}</strong></div>
+                <div class="info-item"><span>Set Ratio</span><strong>${setratio}</strong></div>
+            `;
+            updatePortalCard(teamName, teamLogo, "Team Overview", "Active roster and season performance metrics.", tags, grid, true);
+        }
+
+        // 4. TEAM CARD HOME - (isTeam = true)
+        function showTeamCardHome(teamName, teamLogo, bestplayer, captain, coach, rank, achievement, league, seasonnote) {
+            const tags = `<span class="tag underrated">Rank: ${rank}</span> <span class="tag underrated">League: ${league}</span>`;
+            const grid = `
+                <div class="info-item"><span>Head Coach</span><strong>${coach}</strong></div>
+                <div class="info-item"><span>Team Captain</span><strong>${captain}</strong></div>
+                <div class="info-item"><span>Notable Achievement</span><strong>${achievement}</strong></div>
+                <div class="info-item"><span>Best Player</span><strong>${bestplayer}</strong></div>
+            `;
+            updatePortalCard(teamName, teamLogo, "Season Notes", seasonnote, tags, grid, true);
+        }
+        // Close if user clicks background - Updated ID
+        window.onclick = function(event) {
+            const modal = document.getElementById('portalCard');
+            if (event.target == modal) {
+                closeCard();
             }
-
-            // PLAYER CARD LOGIC PLAYER RANKING
-            function showCardRanking(name, pos, award, team, hometown, jerseyno, draft, reason, level) {
-                const grid = document.getElementById('infoGrid');
-                const tags = document.getElementById('cardTags');
-                
-                document.getElementById('cardTitle').innerText = name;
-                document.getElementById('cardIcon').className = "fas fa-user-astronaut"; 
-                document.getElementById('descTitle').innerText = "Scouting Report";
-                document.getElementById('cardDescText').innerText = reason;
-
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
-                
-                grid.innerHTML = `
-                    <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
-                    <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
-                    <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
-                    <div class="info-item"><span>Draft Class</span><strong>${draft}</strong></div>
-
-                `;
-
-                document.getElementById('infoCard').style.display = "flex";
-            }
-
-            // PLAYER CARD LOGIC HQ
-            function showCardHQ(name, championship, pos, award, team, college, year, reason, level) {
-                const grid = document.getElementById('infoGrid');
-                const tags = document.getElementById('cardTags');
-                
-                document.getElementById('cardTitle').innerText = name;
-                document.getElementById('cardIcon').className = "fas fa-user-astronaut"; 
-                document.getElementById('descTitle').innerText = "Scouting Report";
-                document.getElementById('cardDescText').innerText = reason;
-
-                tags.innerHTML = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag level">${level}</span>`;
-                
-                grid.innerHTML = `
-                    <div class="info-item"><span>No. of Year With National Team</span><strong>${year}</strong></div>
-                    <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
-                    <div class="info-item"><span>College</span><strong>${college}</strong></div>
-                    <div class="info-item"><span>Championship Ring</span><strong>${championship}</strong></div>
-                `;
-
-                document.getElementById('infoCard').style.display = "flex";
-            }
-
-
-            // TEAM CARD LOGIC
-            function showTeamCard(teamName, setratio, captain, coach, league, championship) {
-                const grid = document.getElementById('infoGrid');
-                const tags = document.getElementById('cardTags');
-
-                document.getElementById('cardTitle').innerText = teamName;
-                document.getElementById('cardIcon').className = "fas fa-shield-halved";
-                document.getElementById('descTitle').innerText = "Season Notes";
-                document.getElementById('cardDescText').innerText = "This team has shown consistent growth in the current conference.";
-
-                tags.innerHTML = `<span class="tag underrated">League: ${league}</span>`;
-
-                grid.innerHTML = `
-                    <div class="info-item"><span>Head Coach</span><strong>${coach}</strong></div>
-                    <div class="info-item"><span>Team Captain</span><strong>${captain}</strong></div>
-                    <div class="info-item"><span>Championship</span><strong>${championship}</strong></div>
-                    <div class="info-item"><span>Set Ratio</span><strong>${setratio}</strong></div>
-                `;
-
-                document.getElementById('infoCard').style.display = "flex";
-            }
-            // TEAM CARD LOGIC HOME
-            function showTeamCardHome(teamName, bestplayer, captain, coach, rank, achievement, league, seasonnote
-
-            ) {
-                const grid = document.getElementById('infoGrid');
-                const tags = document.getElementById('cardTags');
-
-                document.getElementById('cardTitle').innerText = teamName;
-                document.getElementById('cardIcon').className = "fas fa-shield-halved";
-                document.getElementById('descTitle').innerText = "Season Notes";
-                document.getElementById('cardDescText').innerText = seasonnote;
-
-                tags.innerHTML = `<span class="tag underrated">Rank: ${rank}</span>`;
-                tags.innerHTML += `<span class="tag underrated">League: ${league}</span>`;
-
-                grid.innerHTML = `
-                    <div class="info-item"><span>Head Coach</span><strong>${coach}</strong></div>
-                    <div class="info-item"><span>Team Captain</span><strong>${captain}</strong></div>
-                    <div class="info-item"><span>Notable Achievement</span><strong>${achievement}</strong></div>
-                    <div class="info-item"><span>Best Player</span><strong>${bestplayer}</strong></div>
-                `;
-
-                document.getElementById('infoCard').style.display = "flex";
-            }
-
-
-            // Close if user clicks background
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('infoCard')) {
-                    closeCard();
-                }
-            }
-
+        }
         function filterRankings() {
             // 1. Get values using the NEW UNIQUE IDs
             const nameQuery = document.getElementById("rankNameSearch").value.toLowerCase().trim();
@@ -400,4 +356,65 @@ function openProfile(playerId) {
 
 function closeProfile() {
     document.getElementById("playerModal").style.display = "none";
+}
+
+let currentSlide = 0;
+const totalSlides = 3; 
+
+function jumpToSlide(index) {
+    currentSlide = index;
+    updateSliderUI();
+}
+
+function moveSlider(direction) {
+    currentSlide += direction;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    updateSliderUI();
+}
+
+function updateSliderUI() {
+    const track = document.getElementById('sliderTrack');
+    const title = document.getElementById('teamDisplayName');
+    
+    // Move the track
+    track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+
+    // Update Titles
+    if (currentSlide === 0) title.innerText = "Hampas Pinas Dream Team";
+    else if (currentSlide === 1) title.innerText = "Hampas Pinas: Next Gen";
+    else if (currentSlide === 2) title.innerText = "Hampas Pinas: Rising Stars";
+
+    updateDots();
+}
+
+function updateDots() {
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+// CRITICAL: Initialize the UI when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    updateSliderUI();
+});
+// Support for Swipe (Mobile)
+let touchstartX = 0;
+let touchendX = 0;
+
+const sliderContainer = document.querySelector('.team-slider-container');
+
+sliderContainer.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+});
+
+sliderContainer.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+});
+
+function handleGesture() {
+    if (touchendX < touchstartX - 50) moveSlider(1); // Swipe Left
+    if (touchendX > touchstartX + 50) moveSlider(-1); // Swipe Right
 }
