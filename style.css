@@ -1121,11 +1121,47 @@ tbody tr:hover {
 
     /* Style for the individual boxes */
     .detail-box {
-        background: #ffffff;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        border: 1px solid #eee;
+        height: 250px; /* Limits the box size so inner content must scroll */
+        display: flex;
+        flex-direction: column;
+        display: flex;
+    }
+    /* Test this specifically */
+    .report-content, 
+    .timeline-container {
+        height: 200px !important;    /* Forces a fixed height for testing */
+        overflow-y: scroll !important; /* Forces the scrollbar to appear area */
+        display: block;               /* Ensures it behaves as a block container */
+        padding: 15px;
+    }
+
+    /* Ensure the content-carrying div has a boundary */
+    #p-report, #p-timeline {
+        height: 200px;        /* Forces the box to be exactly this tall */
+        overflow-y: auto;     /* Adds the scrollbar ONLY if content is too long */
+        overflow-x: hidden;   /* Prevents unwanted side-scrolling */
+        display: block;       /* Important if parent is a Flexbox */
+    }
+    /* Custom Scrollbar for Chrome/Edge/Safari */
+    .report-content::-webkit-scrollbar,
+    .timeline-container::-webkit-scrollbar {
+        width: 8px; /* Width of the scrollbar */
+    }
+
+    .report-content::-webkit-scrollbar-track,
+    .timeline-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05); /* Dark track */
+        border-radius: 10px;
+    }
+
+    .report-content::-webkit-scrollbar-thumb,
+    .timeline-container::-webkit-scrollbar-thumb {
+        background: #ffd700; /* Gold color to match your Rank/Team headers */
+        border-radius: 10px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
     }
 
     .detail-box h3 {
@@ -1155,6 +1191,42 @@ tbody tr:hover {
             grid-template-columns: 1fr;
         }
     }
+
+    /* 1. Limit the height and enable scrolling */
+.table-scroll-wrapper {
+    max-height: 200px;    /* Adjust this height as needed */
+    overflow-y: auto;     /* Enables vertical scroll */
+    overflow-x: hidden;
+    margin-top: 10px;
+}
+
+/* 2. Make the header sticky */
+.transfer-table thead th {
+    position: sticky;
+    top: 0;
+    background: #1a1a1a; /* Must have a solid background to cover rows behind it */
+    z-index: 10;
+    padding: 10px;
+}
+
+/* 3. Custom Scrollbar (matches your previous theme) */
+.table-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #ffd700; /* Turns Gold on hover */
+}
 
 .search-container {
     position: relative;
@@ -1823,8 +1895,7 @@ input[type="radio"] { display: none; }
 .headline { background: #001bb1; color: #ffffff; }
 .pvl { background: #001bb1; color: #ffffff; }
 .level { background: #001bb1; color: #ffffff; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.elite { background: #f18a03; color: #ffffff; }
 
 .portal-modal {
     display: none; /* Hidden by default */
@@ -1991,44 +2062,73 @@ input[type="radio"] { display: none; }
     box-shadow: 0 0 10px var(--accent);
 }
 
+/* Layout Wrapper: Forces one-line alignment */
 .search-controls-wrapper {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
     width: 100%;
-    max-width: 450px; /* Limits the total width so it's not too lengthy */
+    max-width: 600px; /* Adjusted to fit both comfortably */
 }
 
+/* Dark Pill Search Bar */
 .search-container {
-    flex: 2; /* Search bar takes more space */
+    flex: 2;
     position: relative;
     display: flex;
     align-items: center;
+    background: rgba(255, 255, 255, 0.1); /* Dark translucent pill */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 0 15px;
+    height: 40px;
 }
 
+.search-container input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 8px 10px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.search-icon {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* White Pill Filter Dropdown */
 .filter-container {
-    flex: 1; /* Dropdown takes less space */
+    flex: 1;
+    min-width: 140px;
 }
 
 #statusFilter {
     width: 100%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    height: 40px;
+    padding: 0 35px 0 15px;
+    background-color: #ffffff; /* Matches white pill in reference */
+    color: #333333;
+    border: none;
+    border-radius: 25px;
     cursor: pointer;
     outline: none;
+    font-size: 0.9rem;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Custom Arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
 }
 
 #statusFilter option {
-    background: #121212; /* Matches your dark theme */
-}
-
-.search-container {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
+    background: #ffffff;
+    color: #333333;
 }
 
 .glass-search-bar {
@@ -2100,4 +2200,46 @@ input[type="radio"] { display: none; }
 /* Hide card logic */
 .watch-glass-frame.hidden {
     display: none;
+}
+
+/* Container for the new filter */
+.portal-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* The Dropdown styling */
+.portal-custom-select {
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 0.9rem;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Style the dropdown options (browser dependent) */
+.portal-custom-select option {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px;
+}
+
+/* Hover effect */
+.portal-filter-group:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
 }

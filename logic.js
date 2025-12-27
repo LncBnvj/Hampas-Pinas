@@ -202,16 +202,20 @@
 const playerData = {
     "eya-laure": {
         name: "Eya Laure",
-        img: "Tranfer Portal/images (27).jpg",
+        img: "Tranfer Portal/1.1.png",
         stars: 5,
-        pos: "OH",
+        pos: "Outside Hitter",
         league: "PVL",
-        exp: "3 Yeats",
+        exp: "3 Years",
         video: "https://www.youtube.com/watch?v=Vo1m0lvDT9c",
-        report: `<p><strong>Championship:</strong> Explosive vertical, elite court awareness.</p>
-                <p><strong>Awards:</strong> </p>
-                <p><strong></strong>[Awards]</p>
-                <p><strong></strong>[Awards]</p>`,
+        report: `<p><strong>Championship:</strong> 5x Champion</p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong>PVL 2nd All Filipino Conference Best Outside Spiker</p>
+                <p><strong></strong>UAAP Season 81 1st Best Spiker</p>
+                <p><strong></strong>UAAP Season 81 Rookie of the Year</p>
+                <p><strong></strong>2025 AVC Women's Volleyball Nation Cup Silver Medalist</p>`
+                ,
+
         probs: [
             { rank: 1, team: "Capital 1", pct: "-" },
             { rank: 2, team: "Chocomucho", pct: "-" }
@@ -224,35 +228,36 @@ const playerData = {
             { date: "2023", event: "Debuted on 2023 Premier Volleyball League Invitational Conference with Chery Tiggo Crossovers" },
             { date: "2024", event: "She parted ways with Cherry Tiggo Crossovers" },        
         ],
-        media: {
-            title: "Tug of war looms for PVL star Eya Laure",
-            link: "https://www.philstar.com/sports/2024/10/14/2392477/tug-war-looms-pvl-star-eya-laure",
-            source: "Philstar.com"
-        }
     },
-    "angel-canino": {
-        name: "Angel Canino",
-        img: "Tranfer Portal/canino.webp",
-        stars: 5,
-        pos: "OH",
-        league: "UAAP",
-        exp: "Junior",
-        video: "https://youtube.com/...",
-        report: `<p><strong>Strengths:</strong> Explosive vertical, elite court awareness.</p>
-                 <p><strong>Weaknesses:</strong> Consistency on out-of-system sets.</p>`,
+
+    "rachel-jorvina": {
+        name: "Rachel Jorvina",
+        img: "Tranfer Portal/2.png",
+        stars: 2,
+        pos: "Libero",
+        league: "PVL",
+        exp: "4 Years",
+        video: "https://www.youtube.com/watch?v=0CV9sUqK61w",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> Broke Canada West record for most digs in a regular season match with 63 at Winnipeg on Jan. 25, 2020 </p>
+                <p><strong></strong> Broke the program record for most digs in a CW regular season with 374 in 2019-20 (tied for eighth-most in CW history) </p>
+                <p><strong></strong>  Also holds the Griffins' record for most digs/set in a CW regular season with 4.45 in 2019-20 (eighth best in CW history), while her 3.05 average in 2018-19 is sixth in MacEwan's record book</p>`
+                ,
         probs: [
-            { rank: 1, team: "DLSU", pct: "95%" }
+            { rank: 1, team: "Capital1", pct: "-" },
+            { rank: 1, team: "Nxled Chameleons", pct: "-" }
         ],
         timeline: [
-            { date: "Dec 20", event: "Season MVP confirmed." }
+            { date: "2020 - 2022", event: "Studied at MacEwan University" },
+            { date: "2022", event: "Made her PVL debut with the Akari Power Chargers" },  
+            { date: "2024", event: "Transferred to Akari Sister Team Nxled Chameleon" },   
+            { date: "December 2025", event: "Reportedly linked to a move to Capital1" }       
         ],
-        media: { 
-            title: "Canino's Choice", 
-            link: "#", 
-            source: "Sports Hub" 
-        }
     }
 };
+
+
 
 // 2. THE OPEN FUNCTION
 function openProfile(playerId) {
@@ -287,16 +292,6 @@ function openProfile(playerId) {
             <div class="time-info"><strong>${item.date}</strong> - ${item.event}</div>
         </div>
     `).join('');
-
-    // Media
-    const mediaContainer = document.getElementById("p-media");
-    mediaContainer.innerHTML = `
-        <div class="article-item">
-            <a href="${p.media.link}" class="article-link">${p.media.title}</a>
-            <p>Latest updates on ${p.name}</p>
-            <small>Source: ${p.media.source}</small>
-        </div>
-    `;
 
     document.getElementById("playerModal").style.display = "flex";
 }
@@ -367,32 +362,67 @@ function handleGesture() {
 }
 
 function filterPortal() {
-    const searchText = document.getElementById("portalSearch").value.toLowerCase();
-    const statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+    // 1. Get the search text from the input
+    const input = document.getElementById("portalSearch");
+    const filter = input.value.toLowerCase();
     
-    const tableBody = document.querySelector(".portal-table tbody");
-    const rows = tableBody.getElementsByTagName("tr");
+    // 2. Select the table and its body rows
+    const table = document.querySelector(".portal-table");
+    const tr = table.getElementsByTagName("tr");
 
-    for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        const rowText = row.textContent.toLowerCase();
-        
-        // Check if the row matches the text search
-        const matchesSearch = rowText.includes(searchText);
-        
-        // Check if the row matches the selected status
-        // If 'all' is selected, it's always true.
-        const matchesStatus = (statusFilter === "all" || rowText.includes(statusFilter));
+    // 3. Loop through all rows (starting at index 1 to skip the header)
+    for (let i = 1; i < tr.length; i++) {
+        let rowMatch = false;
+        const cells = tr[i].getElementsByTagName("td");
 
-        // Show row only if both conditions are met
-        if (matchesSearch && matchesStatus) {
-            row.style.display = "";
+        // Check every cell in the current row
+        for (let j = 0; j < cells.length; j++) {
+            const cell = cells[j];
+            if (cell) {
+                // Check if the cell text contains the search query
+                if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
+                    rowMatch = true;
+                    break; // Stop checking cells if we found a match in this row
+                }
+            }
+        }
+
+        // 4. Show or hide the row based on the match
+        if (rowMatch) {
+            tr[i].style.display = ""; // Show
         } else {
-            row.style.display = "none";
+            tr[i].style.display = "none"; // Hide
         }
     }
 }
 
+function syncPortalFilters() {
+    // 1. Get current values from both controls
+    const searchVal = document.getElementById("portalSearch").value.toLowerCase();
+    const statusVal = document.getElementById("statusDropdown").value.toLowerCase();
+    
+    // 2. Select all rows in the table body
+    const tableRows = document.querySelectorAll(".portal-table tbody tr");
+
+    tableRows.forEach(row => {
+        // Status is in the 6th column (Index 5)
+        const statusText = row.cells[5].textContent.toLowerCase();
+        // Entire row text for the search bar
+        const rowText = row.textContent.toLowerCase();
+
+        // 3. Evaluate conditions
+        const matchesSearch = rowText.includes(searchVal);
+        const matchesStatus = (statusVal === "all" || statusText.includes(statusVal));
+
+        // 4. Update visibility
+        if (matchesSearch && matchesStatus) {
+            row.style.display = ""; // Show row
+            row.style.animation = "fadeIn 0.3s ease"; // Optional: adding a smooth entry
+        } else {
+            row.style.display = "none"; // Hide row
+        }
+    });
+}
 function switchLineup() {
     const selectedYear = document.getElementById("lineupYearSelect").value;
     const allBodies = document.querySelectorAll(".roster-body");

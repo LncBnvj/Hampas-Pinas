@@ -337,7 +337,7 @@
                                         </tr>
                                         <tr onclick="showCard('Fifi Sharma', 'Dream Team/15.jpg', 'De La Salle University', 'Middle Blocker', 'Best Middle Blocker', 'DLSU', '-', '#2', 'A physical middle with strong net presence and active blocking. Sharma brings energy, quick reads, and reliable first-tempo offense while anchoring the middle defensively.')">
                                             <td>Middle Blocker 2</td>
-                                            <td>mereophe Aevangeline "Fifi" Sharma</td>
+                                            <td>Mereophe "Fifi" Sharma</td>
                                             <td>De La Salle University</td>
                                             <td>24</td>
                                         </tr>
@@ -412,7 +412,7 @@
                                             <td>Nazareth School - NU</td>
                                             <td>16</td>
                                         </tr>
-                                        </tbody>  
+                                    </tbody>  
                                 </table>
                             </div>
                         </div>
@@ -1073,7 +1073,7 @@
                             <div class="glass-card">
                                 <h3>PNVF boosts Alas Pilipinas Girls squad.</h3>
                                 <p>The Philippine National Volleyball Federation (PNVF) is shoring up the Alas Pilipinas Girls squad that is headed for a historic debut on the world stage next year</p>
-                                <a href="https://tribune.net.ph/2025/12/25/pnvf-boosts-alas-pilipinas-girls-squad" class="read-more">Watch Full Article&rarr;</a>   
+                                <a href="https://tribune.net.ph/2025/12/25/pnvf-boosts-alas-pilipinas-girls-squad" class="read-more">Read Full Article&rarr;</a>   
                             </div>
                         </a>                        
                     </div>
@@ -1091,6 +1091,7 @@
                             <option value="all">All Categories</option>
                             <option value="rising">Rising Star</option>
                             <option value="undertheradar">Underrated</option>
+                            <option value="Elite">Elite Player</option>                            
                             <option value="prospect">National Prospect</option>
                             <option value="team">Rising Team</option>
                         </select>
@@ -1122,6 +1123,13 @@
                     </div>
 
                     <div class="watch-glass-frame">
+                        <span class="tag elite">Elite Player </span>
+                        <h3>Angel Canino</h3>
+                        <p>When the moment demands greatness, Angel Canino delivers—elite, undeniable.</p>
+                        <div class="frame-footer">DLSU / Alas Pilipinas</div>
+                    </div>
+
+                    <div class="watch-glass-frame">
                         <span class="tag team">Rising Team</span>
                         <h3>Zus Coffee Thunderbelles</h3>
                         <p>A young core that is quickly becoming a giant-slayer in the PVL.</p>
@@ -1147,6 +1155,13 @@
                         <h3>Rhose Almendralejo</h3>
                         <p>Poised and progressing, Rhose Almendralego is one to watch moving forward.</p>
                         <div class="frame-footer">Nazareth School - NU </div>
+                    </div>
+
+                    <div class="watch-glass-frame">
+                        <span class="tag elite">Elite Player </span>
+                        <h3>Jia Morado</h3>
+                        <p>A master of tempo and control, Jia Morado remains the gold standard among setters.</p>
+                        <div class="frame-footer">CCS / Alas Pilipinas</div>
                     </div>
 
                     <div class="watch-glass-frame">
@@ -1258,18 +1273,20 @@
                                 <div class="search-controls-wrapper">
                                     <div class="search-container">
                                         <i class="fas fa-search search-icon"></i>
-                                        <input type="text" id="portalSearch" placeholder="Search player..." onkeyup="filterPortal()">
+                                        <input type="text" id="portalSearch" placeholder="Search player..." onkeyup="syncPortalFilters()">
                                     </div>
 
-                                    <div class="filter-container">
-                                        <select id="statusFilter" onchange="filterPortal()">
-                                            <option value="all">All Status</option>
+                                    <div class="portal-filter-group">
+                                        <label for="statusDropdown" class="filter-label">Status:</label>
+                                        <select id="statusDropdown" class="portal-custom-select" onchange="syncPortalFilters()">
+                                            <option value="all">All Prospects</option>
                                             <option value="professional">Professional</option>
                                             <option value="free agent">Free Agent</option>
                                             <option value="hot prospect">Hot Prospect</option>
+                                            <option value="transfer rumor">Transfer Rumor</option>
                                         </select>
                                     </div>
-                                </div> 
+                                </div>
                                                              
                             </header>
 
@@ -1291,7 +1308,7 @@
                                             <td class="rank-col">#1</td>
                                             <td>
                                                 <div class="player-cell">
-                                                    <img src="Tranfer Portal/images (27).jpg" class = "player-thumb" alt="Belen">
+                                                    <img src="Tranfer Portal/1.1.png" class = "player-thumb" alt="Eya Laure">
                                                     <div class="player-info">
                                                         <span class="name">Ejiya "Eya" Laure</span>
                                                         <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -1305,36 +1322,43 @@
                                                 <div class="status-container">
                                                     <span class="status-pill status-pro">Professional</span>
                                                     <span class="status-pill status-free">Free Agent</span>
+                                                    <span class="status-pill status-hot">Hot Prospect</span>                                                
+                                                </div>
                                             </td>
                                             <td class="move-cell">
-                                                <span>Uncommitted / Exploring Options</span><span></span>
+                                                <span>Uncommitted / Exploring Options</span>
+                                                <span></span>
                                             </td>
-                                        </tr>         
-                                    <tr onclick="openProfile('eya-laure')">
-                                            <td class="rank-col">#1</td>
+                                        </tr>    
+
+                                        <tr onclick="openProfile('rachel-jorvina')">
+                                            <td class="rank-col">-</td>
                                             <td>
                                                 <div class="player-cell">
-                                                    <img src="Tranfer Portal/images (27).jpg" class = "player-thumb" alt="Belen">
+                                                    <img src="Tranfer Portal/2.png" class = "player-thumb" alt="Rachel Jorvina">
                                                     <div class="player-info">
-                                                        <span class="name">Ejiya "Eya" Laure</span>
-                                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                                        <span class="name">Rachel Jorvina</span>
+                                                        <div class="stars">⭐⭐</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>26</td>
-                                            <td>Outside Hitter</td>
-                                            <td>5’7” / 170 lbs</td>
+                                            <td>27</td>
+                                            <td>Libero</td>
+                                            <td>5’5” / -</td>
                                             <td>
                                                 <div class="status-container">
+                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
                                                     <span class="status-pill status-pro">Professional</span>
-                                                    <span class="status-pill status-free">Free Agent</span>
-                                                    <span class="status-pill status-hot">Hot Prospect</span>
+
                                                 </div>
                                             </td>
                                             <td class="move-cell">
-                                                <span>To Be Determine</span> <i class="fas fa-arrow-right"></i> <span></span>
+                                                <span>Nxled Chameleons </span>
+                                                <i class="fas fa-arrow-right transfer-icon"></i>                                           
+                                                <span>Capital1</span>
                                             </td>
-                                        </tr>                                      
+                                        </tr>       
+
                                     </tbody>
                                 </table>
                             </div>
@@ -1411,17 +1435,20 @@
 
                         <div class="profile-details-grid">
                             <div class="detail-box">
-                                <h3> Transfer Probabilities</h3>
-                                <table class="transfer-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Rank</th>
-                                            <th>Team</th>
-                                            <th>Prob (%)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="p-probs-body"></tbody>
-                                </table>
+                                <h3>Transfer Probabilities</h3>
+                                <div class="table-scroll-wrapper">
+                                    <table class="transfer-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Team</th>
+                                                <th>Prob (%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="p-probs-body">
+                                            </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="detail-box">
@@ -1433,12 +1460,6 @@
                             <div class="detail-box full-width">
                                 <h3>Timeline</h3>
                                 <div class="timeline-container" id="p-timeline">
-                                    </div>
-                            </div>
-
-                            <div class="detail-box full-width">
-                                <h3>Media Coverage</h3>
-                                <div id="p-media">
                                     </div>
                             </div>
                         </div>
