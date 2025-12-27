@@ -205,15 +205,15 @@ const playerData = {
         img: "Tranfer Portal/1.1.png",
         stars: 5,
         pos: "Outside Hitter",
-        league: "PVL",
+        league: "PVL / Alas PIlipinas",
         exp: "3 Years",
         video: "https://www.youtube.com/watch?v=Vo1m0lvDT9c",
         report: `<p><strong>Championship:</strong> 5x Champion</p>
                 <p><strong>Notable Awards:</strong> </p>
-                <p><strong></strong>PVL 2nd All Filipino Conference Best Outside Spiker</p>
-                <p><strong></strong>UAAP Season 81 1st Best Spiker</p>
-                <p><strong></strong>UAAP Season 81 Rookie of the Year</p>
-                <p><strong></strong>2025 AVC Women's Volleyball Nation Cup Silver Medalist</p>`
+                <p><strong></strong>PVL 2nd All Filipino Conference - Best Outside Spiker</p>
+                <p><strong></strong>UAAP Season 81 - 1st Best Spiker</p>
+                <p><strong></strong>UAAP Season 81 - Rookie of the Year</p>
+                <p><strong></strong>2025 AVC Women's Volleyball Nation Cup Runner Up</p>`
                 ,
 
         probs: [
@@ -221,12 +221,307 @@ const playerData = {
             { rank: 2, team: "Chocomucho", pct: "-" }
         ],
         timeline: [
-            { date: "UAAP Juniors Season 75 - 80", event: "Played for UST Junior Tigresses" },
-            { date: "2017", event: "Played for Youth Team of the of Philippine National Womens Volleyball Team at ASEAN School Games" },
-            { date: "UAAP Seniors Season 81-82, 84-85", event: "Played for UST Golden Tigresses" },
-            { date: "2019", event: "Played for Senior Team of Philippine National Womens Volleyball Team at Sea Games 2019" },
+            { date: "2025", event: "Free Agent" },  
+            { date: "2024", event: "She parted ways with Cherry Tiggo Crossovers" },  
             { date: "2023", event: "Debuted on 2023 Premier Volleyball League Invitational Conference with Chery Tiggo Crossovers" },
-            { date: "2024", event: "She parted ways with Cherry Tiggo Crossovers" },        
+            { date: "UAAP Seniors Season 81-82, 84-85", event: "Played for UST Golden Tigresses" },              
+            { date: "2019", event: "Played for Senior Team of Philippine National Womens Volleyball Team at Sea Games 2019" }, 
+            { date: "UAAP Juniors Season 75 - 80", event: "Played for UST Junior Tigresses" },
+            { date: "2017", event: "Played for Youth Team of the of Philippine National Womens Volleyball Team at ASEAN School Games" }
+        ],
+    },
+
+    "aiza-pontillas": {
+        name: "Aiza Maizo Pontillas",
+        img: "Tranfer Portal/5.png",
+        stars: 4,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "15 Years",
+        video: "https://www.youtube.com/watch?v=2Dct0G4FvaE",
+        report: `<p><strong>Championship:</strong> 21x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2025 PVL Reinforced Conference Champion</p>
+                <p><strong></strong> 2025 PVL All-FIlipino Conference Champion</p>
+                <p><strong></strong> 2019 ASEAN Grand Prix - First Leg 3rd Place</p>
+                <p><strong></strong> 2017 PSL All Filipino Most Valuable Player </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2022", event: "Made her PVL with Petro Gazz Angels in the Premier Volleyball League" },
+            { date: "2021", event: "Signed with Sta. Lucia Lady Realtors" },
+
+            { date: "2019", event: "Returned to the Philippine National Team for the 2019 SEA Games" },
+            { date: "2017", event: "First international medal with the Philippine National Team (Bronze – Princess Maja Chakri Sirindhorn's Cup)" },
+
+            { date: "2016", event: "Transferred to Petron Tri-Activ / Blaze Spikers in the Philippine Super Liga" },
+            { date: "2015", event: "Signed with PLDT Home Ultera Fast Hitters" },
+            { date: "2013–2015", event: "Played for Cagayan Valley Lady Rising Suns in Shakey’s V-League" },
+            { date: "2013", event: "Made her debut with the Philippine National Team at the Asian Women’s Volleyball Championship" },
+            { date: "2011", event: "Guest player for Philippine Air Force and Philippine Navy" },
+            { date: "2007–2011, 2013", event: "Played collegiate volleyball for UST Golden Tigresses" }
+        ],
+    },
+
+    "ara-galang": {
+        name: "Victonara Galang",
+        img: "Tranfer Portal/8.jpg",
+        stars: 4,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "10 Years",
+        video: "https://www.youtube.com/watch?v=9yiDe7BX7j8",
+        report: `<p><strong>Championship:</strong> 8x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2018 PSL Invitational Most Valuable Player</p>
+                <p><strong></strong> UAAP Season 75 Most Valuable PLayer </p>
+                <p><strong></strong> 2019 PSL All FIlipino Champion </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2017", event: "Played for F2 Logistics Cargo Movers as an Outside Hitter" },
+            { date: "2015", event: "First professional stint with F2 Logistics Cargo Movers" },
+            { date: "2011", event: "Played collegiate volleyball for De La Salle University Lady Spikers" }
+        ],
+    },   
+    
+        "jen-nierva": {
+        name: "Jennifer Nierva",
+        img: "Tranfer Portal/9.png",
+        stars: 4,
+        pos: "Libero",
+        league: "PVL",
+        exp: "3 Years",
+        video: "https://www.youtube.com/watch?v=lBexjDvaLhI",
+        report: `<p><strong>Championship:</strong> 2x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> UAAP Season 84 Indoor Volleyball Champion</p>
+                <p><strong></strong> UAAP Season 84 Best Libero </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2023", event: "First professional stint with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2022", event: "Played for Team PNVF" },
+            { date: "2020", event: "Played for Rebisco-Philippines" },
+            { date: "2018", event: "Played collegiate volleyball for NU Lady Bulldogs" },
+            { date: "2017", event: "Played for BaliPure Purest Water Defenders" }
+        ],
+    },   
+
+    "imee-hernandez": {
+        name: "Imee Kim Hernandez",
+        img: "Tranfer Portal/10.png",
+        stars: 4,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "3 Years",
+        video: "https://www.youtube.com/watch?v=8b2bCp3YF5c",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2018 PVL V-League Best Middle Blocker</p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up  </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2023", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020", event: "Played for Rebisco Philippines" },
+            { date: "2018-2023", event: "Played collegiate volleyball for UST Golden Tigresses" }
+        ],
+    },   
+
+    "aby-marano": {
+        name: "Aby Marano",
+        img: "Tranfer Portal/11.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "11 Years",
+        video: "https://www.youtube.com/watch?v=k-M7hO9yd1w",
+        report: `<p><strong>Championship:</strong> 10x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2021 PNVF Champions League Champion </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>
+                <p><strong></strong> 2017 DLSAA Lasallian Sport Achievement Award </p>
+                <p><strong></strong> 2024 PNVF Champions League Best Middle Blocker</p>
+                <p><strong></strong> 2021 PNVF Champions League Best Middle Blocker </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024–2025", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020–2021", event: "Joined Rebisco Philippines" },
+            { date: "2016–2017", event: "Suited up for Foton Tornadoes" },
+            { date: "2015–2024", event: "Became a long-time mainstay of F2 Logistics Cargo Movers" },
+            { date: "2015–2016", event: "Made a stint with RC Cola–Army Lady Troopers" },
+            { date: "2014–2015", event: "Signed with Meralco Power Spikers" },
+            { date: "2014–2015", event: "Joined Petron Tri-Activ Spikers" },
+            { date: "2013–2014", event: "Began her professional career with Generika Ayala Lifesavers" },
+            { date: "2013–2014", event: "Had a short stint with AirAsia Flying Spikers" },
+            { date: "2013–2014", event: "Also suited up for PayMaya High Flyers" },
+            { date: "2010", event: "Started her collegiate career with De La Salle University Lady Spikers" }       
+        ],
+    },
+
+    "caitlin-viray": {
+        name: "Caitlin Viray",
+        img: "Tranfer Portal/3.jpg",
+        stars: 3,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "7 Years",
+        video: "https://www.youtube.com/watch?v=A35eGTM8Fs0",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2023 VTV Cup 3rd Place </p>
+                <p><strong></strong> PVL 2023 Second All Filipino Runner Up </p>
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Runner Up </p>
+                <p><strong></strong> UAAP Season 80 Beach Volleyball Champion </p>
+                <p><strong></strong> UAAP Season 79 Beach Volleyball Rookie of the Year</p>`
+                ,
+        probs: [
+            { rank: 1, team: "Chocomucho", pct: "-" },
+            { rank: 2, team: "Farm Fresh Foxies", pct: "-" }
+        ],
+        timeline: [
+            { date: "December 2025", event: "Reportedly set for a return to Choco Mucho" },
+            { date: "2024", event: "Signed with the Farm Fresh Foxies" },  
+            { date: "2020", event: "Made her PVL debut with the Choco Mucho Flying Titans" },   
+            { date: "2019", event: "Played for the Marinerang Piipinas Lady Skippers" },  
+            { date: "2018", event: "Made her semi-professional debut with the Smart Giga Hitters" },   
+            { date: "2017 - 2020", event: "Represented UST Golden Tigresses in indoor and beach volleyball" }       
+        ],
+    },
+
+    "alina-bicar": {
+        name: "Alina Bicar",
+        img: "Tranfer Portal/12.png",
+        stars: 3,
+        pos: "Setter    ",
+        league: "PVL",
+        exp: "7 Years",
+        video: "https://www.youtube.com/watch?v=G5Nb5utmWys",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Runner Up </p>
+                <p><strong></strong> 2024 PVL Champions League 3rd Place </p>
+                <p><strong></strong> 2021 PVL Open Conference 3rd Place </p>
+                <p><strong></strong> 2019 PVL Reinforeced Conference 3rd Place </p>
+                <p><strong></strong> UAAP Season 79 Inddor Volleyball 3rd Place</p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2022–2025", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020–2023", event: "Joined BaliPure Purest Water Defenders" },
+            { date: "2019–2020", event: "Had a stint with PacificTown–Army Lady Troopers" },
+            { date: "2018–2019", event: "Suited up for Tacloban Fighting Warays" },
+            { date: "2017–2018", event: "Signed with PLDT High Speed Hitters" },
+            { date: "2015–2019", event: "Began her collegiate career with the UST Golden Tigresses" }
+        ],
+
+    },
+
+    "camille-victoria": {
+        name: "Camille Victoria",
+        img: "Tranfer Portal/6.png",
+        stars: 3,
+        pos: "Middle Blocker / Opposite Spiker",
+        league: "PVL",
+        exp: "3 Years",
+        video: "https://www.youtube.com/watch?v=DzXdn5UpeIw",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PVL Reinforced Conference Runner Up</p>
+                <p><strong></strong> 2024 PVL All Filipino Conference 3rd Place Up<p>
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Runner Up</p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2025", event: "Rejoined Akari Power Chargers as a Middle Blocker" },
+            { date: "2025", event: "Transferred to Nxled Chameleons, converting to Middle Blocker" },
+            { date: "2023", event: "Played for Akari Power Chargers as an Opposite Spiker" },
+            { date: "2017", event: "Played collegiate volleyball for UST Golden Tigresses as an Opposite Spiker" },
+            { date: "2016", event: "Began semi-professional career with Cherrylume Iron Lady Warriors" }
+        ],
+    },
+
+    "mylene-paat": {
+        name: "Mylene Paat",
+        img: "Tranfer Portal/13.png",
+        stars: 3,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "9 Years",
+        video: "https://www.youtube.com/watch?v=K2UjNJZ1798",
+        report: `<p><strong>Championship:</strong> 2x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2021 PVL Open League Champion p</p>
+                <p><strong></strong> 2017 PSL Invitational Cup Champion <p>
+                <p><strong></strong> 2022 PVL Reinforced Conference Most Valuable Player <p>                
+                <p><strong></strong> 2021 Thailand League Top Scorerp</p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2021–2026", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2021–2022", event: "Made an overseas stint with Nakhon Ratchasima Qmin C VC (Thailand)" },
+            { date: "2020–2021", event: "Joined Choco Mucho Flying Titans for AVC" },
+            { date: "2016–2019", event: "Became part of the Cignal Super Spikers program" },
+            { date: "2015–2016", event: "Had a one-season stint with TIP Lady Engineers" },
+            { date: "2013–2018", event: "Began her collegiate career with Adamson Lady Falcons" }
+        ],
+
+    },
+    "pauline-gaston": {
+        name: "Pauline Marie Monique Gaston",
+        img: "Tranfer Portal/4.png",
+        stars: 3,
+        pos: "Opposite Spiker/ Middle Blocker",
+        league: "PVL",
+        exp: "8 Years",
+        video: "https://www.youtube.com/watch?v=r8NK-bQnevw",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PNVF Champions League 3rd Place </p>
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Champion</p>
+                <p><strong></strong> 2016 ASEAN University Games 3rd Place</p>                
+                <p><strong></strong> UAAP Season 76-77 Junior's Indoor Volleyball Best Blocker</p>`
+                ,
+        probs: [
+            { rank: 1, team: "Capital1", pct: "-" },
+            { rank: 2, team: "Choco Mucho", pct: "-" }
+        ],
+        timeline: [
+            { date: "December 2025", event: "Became a free agent following the disbandment of Chery Tiggo" },
+            { date: "2024", event: "Signed with the Chery Tiggo Crossovers" },  
+            { date: "2020", event: "Made her PVL debut with the Choco Mucho Flying Titans" },     
+            { date: "2018", event: "Made her semi-professional debut with the Ateneo-Motolite" },   
+            { date: "2014 - 2019", event: "Represented Ateneo Blue Eagles in indoor volleyball" }       
         ],
     },
 
@@ -246,18 +541,46 @@ const playerData = {
                 ,
         probs: [
             { rank: 1, team: "Capital1", pct: "-" },
-            { rank: 1, team: "Nxled Chameleons", pct: "-" }
+            { rank: 2, team: "Nxled Chameleons", pct: "-" }
         ],
         timeline: [
-            { date: "2020 - 2022", event: "Studied at MacEwan University" },
-            { date: "2022", event: "Made her PVL debut with the Akari Power Chargers" },  
-            { date: "2024", event: "Transferred to Akari Sister Team Nxled Chameleon" },   
-            { date: "December 2025", event: "Reportedly linked to a move to Capital1" }       
+            { date: "December 2025", event: "Reportedly linked to a move to Capital1" },
+            { date: "2024", event: "Transferred to Akari Sister Team Nxled Chameleon" },               
+            { date: "2022", event: "Made her PVL debut with the Akari Power Chargers" },            
+            { date: "2020 - 2022", event: "Studied at MacEwan University" }
         ],
-    }
+    },
+
+    "bia-general": {
+        name: "Fatima Bia General",
+        img: "Tranfer Portal/7.png",
+        stars: 2,
+        pos: "Libero",
+        league: "PVL",
+        exp: "12 Years",
+        video: "https://www.youtube.com/watch?v=JXncdhzx6LU",
+        report: `<p><strong>Championship:</strong> 4x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> PVL 2014 V League Best Libero</p>                
+                <p><strong></strong> PSL 2014 - 2015 PSL Grand Prix Champion </p>
+                <p><strong></strong> 2012, 2014 PVL V League Champion </p>`
+                ,
+        probs: [
+            { rank: 1, team: "Farm Fresh", pct: "-" },
+            { rank: 2, team: "Choco Mucho", pct: "-" }
+        ],
+        timeline: [
+            { date: "December 2025", event: "Reportedly linked to a move to Farm Fresh Foxies" },
+            { date: "2024", event: "Signed with Choco Mucho Flying Titans (PVL)" },
+            { date: "2022", event: "Played for Cignal Super Spikers" },
+            { date: "2020", event: "Joined UAC Power Hitters" },
+            { date: "2017", event: "Played for Generika Ayala Lifesavers" },
+            { date: "2015", event: "Played for Foton Tornadoes" },
+            { date: "2014", event: "Played for Shopinas.com Lady Clickers" },
+            { date: "2012", event: "First played for NU Lady Bulldogs" }
+        ],
+    }    
 };
-
-
 
 // 2. THE OPEN FUNCTION
 function openProfile(playerId) {

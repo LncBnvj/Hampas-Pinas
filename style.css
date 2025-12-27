@@ -1004,6 +1004,13 @@ tbody tr:hover {
 
 }
 
+.status-underrated {
+    background: rgba(168, 35, 46, 0.1);
+    color: #e77982;
+    border-color: rgba(255, 71, 87, 0.2);
+
+}
+
 /* --- FREE AGENT: Modern Purple/Indigo Glow --- */
 .status-free {
     background: rgba(162, 155, 254, 0.15); /* Soft Purple background */
@@ -1034,6 +1041,14 @@ tbody tr:hover {
     background: rgba(0, 242, 255, 0.1);
     color: #00f2ff;
     border: 1px solid rgba(0, 242, 255, 0.4);
+}
+/* Proffesional Volleyball */
+.status-national {
+    background: rgba(0, 102, 255, 0.15); /* deeper blue tint */
+    color: #3399ff;                      /* bright flag blue */
+    border: 1px solid rgba(51, 153, 255, 0.4);
+    box-shadow: 0 0 10px rgba(51, 153, 255, 0.2); /* optional glow */
+    animation: pulse-national 2s infinite;  
 }
 
 /* Collegiate Volleyball */
@@ -1077,24 +1092,72 @@ tbody tr:hover {
         box-shadow: 0 0 0 0 rgba(162, 155, 254, 0);
     }
 }
+@keyframes pulse-national {
+    0% {
+        box-shadow: 0 0 0 0 rgba(51, 153, 255, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 15px 5px rgba(51, 153, 255, 0.2);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(51, 153, 255, 0);
+        transform: scale(1);
+    }
+}
 
+.status-national {
+    animation: pulse-national 2s infinite;
+}
 /* Animation for "Hot" Status */
 @keyframes pulse-red {
     0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
 }
+/* 1. The Container: Set a fixed height and enable scrolling */
+.table-container {
+    max-height: 700px; /* Adjust this height as needed */
+    overflow-y: auto;  /* Vertical scroll */
+    overflow-x: auto;  /* Horizontal scroll for mobile/small screens */
+    border-radius: 8px;
+    position: relative;
+}
 
+/* 2. The Header: Make it "Sticky" */
+.portal-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #1a1a1a; /* Must have a solid background color to cover rows as they scroll under */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Optional: shadow to give "lift" effect */
+}
+
+/* 3. Smooth Scrollbar Styling (Optional) */
+.table-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
 
 /* 2. Column Spacing Controller */
 /* Change the width percentages below to adjust your spacing */
 .portal-table th:nth-child(1), .portal-table td:nth-child(1) { width: 4%; }  /* Rank */
-.portal-table th:nth-child(2), .portal-table td:nth-child(2) { width: 15%; } /* Player */
+.portal-table th:nth-child(2), .portal-table td:nth-child(2) { width: 20%; } /* Player */
 .portal-table th:nth-child(3), .portal-table td:nth-child(3) { width: 4%; }  /* Age */
 .portal-table th:nth-child(4), .portal-table td:nth-child(4) { width: 10%; } /* Pos */
-.portal-table th:nth-child(5), .portal-table td:nth-child(5) { width: 10%; } /* HT / WT */
-.portal-table th:nth-child(6), .portal-table td:nth-child(6) { width: 10%; } /* Status */
-.portal-table th:nth-child(7), .portal-table td:nth-child(7) { width: 19%; } /* Movement */
+.portal-table th:nth-child(5), .portal-table td:nth-child(5) { width: 5%; } /* HT / WT */
+.portal-table th:nth-child(6), .portal-table td:nth-child(6) { width: 15%; } /* Status */
+.portal-table th:nth-child(7), .portal-table td:nth-child(7) { width: 25%; } /* Movement */
 
 /* 3. The "Alignment Insurance" */
 .portal-table {

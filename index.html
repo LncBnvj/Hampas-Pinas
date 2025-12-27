@@ -1280,10 +1280,12 @@
                                         <label for="statusDropdown" class="filter-label">Status:</label>
                                         <select id="statusDropdown" class="portal-custom-select" onchange="syncPortalFilters()">
                                             <option value="all">All Prospects</option>
+                                            <option value="national team">National Team</option>
                                             <option value="professional">Professional</option>
                                             <option value="free agent">Free Agent</option>
                                             <option value="hot prospect">Hot Prospect</option>
                                             <option value="transfer rumor">Transfer Rumor</option>
+                                            <option value="underrated">Underrated</option>
                                         </select>
                                     </div>
                                 </div>
@@ -1298,7 +1300,7 @@
                                             <th>Player</th>
                                             <th>Age</th>
                                             <th>Position</th>
-                                            <th>HT / WT</th>
+                                            <th>Height</th>
                                             <th>Status</th>
                                             <th>Movement</th>
                                         </tr>
@@ -1317,22 +1319,285 @@
                                             </td>
                                             <td>26</td>
                                             <td>Outside Hitter</td>
-                                            <td>5’7” / 170 lbs</td>
+                                            <td>5’7”</td>
                                             <td>
                                                 <div class="status-container">
+                                                    <span class="status-pill status-national">National Team</span>                                                       
+                                                    <span class="status-pill status-hot">Hot Prospect</span>                                    
                                                     <span class="status-pill status-pro">Professional</span>
-                                                    <span class="status-pill status-free">Free Agent</span>
-                                                    <span class="status-pill status-hot">Hot Prospect</span>                                                
+                                                    <span class="status-pill status-free">Free Agent</span>                                    
                                                 </div>
                                             </td>
                                             <td class="move-cell">
-                                                <span>Uncommitted / Exploring Options</span>
+                                                <span>Uncommitted</span>
                                                 <span></span>
                                             </td>
                                         </tr>    
 
+                                        <tr onclick="openProfile('aiza-pontillas')">
+                                            <td class="rank-col">#2</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/5.png" class = "player-thumb" alt="Aiza Pontillas">
+                                                    <div class="player-info">
+                                                        <span class="name">Aiza Maizo Pontillas</span>
+                                                        <div class="stars">⭐⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>37</td>
+                                            <td>Opposite Spiker</td>
+                                            <td>5’10”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-hot">Hot Prospect</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommitted </span>                                       
+                                            </td>
+                                        </tr>
+
+                                        <tr onclick="openProfile('ara-galang')">
+                                            <td class="rank-col">#3</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/8.jpg" class = "player-thumb" alt="Ara Galang">
+                                                    <div class="player-info">
+                                                        <span class="name">Victonara "Ara" Galang</span>
+                                                        <div class="stars">⭐⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>30</td>
+                                            <td>Opposite Spiker</td>
+                                            <td>5’7”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-hot">Hot Prospect</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommitted </span>                                       
+                                            </td>
+                                        </tr>
+
+                                        <tr onclick="openProfile('jen-nierva')">
+                                            <td class="rank-col">#4</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/9.png" class = "player-thumb" alt="Jen Nierva">
+                                                    <div class="player-info">
+                                                        <span class="name">Jennifer Nierva</span>
+                                                        <div class="stars">⭐⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>26</td>
+                                            <td>Libero</td>
+                                            <td>5’5”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-national">National Team</span>                                                       
+                                                    <span class="status-pill status-hot">Hot Prospect</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommitted </span>                                       
+                                            </td>
+                                        </tr>       
+                                        
+                                        <tr onclick="openProfile('imee-hernandez')">
+                                            <td class="rank-col">#5</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/10.png" class = "player-thumb" alt="Imee Hernandez">
+                                                    <div class="player-info">
+                                                        <span class="name">Imee Kim Gabriella Hernandez</span>
+                                                        <div class="stars">⭐⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>25</td>
+                                            <td>Middle Blocker</td>
+                                            <td>5’9”</td>
+                                            <td>
+                                                <div class="status-container">                                                    
+                                                    <span class="status-pill status-hot">Hot Prospect</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommitted </span>                                       
+                                            </td>
+                                        </tr>     
+
+                                        <tr onclick="openProfile('aby-marano')">
+                                            <td class="rank-col">#6</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/11.png" class = "player-thumb" alt="Aby Marano">
+                                                    <div class="player-info">
+                                                        <span class="name">Abigail "Tyang Aby" Marano</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>33</td>
+                                            <td>Middle Blocker</td>
+                                            <td>5’8”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommited</span>
+                                            </td>
+                                        </tr>  
+
+                                        <tr onclick="openProfile('caitlin-viray')">
+                                            <td class="rank-col">#7</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/3.jpg" class = "player-thumb" alt="Caitlin Viray">
+                                                    <div class="player-info">
+                                                        <span class="name">Caitlin Viray</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>27</td>
+                                            <td>Opposite Spiker</td>
+                                            <td>5’8”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-hot">Hot Prospect</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Farm Fresh Foxies</span>
+                                                <i class="fas fa-arrow-right transfer-icon"></i>                                           
+                                                <span>Choco Mucho Flying Titans</span>
+                                            </td>
+                                        </tr>  
+
+                                        <tr onclick="openProfile('alina-bicar')">
+                                            <td class="rank-col">#8</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/12.png" class = "player-thumb" alt="Alina Bicar">
+                                                    <div class="player-info">
+                                                        <span class="name">Alina Bicar</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>27</td>
+                                            <td>Setter</td>
+                                            <td>5’4”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommited</span>
+                                            </td>
+                                        </tr>  
+
+                                        <tr onclick="openProfile('camille-victoria')">
+                                            <td class="rank-col">#9</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/6.png" class = "player-thumb" alt="Camille Victoria">
+                                                    <div class="player-info">
+                                                        <span class="name">Camille Victoria</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>26</td>
+                                            <td>Middle Blocker / Opposite Spiker</td>
+                                            <td>6'0”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                    <span class="status-pill status-underrated">Underrated</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommited</span>
+                                            </td>
+                                        </tr>  
+
+                                        <tr onclick="openProfile('mylene-paat')">
+                                            <td class="rank-col">#10</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/13.png" class = "player-thumb" alt="Mylene Paat">
+                                                    <div class="player-info">
+                                                        <span class="name">Mylene Paat</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>31</td>
+                                            <td>Opposite Spiker</td>
+                                            <td>5’11”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Uncommited</span>
+                                            </td>
+                                        </tr>  
+
+                                        <tr onclick="openProfile('pauline-gaston')">
+                                            <td class="rank-col">#15</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/4.png" class = "player-thumb" alt="Pauline Gaston">
+                                                    <div class="player-info">
+                                                        <span class="name">Pauline "Ponggay" Marie Gaston</span>
+                                                        <div class="stars">⭐⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>28</td>
+                                            <td>Middle Blocker / Opposite Spiker</td>
+                                            <td>5’8”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+                                                    <span class="status-pill status-free">Free Agent</span>
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Chery Tiggo Crossover</span>
+                                                <i class="fas fa-arrow-right transfer-icon"></i>                                           
+                                                <span>Capital1 Solar Spikers</span>
+                                            </td>
+                                        </tr>  
+
                                         <tr onclick="openProfile('rachel-jorvina')">
-                                            <td class="rank-col">-</td>
+                                            <td class="rank-col">#20</td>
                                             <td>
                                                 <div class="player-cell">
                                                     <img src="Tranfer Portal/2.png" class = "player-thumb" alt="Rachel Jorvina">
@@ -1344,7 +1609,7 @@
                                             </td>
                                             <td>27</td>
                                             <td>Libero</td>
-                                            <td>5’5” / -</td>
+                                            <td>5’5”</td>
                                             <td>
                                                 <div class="status-container">
                                                     <span class="status-pill status-rumor">Transfer Rumor</span>
@@ -1355,9 +1620,37 @@
                                             <td class="move-cell">
                                                 <span>Nxled Chameleons </span>
                                                 <i class="fas fa-arrow-right transfer-icon"></i>                                           
-                                                <span>Capital1</span>
+                                                <span>Capital1 Solar Spikers</span>
                                             </td>
-                                        </tr>       
+                                        </tr>      
+
+                                        <tr onclick="openProfile('bia-general')">
+                                            <td class="rank-col">#22</td>
+                                            <td>
+                                                <div class="player-cell">
+                                                    <img src="Tranfer Portal/7.png" class = "player-thumb" alt="Bia General">
+                                                    <div class="player-info">
+                                                        <span class="name">Fatima Bia General</span>
+                                                        <div class="stars">⭐⭐</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>30</td>
+                                            <td>Libero</td>
+                                            <td>5’4”</td>
+                                            <td>
+                                                <div class="status-container">
+                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
+                                                    <span class="status-pill status-pro">Professional</span>
+
+                                                </div>
+                                            </td>
+                                            <td class="move-cell">
+                                                <span>Choco Mucho Flying Titans </span>
+                                                <i class="fas fa-arrow-right transfer-icon"></i>                                           
+                                                <span>Farm Fresh Foxies</span>
+                                            </td>
+                                        </tr>     
 
                                     </tbody>
                                 </table>
