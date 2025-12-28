@@ -186,17 +186,48 @@
             }, 1000);
         }
 
-    function toggleDropdown(id) {
-        // Optional: Close all other open dropdowns first
-        const allDropdowns = document.querySelectorAll('.dropdown-content');
-        allDropdowns.forEach(dd => {
-            if (dd.id !== id) dd.classList.remove('show');
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    
+    // Check current state and toggle
+    if (dropdown.style.display === "table-row") {
+        dropdown.style.display = "none";
+    } else {
+        // Optional: Hide all other open dropdowns first for a cleaner look
+        document.querySelectorAll('.dropdown-content').forEach(row => {
+            row.style.display = 'none';
         });
-
-        // Toggle the clicked dropdown
-        const target = document.getElementById(id);
-        target.classList.toggle('show');
+        
+        dropdown.style.display = "table-row";
     }
+}
+
+function filterSideRankings() {
+    const searchQuery = document.getElementById('sideTeamSearch').value.toLowerCase();
+    const leagueFilter = document.getElementById('sideLeagueFilter').value.toLowerCase();
+    const rows = document.querySelectorAll('.team-row');
+
+    rows.forEach(row => {
+        const teamName = row.querySelector('.team-name').textContent.toLowerCase();
+        const teamLeague = row.getAttribute('data-side-league');
+        
+        // Find the associated dropdown row (it is usually the next sibling)
+        const dropdownRow = row.nextElementSibling;
+
+        const matchesSearch = teamName.includes(searchQuery);
+        const matchesLeague = (leagueFilter === 'all' || teamLeague === leagueFilter);
+
+        if (matchesSearch && matchesLeague) {
+            row.style.display = "table-row";
+        } else {
+            row.style.display = "none";
+            // Important: Hide the dropdown if the parent team is filtered out
+            if (dropdownRow && dropdownRow.classList.contains('dropdown-content')) {
+                dropdownRow.style.display = "none";
+            }
+        }
+    });
+}
 
 // 1. DATA HUB - Input your players here
 const playerData = {
@@ -512,11 +543,12 @@ const playerData = {
                 <p><strong></strong> UAAP Season 81 Indoor Volleyball Best Server</p>`              
                 ,
         probs: [
-            { rank: 1, team: "-", pct: "-" },
+            { rank: 1, team: "Zus Coffee", pct: "100%" },
             { rank: 2, team: "-", pct: "-" },
             { rank: 3, team: "-", pct: "-" }     
         ],
         timeline: [
+            { date: "2025", event: "Signed with Zus Coffee Thunderbelles" },
             { date: "2023", event: "Made her professional debut with Chery Tiggo 7 Pro Crossovers" },
             { date: "2022–2023", event: "Represented the Philippines with Team PNVF" },
             { date: "2018", event: "Began her collegiate career with NU Lady Bulldogs" },
@@ -634,6 +666,235 @@ const playerData = {
         ],
     },
 
+    "risa-sato": {
+        name: "Risa Sato",
+        img: "Tranfer Portal/18.png",
+        stars: 3,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "10 Years",
+        video: "https://www.youtube.com/watch?v=z1K5A-EmjnM",
+        report: `<p><strong>Championship:</strong> 13x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PNVF Invitational Champion </p>
+                <p><strong></strong> 2024 PNVF Reinforced Conference Champion </p>                
+                <p><strong></strong> 2022 PNVF Invitational Champion </p>               
+                <p><strong></strong> 2016 PVL V-League Champion</p>
+                <p><strong></strong> 2016 PVL Reinforced Conference Best Middle Blocker</p>                
+                <p><strong></strong> 2016 PVL All Filipino Conference Best Middle Blocker</p>`
+                ,
+        probs: [
+            { rank: 1, team: "Creamline", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020", event: "Made a collegiate comeback with NU Lady Bulldogs" },
+            { date: "2018–2024", event: "Became a long-time mainstay of the Creamline Cool Smashers" },
+            { date: "2016", event: "Made her semi-professional debut with BaliPure Purest Water Defenders" },
+            { date: "2015–2018", event: "Played collegiate volleyball for NU Lady Bulldogs" },
+            { date: "2014", event: "Served as a guest player for Ateneo Blue Eagles in Shakey’s Super League" },
+            { date: "2010", event: "Developed at Osaka International Takii High School in Japan" }  
+        ],
+    },
+
+    "cza-carandang": {
+        name: "Czarina Grace Carandang",
+        img: "Tranfer Portal/19.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "8 Years",
+        video: "https://www.youtube.com/watch?v=EVdhc1sjJOE",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2021 PVL All Filipino Conference Champion </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>                
+                <p><strong></strong> 2021 PNVF Champions League Runner Up </p>               
+                <p><strong></strong> 2017 PVL Reinforced Conference Runner Up</p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2021", event: "Signed with Chery Tiggo 7 Pro Crossovers in the Premier Volleyball League" },
+            { date: "2020", event: "Joined Eastern Communications Perlas Spikers" },
+            { date: "2017", event: "Became part of the Smart Giga Hitters program" },
+            { date: "2017", event: "Made her semi-professional debut with PayMaya High Flyers" },
+            { date: "2015", event: "Played collegiate volleyball for FEU Lady Tamaraws" }
+        ],
+    },    
+
+    "aduke-ogunsanya": {
+        name: "Aduke Christine Ogunsanya",
+        img: "Tranfer Portal/28.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "10 Years",
+        video: "https://www.youtube.com/watch?v=SHnS_YHvaX8",
+        report: `<p><strong>Championship:</strong> 5    x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2021 PNVF Champions League Champion </p>
+                <p><strong></strong> 2018 PSL All Filipino Conference Champion </p>
+                <p><strong></strong> 2017 - 2018 PSL Invitational Champion </p>                
+                <p><strong></strong> 2016 PSL Grand Prix Champion </p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2021", event: "Established herself with Choco Mucho Flying Titans in the PVL" },
+            { date: "2021", event: "Had a brief stint with F2 Logistics Cargo Movers" },
+            { date: "2018", event: "Began her collegiate career with the De La Salle University Lady Spikers" },
+            { date: "2016–2019", event: "Made her semi-professional debut and early career run with F2 Logistics Cargo Movers" }
+        ],
+    },        
+    "karen-verdeflor": {
+        name: "Ma. Joahna Karen Verdeflor",
+        img: "Tranfer Portal/20.png",
+        stars: 3,
+        pos: "Libero",
+        league: "PVL",
+        exp: "2 Years",
+        video: "https://www.youtube.com/watch?v=GCtFhTn99M8",
+        report: `<p><strong>Championship:</strong> None</p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>                
+                <p><strong></strong> 2023 SSL Pre-Season Runner Up </p>               
+                <p><strong></strong> 2022 PVL V-League Runner Up</p>
+                <p><strong></strong> 2024 PVL Draft 9th Pick - 1st Round (9th Overall) </p>`
+                ,
+        probs: [
+            { rank: 1, team: "Zus Coffee", pct: "100%" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2025", event: "Signed with Zus Coffee Thunderbelles" },
+            { date: "2024", event: "Selected 9th overall in the 2024 PVL Draft and signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2022", event: "Began her collegiate career with the Adamson Lady Falcons" }
+        ],
+    },    
+
+    "seth-rodriquez": {
+        name: "Seth Marione Rodriquez",
+        img: "Tranfer Portal/24.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "10 Years",
+        video: "https://www.youtube.com/watch?v=USe1oPj1Sgw",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2022 PVL Reinforced Conference Champion </p>                
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>               
+                <p><strong></strong> 2022 PVL All Filipino Conference Runner Up</p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2023", event: "Featured professionally for Chery Tiggo 7 Pro Crossovers"},
+            { date: "2023", event: "Debuted professionally with Foton Tornadoes" },
+            { date: "2020", event: "Played for Petro Gazz Angels" },
+            { date: "2018", event: "Competed for Marinerang Pilipina Lady Skippers" },
+            { date: "2018", event: "Played collegiate volleyball for UE Lady Red Warriors" },
+            { date: "2017", event: "Featured for Tacloban Fighting Warays" },
+            { date: "2017", event: "Featured for Pocari Sweat Lady Warriors" },
+            { date: "2016", event: "Made semi-professional debut with Cherrylume Iron Lady Warriors" }
+
+
+        ],
+    },    
+
+    "joyme-cagande": {
+        name: "Joyme Cagande",
+        img: "Tranfer Portal/21.png",
+        stars: 3,
+        pos: "Setter",
+        league: "PVL",
+        exp: "3 Years",
+        video: "https://www.youtube.com/watch?v=oT91xSgA5ZY",
+        report: `<p><strong>Championship:</strong> 2x Champion</p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> UAAP Season 84 Indoor Volleyball Champion </p>                
+                <p><strong></strong> 2022 SSL Pre Season Champion </p>               
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>
+                <p><strong></strong> UAAP Season 85 Indoor Volleyball Runner Up </p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2023", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2022", event: "Represented Philippines with Team PNVF" },
+            { date: "2018", event: "Played collegiate volleyball for NU Lady Bulldogs" },
+            { date: "2017", event: "Played semi-professionally for BaliPure Purest Water Defenders" }
+        ],
+    },   
+
+    "rhose-dapol": {
+        name: "Mary Rhose Dapol",
+        img: "Tranfer Portal/22.png",
+        stars: 3,
+        pos: "Outside Hitter",
+        league: "PVL",
+        exp: "2 Years",
+        video: "https://www.youtube.com/watch?v=oT91xSgA5ZY",
+        report: `<p><strong>Championship:</strong> 1x Champion</p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2023 MPVA Champion </p>                
+                <p><strong></strong> 2025 PVL on Tour Runner Up </p>               
+                <p><strong></strong> 2023 PVL V-League Most Valuable Player </p>
+                <p><strong></strong> NCAA Season 98 Indoor Volleyball Most Valuable Player </p>
+                <p><strong></strong> NCAA Season 98 Indoor Volleyball Best Outside Hitter  </p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024", event: "Joined Chery Tiggo 7 Pro Crossovers as a professional player" },
+            { date: "2023", event: "Represented Bacoor City Strikers Volleyball in the MVPA semi-pro league" },
+            { date: "2023", event: "Featured for Foton Tornadoes in the PVL semi-pro league" },
+            { date: "2022", event: "Competed for Perpetual Lady Altas in collegiate volleyball" },
+            { date: "2017", event: "Lined up for San Sebastian Lady Stags in collegiate volleyball" }
+        ],
+    },     
+    
+    "jasmine-nabor": {
+        name: "Jasmine Nabor",
+        img: "Tranfer Portal/23.png",
+        stars: 2,
+        pos: "Setter",
+        league: "PVL",
+        exp: "9 Years",
+        video: "https://www.youtube.com/watch?v=29YpofPWfx8",
+        report: `<p><strong>Championship:</strong> 4x Champion</p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2021 PVL All Filipino Conference Champion   </p>                
+                <p><strong></strong> 2014 - 16 PVL V-League Champion</p>               
+                <p><strong></strong> 2025 PVL on Tour Champion </p>
+                <p><strong></strong> 2017 PVL Reinforced Conference Runner Up </p>
+                <p><strong></strong> 2017 PVL Reinforced Conference Best Setter  </p>`
+                ,
+        probs: [
+            { rank: 1, team: "", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2019/20 - 2023/24", event: "Featured as a professional Setter for Chery Tiggo 7 Pro Crossovers"},
+            { date: "2023", event: "Debuted professionally as a Setter with Foton Tornadoes" },
+            { date: "2017", event: "Competed for Smart Giga Hitters" },
+            { date: "2017", event: "Made semi-professional debut with PayMaya High Flyers" },
+            { date: "2014", event: "Developed collegiate career as Setter for NU Lady Bulldogs" }
+        ],
+    },         
+
     "rachel-jorvina": {
         name: "Rachel Jorvina",
         img: "Tranfer Portal/2.png",
@@ -688,7 +949,89 @@ const playerData = {
             { date: "2014", event: "Played for Shopinas.com Lady Clickers" },
             { date: "2012", event: "First played for NU Lady Bulldogs" }
         ],
-    }    
+    },
+    
+    "anngela-nunag": {
+        name: "Anngela Nunag",
+        img: "Tranfer Portal/25.png",
+        stars: 2,
+        pos: "Libero",
+        league: "PVL",
+        exp: "15 Years",
+        video: "https://www.youtube.com/watch?v=sG07yk91x_k",
+        report: `<p><strong>Championship:</strong> 4x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> PVL 2014 V League Best Libero</p>                
+                <p><strong></strong> PSL 2014 - 2015 PSL Grand Prix Champion </p>
+                <p><strong></strong> 2012, 2014 PVL V League Champion </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024", event: "Transferred to Chery Tiggo Crossovers" },
+            { date: "2023", event: "Signed professionally for Cignal HD Spikers" },
+            { date: "2021", event: "Represented Philippine Army Lady Troopers" },
+            { date: "2020", event: "Played for Petron Blaze Spikers" },
+            { date: "2018", event: "Returned to Philippine Army Lady Troopers" },
+            { date: "2017", event: "Featured for Creamline Cool Smashers" },
+            { date: "2011", event: "Made semi-professional debut with Philippine Army Lady Troopers" }
+        ],
+    },
+
+    "erika-deloria": {  
+        name: "Erika Deloria",
+        img: "Tranfer Portal/27.png",
+        stars: 2,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "1 Year",
+        video: "https://www.youtube.com/shorts/Py7mrKGG9VE",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up/p>                
+                <p><strong></strong> 2023 MPVA Runner Up</p>
+                <p><strong></strong> 2024 NAASCU Most Valuable PLayer </p>
+                <p><strong></strong> 2023 MPVA Best Outside Hitter </p>                
+                <p><strong></strong> 2025 PVL Draft 8th Pick - 2nd Round (20th Overall) </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2025", event: "Selected 20th overall in the PVL Draft and competing professionally as Opposite for Chery Tiggo 7 Pro Crossovers"},
+            { date: "2024", event: "Made semi-professional debut as Outside Hitter with Biñan Tatak Gel in the MPVA" },
+            { date: "2023", event: "Represented Enderun Lady Titans in collegiate volleyball" }
+        ],
+    }, 
+
+    "reyann-canete": {
+        name: "Reyann Canete",
+        img: "Tranfer Portal/26.png",
+        stars: 2,
+        pos: "Outside Hitter",
+        league: "PVL",
+        exp: "1 Year",
+        video: "https://www.youtube.com/watch?v=RrxwX0ZQv40",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2025 PVL on Tour Runner Up/p>                
+                <p><strong></strong> 2023 MPVA Runner Up</p>
+                <p><strong></strong> 2023 MPVA Best Opposite Spiker </p>
+                <p><strong></strong> 2025 PVL Draft 2nd Pick - 4th Round (29th Overall) </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2025", event: "Selected 29th overall in the 2025 PVL Draft and competing for Chery Tiggo 7 Pro Crossovers"},
+            { date: "2023", event: "Debuted semi-professionally with Negros - ICC Blue Hawks in the MPVA" },
+            { date: "2022", event: "Competed collegiately for San Sebastian Lady Stags" }
+        ],
+    }
 };
 
 // 2. THE OPEN FUNCTION
@@ -829,32 +1172,45 @@ function filterPortal() {
 }
 
 function syncPortalFilters() {
-    // 1. Get current values from both controls
-    const searchVal = document.getElementById("portalSearch").value.toLowerCase();
-    const statusVal = document.getElementById("statusDropdown").value.toLowerCase();
+    const searchQuery = document.getElementById('portalSearch').value.toLowerCase();
+    const statusFilter = document.getElementById('statusDropdown').value.toLowerCase();
+    const leagueFilter = document.getElementById('leagueDropdown').value.toLowerCase();
+    const positionFilter = document.getElementById('positionDropdown').value.toLowerCase(); // Position
+    const draftFilter = document.getElementById('draftYear').value.toLowerCase();
     
-    // 2. Select all rows in the table body
-    const tableRows = document.querySelectorAll(".portal-table tbody tr");
+    const draftRow = document.getElementById('draftSubFilter');
+    const rows = document.querySelectorAll('.portal-table tbody tr');
 
-    tableRows.forEach(row => {
-        // Status is in the 6th column (Index 5)
-        const statusText = row.cells[5].textContent.toLowerCase();
-        // Entire row text for the search bar
-        const rowText = row.textContent.toLowerCase();
+    // Toggle visibility of the Draft Row
+    if (leagueFilter === 'collegiate' || leagueFilter === 'pvl') {
+        draftRow.style.display = "block";
+    } else {
+        draftRow.style.display = "none";
+        document.getElementById('draftYear').value = "all";
+    }
 
-        // 3. Evaluate conditions
-        const matchesSearch = rowText.includes(searchVal);
-        const matchesStatus = (statusVal === "all" || statusText.includes(statusVal));
+    rows.forEach(row => {
+        const playerName = row.querySelector('.name').textContent.toLowerCase();
+        const playerStatus = row.querySelector('.status-container').textContent.toLowerCase();
+        const playerLeague = (row.getAttribute('data-league') || "").toLowerCase();
+        const playerDraft = (row.getAttribute('data-draft') || "").toLowerCase();
+        const playerPos = (row.getAttribute('data-position') || "").toLowerCase(); // New data attribute
 
-        // 4. Update visibility
-        if (matchesSearch && matchesStatus) {
-            row.style.display = ""; // Show row
-            row.style.animation = "fadeIn 0.3s ease"; // Optional: adding a smooth entry
+        const matchesSearch = playerName.includes(searchQuery);
+        const matchesStatus = (statusFilter === 'all' || playerStatus.includes(statusFilter));
+        const matchesLeague = (leagueFilter === 'all' || playerLeague === leagueFilter);
+        const matchesDraft = (draftFilter === 'all' || playerDraft === draftFilter);
+        const matchesPos = (positionFilter === 'all' || playerPos === positionFilter);
+
+        // Show row only if ALL active filters match
+        if (matchesSearch && matchesStatus && matchesLeague && matchesDraft && matchesPos) {
+            row.style.display = "";
         } else {
-            row.style.display = "none"; // Hide row
+            row.style.display = "none";
         }
     });
 }
+
 function switchLineup() {
     const selectedYear = document.getElementById("lineupYearSelect").value;
     const allBodies = document.querySelectorAll(".roster-body");
