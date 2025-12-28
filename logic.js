@@ -223,11 +223,11 @@ const playerData = {
         timeline: [
             { date: "2025", event: "Free Agent" },  
             { date: "2024", event: "She parted ways with Cherry Tiggo Crossovers" },  
-            { date: "2023", event: "Debuted on 2023 Premier Volleyball League Invitational Conference with Chery Tiggo Crossovers" },
-            { date: "UAAP Seniors Season 81-82, 84-85", event: "Played for UST Golden Tigresses" },              
-            { date: "2019", event: "Played for Senior Team of Philippine National Womens Volleyball Team at Sea Games 2019" }, 
-            { date: "UAAP Juniors Season 75 - 80", event: "Played for UST Junior Tigresses" },
-            { date: "2017", event: "Played for Youth Team of the of Philippine National Womens Volleyball Team at ASEAN School Games" }
+            { date: "2023", event: "Debuted on 2023 Premier Volleyball League Invitational Conference with Chery Tiggo Crossovers" },         
+            { date: "2019", event: "Played for Senior Team of Philippine National Womens Volleyball Team at Sea Games 2019" },
+            { date: "2018", event: "Began her collegiate career with UST Golden Tigresses" },                 
+            { date: "2017", event: "Played for Youth Team of the of Philippine National Womens Volleyball Team at ASEAN School Games" },
+            { date: "2012", event: "Played for UST Junior Tigresses" }        
         ],
     },
 
@@ -287,8 +287,7 @@ const playerData = {
         ],
         timeline: [
             { date: "2024", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
-            { date: "2017", event: "Played for F2 Logistics Cargo Movers as an Outside Hitter" },
-            { date: "2015", event: "First professional stint with F2 Logistics Cargo Movers" },
+            { date: "2015", event: "Made her semi-professional debut with F2 Logistics Cargo Movers" },
             { date: "2011", event: "Played collegiate volleyball for De La Salle University Lady Spikers" }
         ],
     },   
@@ -315,7 +314,7 @@ const playerData = {
             { date: "2022", event: "Played for Team PNVF" },
             { date: "2020", event: "Played for Rebisco-Philippines" },
             { date: "2018", event: "Played collegiate volleyball for NU Lady Bulldogs" },
-            { date: "2017", event: "Played for BaliPure Purest Water Defenders" }
+            { date: "2017", event: "Made her semi-professional debut with BaliPure Purest Water Defenders" }
         ],
     },   
 
@@ -364,16 +363,16 @@ const playerData = {
             { rank: 2, team: "-", pct: "-" }
         ],
         timeline: [
-            { date: "2024–2025", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
-            { date: "2020–2021", event: "Joined Rebisco Philippines" },
-            { date: "2016–2017", event: "Suited up for Foton Tornadoes" },
+            { date: "2024", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020", event: "Joined Rebisco Philippines" },
+            { date: "2016", event: "Suited up for Foton Tornadoes" },
             { date: "2015–2024", event: "Became a long-time mainstay of F2 Logistics Cargo Movers" },
-            { date: "2015–2016", event: "Made a stint with RC Cola–Army Lady Troopers" },
-            { date: "2014–2015", event: "Signed with Meralco Power Spikers" },
-            { date: "2014–2015", event: "Joined Petron Tri-Activ Spikers" },
-            { date: "2013–2014", event: "Began her professional career with Generika Ayala Lifesavers" },
-            { date: "2013–2014", event: "Had a short stint with AirAsia Flying Spikers" },
-            { date: "2013–2014", event: "Also suited up for PayMaya High Flyers" },
+            { date: "2015", event: "Made a stint with RC Cola–Army Lady Troopers" },
+            { date: "2014", event: "Signed with Meralco Power Spikers" },
+            { date: "2014", event: "Joined Petron Tri-Activ Spikers" },
+            { date: "2013", event: "Began her professional career with Generika Ayala Lifesavers" },
+            { date: "2013", event: "Had a short stint with AirAsia Flying Spikers" },
+            { date: "2013", event: "Made her semi-professional debut for PayMaya High Flyers" },
             { date: "2010", event: "Started her collegiate career with De La Salle University Lady Spikers" }       
         ],
     },
@@ -429,11 +428,11 @@ const playerData = {
             { rank: 2, team: "-", pct: "-" }
         ],
         timeline: [
-            { date: "2022–2025", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
-            { date: "2020–2023", event: "Joined BaliPure Purest Water Defenders" },
-            { date: "2019–2020", event: "Had a stint with PacificTown–Army Lady Troopers" },
-            { date: "2018–2019", event: "Suited up for Tacloban Fighting Warays" },
-            { date: "2017–2018", event: "Signed with PLDT High Speed Hitters" },
+            { date: "2022", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2020", event: "Joined BaliPure Purest Water Defenders" },
+            { date: "2019", event: "Had a stint with PacificTown–Army Lady Troopers" },
+            { date: "2018", event: "Suited up for Tacloban Fighting Warays" },
+            { date: "2017", event: "Made her semi-professional debut with PLDT High Speed Hitters" },
             { date: "2015–2019", event: "Began her collegiate career with the UST Golden Tigresses" }
         ],
 
@@ -488,15 +487,125 @@ const playerData = {
             { rank: 3, team: "-", pct: "-" }     
         ],
         timeline: [
-            { date: "2021–2026", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
-            { date: "2021–2022", event: "Made an overseas stint with Nakhon Ratchasima Qmin C VC (Thailand)" },
-            { date: "2020–2021", event: "Joined Choco Mucho Flying Titans for AVC" },
-            { date: "2016–2019", event: "Became part of the Cignal Super Spikers program" },
-            { date: "2015–2016", event: "Had a one-season stint with TIP Lady Engineers" },
+            { date: "2021", event: "Signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2021", event: "Made an overseas stint with Nakhon Ratchasima Qmin C VC (Thailand)" },
+            { date: "2020", event: "Joined Choco Mucho Flying Titans for AVC" },
+            { date: "2016", event: "Became part of the Cignal HD Spikers program" },
+            { date: "2015", event: "Had a one-season stint with TIP Lady Engineers" },
             { date: "2013–2018", event: "Began her collegiate career with Adamson Lady Falcons" }
         ],
-
     },
+
+    "ces-robles": {
+        name: "Princess Anne Robles",
+        img: "Tranfer Portal/14.png",
+        stars: 3,
+        pos: "Outside Hitter",
+        league: "PVL",
+        exp: "3 Years",
+        video: "https://www.youtube.com/watch?v=7fGIKRfUZ4A",
+        report: `<p><strong>Championship:</strong> 2x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> UAAP Season 84 Indoor Volleyball Champion p</p>
+                <p><strong></strong> 2022 SSL Champion <p>
+                <p><strong></strong> UAAP Season 84 Indoor Volleyball Finals Most Valuable Player <p>                
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Best Server</p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2023", event: "Made her professional debut with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2022–2023", event: "Represented the Philippines with Team PNVF" },
+            { date: "2018", event: "Began her collegiate career with NU Lady Bulldogs" },
+            { date: "2017–2018", event: "Made her semi-professional debut with BaliPure Purest Water Defenders" }
+        ],
+    },    
+
+    "renee-penafiel": {
+        name: "Renee Lou Penafiel",
+        img: "Tranfer Portal/15.png",
+        stars: 3,
+        pos: "Outside Hitter",
+        league: "PVL",
+        exp: "1 Year",
+        video: "https://www.youtube.com/watch?v=DPmEKNwT-sc",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PVL V-League Champion </p>
+                <p><strong></strong> UAAP Season 86 Indoor Volleyball Runner Up <p>                
+                <p><strong></strong> 2023 SSL National Invitational League Runner Up <p>
+                <p><strong></strong> 2025 PVL Draft 3rd Pick - 3rd Round (26th Overall)<p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2025", event: "Selected 26th overall in the 2025 PVL Draft and signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2022", event: "Began her collegiate career with the UST Golden Tigresses" }
+        ],
+    },  
+    
+    "shaya-adorador": {
+        name: "Ma. Shaya Adorador",
+        img: "Tranfer Portal/16.png",
+        stars: 3,
+        pos: "Outside Hitter",
+        league: "PVL",
+        exp: "8 Years",
+        video: "https://www.youtube.com/watch?v=8ppOvx_o-cw",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PVL All Filipino Champion </p>
+                <p><strong></strong> 2018 PSL Invitational Best Outside Hitter <p>                
+                <p><strong></strong> 2025 PVL on Tour Runner Up <p>
+                <p><strong></strong> 2021 PNVF Champions League Runner Up<p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2023", event: "Rejoined Chery Tiggo 7 Pro Crossovers for the 2025–26 PVL season" },
+            { date: "2023", event: "Had a one-season stint with Foton Tornadoes" },
+            { date: "2021", event: "Established herself with Chery Tiggo 7 Pro Crossovers across multiple seasons" },
+            { date: "2017", event: "Made her semi-professional debut with Foton Tornadoes Blue Energy" },
+            { date: "2014", event: "Began her collegiate career with the UE Lady Warriors" }
+        ],
+    },    
+
+    "jyne-soreno": {
+        name: "Baby Jyne Soreno",
+        img: "Tranfer Portal/17.png",
+        stars: 3,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "1 Year",
+        video: "https://www.youtube.com/watch?v=g__O7W2VN2U",
+        report: `<p><strong>Championship:</strong> 2x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2025 PVL Draft 8th Pick - Round 1 (8th Overall) </p>
+                <p><strong></strong> UAAP Season 85 Indoor Volleyball Champion </p>
+                <p><strong></strong> 2023 SSL Champion<p>                
+                <p><strong></strong> UAAP Season 87 Indoor Volleyball Runner Up <p>
+                <p><strong></strong> UAAP Season 84 Indoor Volleyball Runner Up <p>`              
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" },
+            { rank: 3, team: "-", pct: "-" }     
+        ],
+        timeline: [
+            { date: "2025", event: "Selected 8th overall in the 2025 PVL Draft and signed with Chery Tiggo 7 Pro Crossovers" },
+            { date: "2018", event: "Began her collegiate career with the De La Salle University Lady Spikers" }
+        ],
+    },    
+
     "pauline-gaston": {
         name: "Pauline Marie Monique Gaston",
         img: "Tranfer Portal/4.png",
