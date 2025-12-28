@@ -1128,16 +1128,22 @@ tbody tr:hover {
 
 @media screen and (max-width: 768px) {
     .table-container {
-        /* Adjust height for phone: 60% of the screen height */
-        max-height: 40vh; 
-        border-radius: 0; /* Optional: square edges look better on mobile */
-        margin: 0 -15px;  /* Bleeds the table to the screen edges */
+        /* Use !important to ensure it overrides any other height settings */
+        height: 400px !important; 
+        max-height: 400px !important;
+        
+        /* Force the container to act as a box, not a growing flex item */
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: auto !important;
+        
+        /* Optional: Add a border to see exactly where the box ends */
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .portal-table {
-        /* Force minimum width so it stays scrollable horizontally */
-        /* instead of squishing the text too much */
-        min-width: 600px; 
+        /* This ensures horizontal scrolling works */
+        min-width: 850px !important; 
     }
 
     /* Keep the Player Name column visible while scrolling horizontally on phone */
