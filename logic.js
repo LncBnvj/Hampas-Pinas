@@ -1042,13 +1042,19 @@ function openProfile(playerId) {
     // Basic Info
     document.getElementById("p-name").innerText = p.name;
     document.getElementById("p-img").src = p.img;
-    document.getElementById("p-rating").innerText = "⭐".repeat(p.stars);
+    document.getElementById("p-rating").innerText = "★".repeat(p.stars);
     document.getElementById("p-pos").innerText = p.pos;
     document.getElementById("p-league").innerText = p.league;
     document.getElementById("p-experience").innerText = p.exp;
     document.getElementById("p-video-link").href = p.video;
     document.getElementById("p-report").innerHTML = p.report;
+    const maxStars = 5;
+    const ratingElement = document.getElementById("p-rating");
 
+    // Generates gold stars for the rating and dark stars for the remainder
+    ratingElement.innerHTML = 
+        `<span style="color: var(--prime-gold);">${"★".repeat(p.stars)}</span>` + 
+        `<span style="color: rgba(255,255,255,0.1);">${"★".repeat(maxStars - p.stars)}</span>`;
     // Probabilities Table
     const probBody = document.getElementById("p-probs-body");
     probBody.innerHTML = p.probs.map(item => `

@@ -996,12 +996,34 @@ tbody tr:hover {
 }
 
 /* Status: Committed / Signed (Cyan/Blue) */
+/* --- COMMITTED STATUS: Sophisticated Gold Glow --- */
 .status-committed {
-    background: rgba(0, 242, 255, 0.1);
-    color: #0011ff;
-    border-color: rgba(0, 242, 255, 0.2);
+    background: rgba(255, 204, 0, 0.12); /* Subtle gold tint */
+    color: var(--prime-gold);            /* Primary Gold #ffcc00 */
+    border: 1px solid rgba(255, 204, 0, 0.4);
+    
+    /* The subtle glow effect */
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.15);
+    
+    /* Animation for the "Breathing" glow */
+    animation: gold-glow-pulse 3s infinite ease-in-out;
 }
 
+/* Keyframes for the soft pulse */
+@keyframes gold-glow-pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.1);
+        border-color: rgba(255, 204, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+        border-color: rgba(255, 204, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.1);
+        border-color: rgba(255, 204, 0, 0.3);
+    }
+}
 /* Status: Hot Prospect / High Interest (Red/Pink) */
 .status-hot {
     background: rgba(255, 71, 87, 0.1);
@@ -2369,4 +2391,20 @@ input[type="radio"] { display: none; }
     outline: none;
     border-color: #ffcc00;
     box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+/* Targets the stars container and applies the gold theme */
+.stars {
+    color: var(--prime-gold); /* Uses your existing gold color #ffcc00 */
+    font-size: 1.2rem;       /* Adjust size as needed */
+    letter-spacing: 2px;     /* Adds a small gap between stars */
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); /* Optional: Adds a subtle gold glow */
+}
+
+/* Targets the specific rating element in your JS */
+#p-rating {
+    color: var(--prime-gold); /* Uses #ffcc00 from your root variables */
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.4); /* Adds a subtle gold glow */
 }
