@@ -1116,6 +1116,7 @@ tbody tr:hover {
     70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
 }
+
 /* 1. The Container: Set a fixed height and enable scrolling */
 .table-container {
     max-height: 700px; /* Adjust this height as needed */
@@ -1125,6 +1126,35 @@ tbody tr:hover {
     position: relative;
 }
 
+@media screen and (max-width: 768px) {
+    .table-container {
+        /* Adjust height for phone: 60% of the screen height */
+        max-height: 60vh; 
+        border-radius: 0; /* Optional: square edges look better on mobile */
+        margin: 0 -15px;  /* Bleeds the table to the screen edges */
+    }
+
+    .portal-table {
+        /* Force minimum width so it stays scrollable horizontally */
+        /* instead of squishing the text too much */
+        min-width: 800px; 
+    }
+
+    /* Keep the Player Name column visible while scrolling horizontally on phone */
+    .portal-table td:nth-child(2), 
+    .portal-table th:nth-child(2) {
+        position: sticky;
+        left: 0;
+        z-index: 11;
+        background-color: #1a1a1a; /* Match your background */
+    }
+
+    /* Make the sticky header a bit shorter for mobile screens */
+    .portal-table thead th {
+        padding: 10px 5px;
+        font-size: 0.8rem;
+    }
+}
 /* 2. The Header: Make it "Sticky" */
 .portal-table thead th {
     position: sticky;
@@ -1960,79 +1990,7 @@ input[type="radio"] { display: none; }
 .level { background: #001bb1; color: #ffffff; }
 .elite { background: #f18a03; color: #ffffff; }
 
-@media screen and (max-height: 500px) {
-    /* 1. Ensure the container allows horizontal movement */
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
-        padding: 0 10px;
-        margin: 0 -10px; /* Bleed to edges */
-    }
 
-    .portal-table {
-        min-width: 700px; /* Prevents columns from squashing too much */
-        font-size: 0.85rem;
-    }
-
-    /* 2. Fix the Player Column (Sticky) 
-       This keeps the player name visible while you scroll their stats */
-    .portal-table th:nth-child(2),
-    .portal-table td:nth-child(2) {
-        position: sticky;
-        left: 0;
-        background: rgba(20, 20, 20, 0.95); /* Darker glass for readability */
-        backdrop-filter: blur(10px);
-        z-index: 5;
-    }
-
-    /* 3. Adjust Status Pills for Mobile */
-    .status-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-        min-width: 120px; /* Ensures pills don't stack weirdly */
-    }
-
-    .status-pill {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-    }
-
-    /* 4. Optimize Images & Info */
-    .player-thumb {
-        width: 35px;
-        height: 35px;
-    }
-
-    .player-info .name {
-        font-size: 0.8rem;
-        white-space: nowrap;
-    }
-
-    .stars {
-        font-size: 0.7rem;
-    }
-
-    /* 5. Movement Cell Spacing */
-    .move-cell {
-        min-width: 180px;
-        font-size: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .transfer-icon {
-        font-size: 0.7rem;
-    }
-
-    /* 6. Rank Column Slimming */
-    .rank-col {
-        padding: 0 5px;
-        width: 30px;
-        text-align: center;
-    }
-}
 
 .portal-modal {
     display: none; /* Hidden by default */
