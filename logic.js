@@ -1091,7 +1091,44 @@ const playerData = {
             { date: "2014", event: "Made her semi-professional debut with the Shopinas.com Lady Clickers" },
             { date: "2012", event: "Began her collegiate volleyball career with the NU Lady Bulldogs" }        
         ],
-    },         
+    },    
+    
+    "royse-tubino": {  
+        name: "Honey Royse Tubino",
+        img: "Tranfer Portal/31.png",
+        stars: 3,
+        pos: "Outside Spiker",
+        league: "PVL",
+        exp: "13 Years",
+        video: "https://www.youtube.com/watch?v=lyexnW03NXA",
+        report: `<p><strong>Championship:</strong> 13x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2017 PSL Invitational Champion </p>                
+                <p><strong></strong> 2013 SVL Champion</p>
+                <p><strong></strong> 2024 PVL All Filipino Conference Runner Up </p>
+                <p><strong></strong> 2012 PSL Invitational Best Opposite Spiker </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024   ", event: "Continues her veteran run in the PVL with the Choco Mucho Flying Titans" },
+            { date: "2023", event: "Joined PLDT High Speed Hitters for the 2023 PVL season" },
+            { date: "2021–2023", event: "Returned to Army–Black Mamba Lady Troopers, providing experience and stability" },
+            { date: "2019–2020", event: "Had a one-season stint with Sta. Lucia Lady Realtors" },
+            { date: "2018–2020", event: "Part of the PacificTown–Army Lady Troopers during their competitive PVL campaigns" },
+            { date: "2018", event: "Briefly suited up for United Volleyball Club" },
+            { date: "2016–2018", event: "Rejoined Cignal HD Spikers for multiple PSL conferences" },
+            { date: "2015–2016", event: "Became a key rotation presence for RC Cola–Army Troopers" },
+            { date: "2014", event: "Started her collegiate career with the FEU Lady Tamaraws" },
+            { date: "2013–2015", event: "Made her early breakthrough with PayMaya High Flyers" },
+            { date: "2013–2014", event: "Earned her first semi-professional exposure with Cignal Super Spikers" },
+            { date: "2013", event: "Made her national team debut, marking her arrival on the international stage" },
+            { date: "2012", event: "Stepped onto the semi-professional scene with the Cagayan Valley Lady Rising Suns" }    
+        ],
+    },          
+
     "reyann-canete": {
         name: "Reyann Canete",
         img: "Tranfer Portal/26.png",
