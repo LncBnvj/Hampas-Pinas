@@ -1181,7 +1181,7 @@ tbody tr:hover {
 
 /* 2. Column Spacing Controller */
 /* Change the width percentages below to adjust your spacing */
-.portal-table th:nth-child(1), .portal-table td:nth-child(1) { width: 6%; }  /* Rank */
+.portal-table th:nth-child(1), .portal-table td:nth-child(1) { width: 4%; }  /* Rank */
 .portal-table th:nth-child(2), .portal-table td:nth-child(2) { width: 6%; }  /* Rank */
 .portal-table th:nth-child(3), .portal-table td:nth-child(3) { width: 20%; } /* Player */
 .portal-table th:nth-child(4), .portal-table td:nth-child(4) { width: 4%; }  /* Age */

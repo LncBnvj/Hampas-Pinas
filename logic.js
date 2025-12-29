@@ -1007,6 +1007,91 @@ const playerData = {
         ],
     }, 
 
+    "cherry-nunag": {  
+        name: "Cherry Rose Nunag",
+        img: "Tranfer Portal/29.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "9 Year",
+        video: "https://www.youtube.com/watch?v=2zNmIzY8k-c",
+        report: `<p><strong>Championship:</strong> None </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2023 PVL Invitational Conference Best Blocker </p>                
+                <p><strong></strong> 2018 PVL Reinforced Conference Best Blocker</p>
+                <p><strong></strong> 2023 AVC Nations Cup 3rd Place </p>
+                <p><strong></strong> 2024 SEA V League 3rd Place </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2021–2026", event: "Became a core member of the Choco Mucho Flying Titans in the Premier Volleyball League" },
+            { date: "2024", event: "Represented the Philippines in the AVC Women’s Challenge Cup and FIVB Women’s Challenger Cup" },
+            { date: "2020–2022", event: "Competed for Eastern Communications Perlas Spikers during the transition into the PVL era" },
+            { date: "2018–2020", event: "Played a full professional stint with the Petro Gazz Angels" },
+            { date: "2015–2018", event: "Built her early professional foundation in the Philippine Super Liga with Petron and F2 Logistics" },
+            { date: "2013", event: "Made her V-League debut as part of the De La Salle Lady Patriots" }
+        ],
+    }, 
+
+    "cherry-nunag": {  
+        name: "Cherry Rose Nunag",
+        img: "Tranfer Portal/29.png",
+        stars: 3,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "9 Years",
+        video: "https://www.youtube.com/watch?v=2zNmIzY8k-c",
+        report: `<p><strong>Championship:</strong> 3x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2023 PVL Invitational Conference Best Blocker </p>                
+                <p><strong></strong> 2018 PVL Reinforced Conference Best Blocker</p>
+                <p><strong></strong> 2023 AVC Nations Cup 3rd Place </p>
+                <p><strong></strong> 2024 SEA V League 3rd Place </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2021–2026", event: "Became a core member of the Choco Mucho Flying Titans in the Premier Volleyball League" },
+            { date: "2024", event: "Represented the Philippines in the AVC Women’s Challenge Cup and FIVB Women’s Challenger Cup" },
+            { date: "2020–2022", event: "Competed for Eastern Communications Perlas Spikers during the transition into the PVL era" },
+            { date: "2018–2020", event: "Played a full professional stint with the Petro Gazz Angels" },
+            { date: "2015–2018", event: "Built her early professional foundation in the Philippine Super Liga with Petron and F2 Logistics" },
+            { date: "2013", event: "Made her V-League debut as part of the De La Salle Lady Patriots" }
+        ],
+    },   
+    
+    "rizza-mandapat": {  
+        name: "Rizza Jane Mandapat",
+        img: "Tranfer Portal/30.png",
+        stars: 2,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "10 Years",
+        video: "https://www.youtube.com/watch?v=htvWYjlheew",
+        report: `<p><strong>Championship:</strong> 13x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2024 PVL All Filipino Champion </p>                
+                <p><strong></strong> 2024 PVL Reinforced Championr</p>
+                <p><strong></strong> 2024 PVL Invitational Champion </p>
+                <p><strong></strong> 2015 PVL V League Champion </p>`
+                ,
+        probs: [
+            { rank: 1, team: "-", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2016–2026", event: "Established a long-running professional career with the Creamline Cool Smashers in the Premier Volleyball League" },
+            { date: "2015–2017", event: "Played for the Bureau of Customs Transformers during the early stages of her professional career" },
+            { date: "2015", event: "Had a brief professional stint with the Cignal Super Spikers" },
+            { date: "2014", event: "Made her semi-professional debut with the Shopinas.com Lady Clickers" },
+            { date: "2012", event: "Began her collegiate volleyball career with the NU Lady Bulldogs" }        
+        ],
+    },         
     "reyann-canete": {
         name: "Reyann Canete",
         img: "Tranfer Portal/26.png",
