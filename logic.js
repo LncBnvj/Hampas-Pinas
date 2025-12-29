@@ -1119,6 +1119,39 @@ const playerData = {
     }
 };
 
+function updateTableRankings() {
+    const rows = document.querySelectorAll(".portal-table tbody tr");
+    const posCounts = {}; 
+
+    rows.forEach((row, index) => {
+        // 1. Set Overall Rank
+        const rankCell = row.querySelector(".auto-rank");
+        if (rankCell) rankCell.innerText = `#${index + 1}`;
+
+        // 2. Set Position Rank (Stacked in 2 rows)
+        const posCell = row.querySelector(".auto-pos");
+        if (posCell) {
+            const rawPos = row.getAttribute("data-position"); 
+            const positions = rawPos.toUpperCase().split(" "); 
+            
+            // Clear current content
+            posCell.innerHTML = "";
+
+            positions.forEach(pos => {
+                posCounts[pos] = (posCounts[pos] || 0) + 1;
+                
+                // Create a div for each position to force a new row
+                const posLine = document.createElement("div");
+                posLine.className = "pos-line";
+                posLine.innerText = `#${posCounts[pos]} ${pos}`;
+                posCell.appendChild(posLine);
+            });
+        }
+    });
+}
+
+window.onload = updateTableRankings;
+
 // 2. THE OPEN FUNCTION
 function openProfile(playerId) {
     const p = playerData[playerId];

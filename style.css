@@ -1190,6 +1190,7 @@ tbody tr:hover {
 .portal-table th:nth-child(7), .portal-table td:nth-child(7) { width: 15%; } /* Status */
 .portal-table th:nth-child(8), .portal-table td:nth-child(8) { width: 25%; } /* Movement */
 
+
 /* 3. The "Alignment Insurance" */
 .portal-table {
     width: 100%;
