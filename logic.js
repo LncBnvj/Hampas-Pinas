@@ -248,8 +248,8 @@ const playerData = {
                 ,
 
         probs: [
-            { rank: 1, team: "Capital 1", pct: "-" },
-            { rank: 2, team: "Chocomucho", pct: "-" }
+            { rank: 1, team: "Choco Mucho", pct: "-" },
+            { rank: 2, team: "Capital 1", pct: "-" }
         ],
         timeline: [
             { date: "2025", event: "Free Agent" },  
