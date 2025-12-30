@@ -455,7 +455,7 @@ const playerData = {
                 <p><strong></strong> UAAP Season 79 Inddor Volleyball 3rd Place</p>`
                 ,
         probs: [
-            { rank: 1, team: "-", pct: "-" },
+            { rank: 1, team: "Choco Mucho", pct: "-" },
             { rank: 2, team: "-", pct: "-" }
         ],
         timeline: [
@@ -513,7 +513,7 @@ const playerData = {
                 <p><strong></strong> 2021 Thailand League Top Scorerp</p>`              
                 ,
         probs: [
-            { rank: 1, team: "-", pct: "-" },
+            { rank: 1, team: "Farm Fresh", pct: "-" },
             { rank: 2, team: "-", pct: "-" },
             { rank: 3, team: "-", pct: "-" }     
         ],
@@ -826,7 +826,7 @@ const playerData = {
                 <p><strong></strong> UAAP Season 85 Indoor Volleyball Runner Up </p>`
                 ,
         probs: [
-            { rank: 1, team: "", pct: "-" },
+            { rank: 1, team: "Nxled", pct: "-" },
             { rank: 2, team: "-", pct: "-" }
         ],
         timeline: [
@@ -1113,22 +1113,102 @@ const playerData = {
             { rank: 2, team: "-", pct: "-" }
         ],
         timeline: [
-            { date: "2024   ", event: "Continues her veteran run in the PVL with the Choco Mucho Flying Titans" },
+            { date: "2024", event: "Continues her veteran run in the PVL with the Choco Mucho Flying Titans" },
             { date: "2023", event: "Joined PLDT High Speed Hitters for the 2023 PVL season" },
-            { date: "2021–2023", event: "Returned to Army–Black Mamba Lady Troopers, providing experience and stability" },
-            { date: "2019–2020", event: "Had a one-season stint with Sta. Lucia Lady Realtors" },
-            { date: "2018–2020", event: "Part of the PacificTown–Army Lady Troopers during their competitive PVL campaigns" },
+            { date: "2021", event: "Returned to Army–Black Mamba Lady Troopers, providing experience and stability" },
+            { date: "2019", event: "Had a one-season stint with Sta. Lucia Lady Realtors" },
+            { date: "2018", event: "Part of the PacificTown–Army Lady Troopers during their competitive PVL campaigns" },
             { date: "2018", event: "Briefly suited up for United Volleyball Club" },
-            { date: "2016–2018", event: "Rejoined Cignal HD Spikers for multiple PSL conferences" },
-            { date: "2015–2016", event: "Became a key rotation presence for RC Cola–Army Troopers" },
+            { date: "2016", event: "Rejoined Cignal HD Spikers for multiple PSL conferences" },
+            { date: "2015", event: "Became a key rotation presence for RC Cola–Army Troopers" },
             { date: "2014", event: "Started her collegiate career with the FEU Lady Tamaraws" },
-            { date: "2013–2015", event: "Made her early breakthrough with PayMaya High Flyers" },
-            { date: "2013–2014", event: "Earned her first semi-professional exposure with Cignal Super Spikers" },
+            { date: "2013", event: "Made her early breakthrough with PayMaya High Flyers" },
+            { date: "2013", event: "Earned her first semi-professional exposure with Cignal Super Spikers" },
             { date: "2013", event: "Made her national team debut, marking her arrival on the international stage" },
             { date: "2012", event: "Stepped onto the semi-professional scene with the Cagayan Valley Lady Rising Suns" }    
         ],
-    },          
+    },   
+    
+    "jules-samonte": {  
+        name: "Julianne Marie Samonte",
+        img: "Tranfer Portal/32.png",
+        stars: 3,
+        pos: "Opposite Spiker",
+        league: "PVL",
+        exp: "6 Years",
+        video: "https://www.youtube.com/watch?v=lyexnW03NXA",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> UAAP Season 81 Indoor Volleyball Champion </p>                
+                <p><strong></strong> 2025 PVL on Tour Runner Upn</p>
+                <p><strong></strong> 2018 PVL All Filipino Conference Runner Up </p>`
+                ,
+        probs: [
+            { rank: 1, team: "Capital1", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2025", event: "Continues her professional career with Chery Tiggo 7 Pro Crossovers in the PVL" },
+            { date: "2021", event: "Established herself as a core contributor with PLDT High Speed Hitters across multiple seasons" },
+            { date: "2021", event: "Signed with Eastern Communications Perlas Spikers for the PVL Open Conference" },
+            { date: "2015", event: "Began her collegiate career with the Ateneo Blue Eagles" }   
+        ],
+    },  
 
+    "jai-atienza": {  
+        name: "Jaila Marie Atienza",
+        img: "Tranfer Portal/33.png",
+        stars: 2,
+        pos: "Middle Blocker",
+        league: "PVL",
+        exp: "4 Years",
+        video: "https://www.youtube.com/watch?v=uNdsdusbOV8",
+        report: `<p><strong>Championship:</strong> 1x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2017 PVL V-League Champion </p>                
+                <p><strong></strong> 2023 PNVF CHampions League 3rd Place</p>`
+                ,
+        probs: [
+            { rank: 1, team: "Choco Mucho", pct: "-" },
+            { rank: 2, team: "-", pct: "-" }
+        ],
+        timeline: [
+            { date: "2024", event: "Joined NXLED Chameleons and continued her professional career in the PVL" },
+            { date: "2023", event: "Signed with Foton Tornadoes for the 2023 PVL season" },
+            { date: "2022", event: "Spent two PVL seasons with Chery Tiggo 7 Pro Crossovers, gaining extended top-level experience" },
+            { date: "2017", event: "Began her collegiate volleyball career with the UP Fighting Maroons" }  
+        ],
+    },  
+
+    "ivy-perez": {  
+        name: "Ivy Jisel Perez",
+        img: "Tranfer Portal/34.png",
+        stars: 2,
+        pos: "Setter",
+        league: "PVL",
+        exp: "11 Years",
+        video: "https://www.youtube.com/watch?v=yXkxQuE0foU",
+        report: `<p><strong>Championship:</strong> 5x Champion </p>
+                <p><strong>Notable Awards:</strong> </p>
+                <p><strong></strong> 2023 PNVF Champion </p>                
+                <p><strong></strong> 2015 PSL Grand Prix Champion </p>
+                <p><strong></strong> 2014 PSL Grand Prix Best Setter </p>`
+                ,
+        probs: [
+            { rank: 1, team: "Cignal", pct: "-" },
+            { rank: 2, team: "Galeries", pct: "-" }
+        ],
+        timeline: [
+            { date: "2025", event: "Joined Galeries Tower Highrisers for the 2025 PVL season" },
+            { date: "2024", event: "Signed with NXLED Chameleons, continuing her presence in the PVL" },
+            { date: "2023", event: "Returned to Petro Gazz Angels, contributing across multiple PVL conferences" },
+            { date: "2023", event: "Had a short stint with Quezon City Gerflor Defenders during the PVL season" },
+            { date: "2022", event: "Joined Army–Black Mamba Lady Troopers and gained extended PVL experience" },
+            { date: "2019", event: "Began her PVL career with Petro Gazz Angels" },
+            { date: "2014", event: "Established herself in the semi-professional scene with Foton Tornadoes Blue Energy" },
+            { date: "2012", event: "Started her collegiate volleyball journey with the NU Lady Bulldogs"}
+        ],
+    },  
     "reyann-canete": {
         name: "Reyann Canete",
         img: "Tranfer Portal/26.png",
