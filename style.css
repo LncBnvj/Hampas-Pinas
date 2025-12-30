@@ -2409,3 +2409,94 @@ input[type="radio"] { display: none; }
     letter-spacing: 2px;
     text-shadow: 0 0 8px rgba(255, 204, 0, 0.4); /* Adds a subtle gold glow */
 }
+
+/* General Trend Styling */
+.trend-icon {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Specific Colors */
+.trend-up {
+    color: #28a745; /* Modern Green */
+    background-color: rgba(40, 167, 69, 0.1); /* Subtle green background */
+}
+
+.trend-down {
+    color: #dc3545; /* Power Red */
+    background-color: rgba(220, 53, 69, 0.1); /* Subtle red background */
+}
+
+.trend-neutral {
+    color: #6c757d; /* Gray for staying the same */
+    background-color: rgba(108, 117, 125, 0.1);
+}
+
+.power-value {
+    font-weight: bold;
+}
+
+/* 1. CONTENDER - Intense Gold Glow */
+.status-contender {
+    background-color: #fffde7;
+    color: #fbc02d;
+    border-color: #fbc02d;
+    box-shadow: 0 0 15px rgba(251, 192, 45, 0.6), inset 0 0 5px rgba(251, 192, 45, 0.3);
+    text-shadow: 0 0 5px rgba(251, 192, 45, 0.4);
+    animation: gold-pulse 2s infinite;
+}
+
+/* 2. ON THE RISE - Electric Blue Glow */
+.status-ontherise {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-color: #1976d2;
+    box-shadow: 0 0 15px rgba(25, 118, 210, 0.5);
+    text-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+}
+
+/* 3. DARK HORSE - Neon Purple Glow */
+.status-darkhorse {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+    border-color: #7b1fa2;
+    box-shadow: 0 0 15px rgba(123, 31, 162, 0.5);
+}
+
+/* 4. REBUILDING - Warm Orange Glow */
+.status-rebuilding {
+    background-color: #fff3e0;
+    color: #e65100;
+    border-color: #e65100;
+    box-shadow: 0 0 10px rgba(230, 81, 0, 0.4);
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes gold-pulse {
+    0% { box-shadow: 0 0 5px rgba(251, 192, 45, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(251, 192, 45, 0.9); }
+    100% { box-shadow: 0 0 5px rgba(251, 192, 45, 0.6); }
+}
+
+#teamSearchInput {
+    background-color: rgba(255, 255, 255, 0);
+    color: wheat;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+#teamSearchInput:focus {
+    outline: none;
+    border-color: #fbc02d; /* Gold glow on focus */
+    box-shadow: 0 0 5px rgba(251, 192, 45, 0.5);
+}
+
+.filter-group i {
+    margin-right: 8px;
+    color: #666;
+}

@@ -51,13 +51,13 @@
         }
 
         // 3. TEAM CARD - (isTeam = true)
-        function showTeamCard(teamName, teamLogo, setratio, captain, coach, league, championship) {
+        function showTeamCard(teamName, teamLogo, LastConf, captain, coach, league, championship) {
             const tags = `<span class="tag underrated">League: ${league}</span>`;
             const grid = `
                 <div class="info-item"><span>Head Coach</span><strong>${coach}</strong></div>
                 <div class="info-item"><span>Team Captain</span><strong>${captain}</strong></div>
                 <div class="info-item"><span>Championship</span><strong>${championship}</strong></div>
-                <div class="info-item"><span>Set Ratio</span><strong>${setratio}</strong></div>
+                <div class="info-item"><span>Last Conference</span><strong>${LastConf}</strong></div>
             `;
             updatePortalCard(teamName, teamLogo, "Team Overview", "Active roster and season performance metrics.", tags, grid, true);
         }
@@ -105,31 +105,74 @@
             }
         }
 
-        function filterTeamsByLeagueRank() {
-            // 1. Get the specific Team Ranking elements
-            const leagueSelect = document.getElementById("teamLeagueFilter");
-            const table = document.getElementById("teamRankingTable");
+function sortAndRankTeams() {
+    const table = document.getElementById("teamRankingTable");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
 
-            if (!leagueSelect || !table) {
-                console.error("Team table or filter not found");
-                return;
+    // 1. Sort rows based on the Power Ranking (Index 7)
+    rows.sort((a, b) => {
+        const valA = parseFloat(a.cells[8].innerText) || 0;
+        const valB = parseFloat(b.cells[8].innerText) || 0;
+        return valB - valA; // Descending order
+    });
+
+    // 2. Re-insert rows and update the Rank number
+    rows.forEach((row, index) => {
+        row.cells[0].innerText = index + 1; // Assign Rank 1, 2, 3...
+        tbody.appendChild(row);
+    });
+}
+
+function filterTeams() {
+    // 1. Get values from both inputs
+    const leagueFilter = document.getElementById("teamLeagueFilter").value.toUpperCase();
+    const searchFilter = document.getElementById("teamSearchInput").value.toUpperCase();
+    
+    const table = document.getElementById("teamRankingTable");
+    const tr = table.getElementsByTagName("tr");
+
+    // 2. Loop through all table rows (excluding the header)
+    for (let i = 1; i < tr.length; i++) {
+        const teamNameCell = tr[i].getElementsByTagName("td")[1]; // Team Name is Column 2
+        const leagueCell = tr[i].getElementsByTagName("td")[2];   // League is Column 3
+        
+        if (teamNameCell && leagueCell) {
+            const teamName = teamNameCell.textContent || teamNameCell.innerText;
+            const leagueText = leagueCell.textContent || leagueCell.innerText;
+
+            // Check if matches League AND matches Search
+            const matchesLeague = (leagueFilter === "ALL" || leagueText.toUpperCase().indexOf(leagueFilter) > -1);
+            const matchesSearch = (teamName.toUpperCase().indexOf(searchFilter) > -1);
+
+            if (matchesLeague && matchesSearch) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
-
-            const filterValue = leagueSelect.value.toUpperCase();
-            const rows = table.querySelectorAll("tbody tr");
-
-            rows.forEach(row => {
-                // League is the 4th column (index 3)
-                const leagueCell = row.cells[3].textContent.toUpperCase().trim();
-
-                // Logical Check
-                if (filterValue === "ALL" || leagueCell === filterValue) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
         }
+    }
+}
+// 3. Update your existing League Filter to include the sort
+function filterTeamsByLeagueRank() {
+    const filter = document.getElementById("teamLeagueFilter").value;
+    const rows = document.querySelectorAll("#teamRankingTable tbody tr");
+
+    rows.forEach(row => {
+        const league = row.cells[2].innerText; // League is in 3rd column
+        if (filter === "all" || league === filter) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+
+    // Re-run the ranker to ensure visible teams are still numbered correctly
+    sortAndRankTeams();
+}
+
+// Ensure it runs when the page loads
+document.addEventListener("DOMContentLoaded", sortAndRankTeams);
 
         function openProfile(name, pos, experience, league) {
             const modal = document.getElementById("playerModal");
@@ -1236,38 +1279,48 @@ const playerData = {
     }
 };
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Run the ranking function as soon as the page is ready
+    updateTableRankings();
+});
+
 function updateTableRankings() {
+    // Targets your specific table class
     const rows = document.querySelectorAll(".portal-table tbody tr");
     const posCounts = {}; 
 
     rows.forEach((row, index) => {
-        // 1. Set Overall Rank
+        // 1. Set Overall Rank (#1, #2, etc.)
         const rankCell = row.querySelector(".auto-rank");
-        if (rankCell) rankCell.innerText = `#${index + 1}`;
+        if (rankCell) {
+            rankCell.innerText = `#${index + 1}`;
+        }
 
-        // 2. Set Position Rank (Stacked in 2 rows)
+        // 2. Set Position Rank (e.g., #1 OH)
         const posCell = row.querySelector(".auto-pos");
         if (posCell) {
             const rawPos = row.getAttribute("data-position"); 
-            const positions = rawPos.toUpperCase().split(" "); 
-            
-            // Clear current content
-            posCell.innerHTML = "";
-
-            positions.forEach(pos => {
-                posCounts[pos] = (posCounts[pos] || 0) + 1;
+            if (rawPos) {
+                // Split in case a player has multiple positions (e.g., "oh op")
+                const positions = rawPos.toUpperCase().split(" "); 
                 
-                // Create a div for each position to force a new row
-                const posLine = document.createElement("div");
-                posLine.className = "pos-line";
-                posLine.innerText = `#${posCounts[pos]} ${pos}`;
-                posCell.appendChild(posLine);
-            });
+                // Clear current content to prevent duplicates on refresh
+                posCell.innerHTML = "";
+
+                positions.forEach(pos => {
+                    // Track how many of this position we've seen so far
+                    posCounts[pos] = (posCounts[pos] || 0) + 1;
+                    
+                    const posLine = document.createElement("div");
+                    posLine.className = "pos-line";
+                    // Result: #1 OH
+                    posLine.innerText = `#${posCounts[pos]} ${pos}`;
+                    posCell.appendChild(posLine);
+                });
+            }
         }
     });
 }
-
-window.onload = updateTableRankings;
 
 // 2. THE OPEN FUNCTION
 function openProfile(playerId) {
@@ -1527,4 +1580,105 @@ function filterByCategory() {
             }
         }
     });
+}
+
+
+function updateTableLogic() {
+    const table = document.getElementById("teamRankingTable");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // 1. SORT: Highest Power Ranking (Column index 7) at the top
+    rows.sort((a, b) => {
+        const scoreA = parseFloat(a.cells[8].innerText) || 0;
+        const scoreB = parseFloat(b.cells[8].innerText) || 0;
+        return scoreB - scoreA;
+    });
+
+    // 2. APPLY: Re-order rows and update the Rank numbers
+    rows.forEach((row, index) => {
+        tbody.appendChild(row); // Moves the row to the correct sorted position
+        row.cells[0].innerText = index + 1; // Updates the Rank column (Index 0)
+        
+        // 3. COLOR TRENDS: Automatically apply colors based on text content
+        const trendCell = row.cells[7]; // Trend is index 6
+        const trendText = trendCell.innerText.trim();
+        
+        if (trendText === "▲") {
+            trendCell.innerHTML = `<span class="trend-icon trend-up">▲</span>`;
+        } else if (trendText === "▼") {
+            trendCell.innerHTML = `<span class="trend-icon trend-down">▼</span>`;
+        } else {
+            trendCell.innerHTML = `<span class="trend-icon trend-neutral">—</span>`;
+        }
+    });
+}
+
+// Call this every time the page loads or a filter changes
+window.onload = updateTableLogic;
+
+// Object to track sorting direction for each column
+let sortDirections = {};
+
+function sortTableByValue(colIndex) {
+    // 1. Get the table and rows
+    const table = document.querySelector(".portal-table");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // 2. Determine sorting direction (Toggle between High-to-Low and Low-to-High)
+    // Default to Descending (High to Low) on the first click
+    if (sortDirections[colIndex] === undefined) {
+        sortDirections[colIndex] = false; 
+    }
+    sortDirections[colIndex] = !sortDirections[colIndex];
+    const isAscending = sortDirections[colIndex];
+
+    // 3. Sort the rows
+    rows.sort((a, b) => {
+        // Extract numbers only (removes % or points if present)
+        const valA = parseFloat(a.cells[colIndex].innerText.replace(/[^0-9.]/g, '')) || 0;
+        const valB = parseFloat(b.cells[colIndex].innerText.replace(/[^0-9.]/g, '')) || 0;
+
+        return isAscending ? valA - valB : valB - valA;
+    });
+
+    // 4. Remove old rows and append sorted rows
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+    
+    rows.forEach(row => tbody.appendChild(row));
+
+    // 5. Update the "Rank" column (Index 0) automatically
+    updateRanks();
+    
+    // 6. Update Visual Icons (Optional)
+    updateSortIcons(colIndex, isAscending);
+}
+
+function updateRanks() {
+    const rows = document.querySelectorAll(".portal-table tbody tr");
+    rows.forEach((row, index) => {
+        // Assuming your Rank column is index 0
+        const rankCell = row.cells[0]; 
+        if (rankCell) {
+            rankCell.innerText = index + 1;
+        }
+    });
+}
+
+function updateSortIcons(activeIndex, isAscending) {
+    const headers = document.querySelectorAll(".portal-table th i");
+    headers.forEach((icon, idx) => {
+        // Reset all icons to default sort symbol
+        icon.className = "fas fa-sort";
+    });
+    
+    // Find the icon in the clicked header and update it
+    const activeHeader = document.querySelectorAll(".portal-table th")[activeIndex];
+    const icon = activeHeader.querySelector("i");
+    if (icon) {
+        icon.className = isAscending ? "fas fa-sort-up" : "fas fa-sort-down";
+    }
 }

@@ -524,28 +524,6 @@
             </section>
             
             <section id="teams-view" class="window">
-                <div class="blackout-overlay">
-                    <div class="aesthetic-lock-card">
-                        <div class="lock-visual">
-                            <div class="shimmer-circle"></div>
-                            <i class="fas fa-fingerprint"></i>
-                        </div>
-                        
-                        <div class="lock-text">
-                            <span class="status-top">Database Locked</span>
-                            <h2>Rankings Restricted</h2>
-                            <p>The Player Power Rankings are currently being recalibrated for <strong>2026 Season</strong>. Performance metrics are being synced.</p>
-                        </div>
-
-                        <div class="lock-footer">
-                            <div class="recalibrating-indicator">
-                                <div class="dot-pulse"></div>
-                                <span>SYSTEM RECALIBRATING</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="restricted-content-hidden">
                     <div class="filter-bar">
                             <div class="filter-group">
                                 <i class="fas fa-trophy"></i>
@@ -557,13 +535,15 @@
                                     <option value="NCAA">NCAA</option>
                                     <option value="MPVA">MPVA</option>
                                 </select>
+                                <i class="fas fa-search"></i>
+                                <span>Search Team:</span>
+                                <input type="text" id="teamSearchInput" onkeyup="filterTeams()" placeholder="Enter team name..." style="padding: 5px; border-radius: 20px; border: 1px solid #ccc;">                                
                             </div>
                         </div>
-
                                     <header class="main-header">
                                         <div class="title-container">
-                                            <h2 class="section-title">Team Power Ranking</h2>
-                                            <p class="as-of-date">as of Week 4, December 2025</p>
+                                            <h2 class="section-title">Off Season Team Power Ranking</h2>
+                                            <p class="as-of-date">as of Week 5, December 2025</p>
                                         </div>         
                                     </header>       
 
@@ -573,52 +553,173 @@
                                 <tr>
                                     <th>Rank</th>
                                     <th>Team Name</th>
-                                    <th>Win/Loss Record</th>   
-                                    <th>League</th>
-                                    <th>League Ranking</th>           
-                                    <th>Level</th>
+                                    <th>League</th>   
+                                    <th>Roster Strenght</th>          
+                                    <th>Legacy Point<br>(Last Conference)</th>
+                                    <th>Projected Ceiling</th>
+                                    <th>Status</th>
+                                    <th>Trend</th>           
+                                    <th>Power Ranking</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                    <td>1</td>
-                                    <td>Creamline Cool Smashers</td>
-                                    <td>12-3</td>
+                                <tr onclick="showTeamCard('Akari Power Chargers', 'Team Logo/Akari.png',  '3rd Place', 'Justine Jazareno', 'Tina Salak', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Akari Power Chargers</td>
                                     <td>PVL</td>
-                                    <td>1st</td>
-                                    <td>Professional</td>
+                                    <td>-</td> 
+                                    <td>75</td>
+                                    <td>90</td>
+                                    <td><span class="status-pill status-contender">Contender</span></td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">31.5</td>
                                 </tr>
 
-                                <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                    <td>1</td>
-                                    <td>Creamline Cool Smashers</td>
-                                    <td>12-3</td>
-                                    <td>UAAP</td>
-                                    <td>1st</td>
-                                    <td>Professional</td>
+                                <tr onclick="showTeamCard('Capital1 Solar Spiker', 'Team Logo/Capital1.png',  '8th Place', 'Roma Mae Doromal', 'Jorge de Brito', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Capital1 Solar Spiker</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>50</td>
+                                    <td>50</td>
+                                    <td>
+                                        <span class="status-pill status-rebuilding">rebuilding</span><br>
+                                        <span class="status-pill status-darkhorse">Dark Horse</span>                                    
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">20</td>
                                 </tr>
 
-                                <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                    <td>1</td>
-                                    <td>Creamline Cool Smashers</td>
-                                    <td>12-3</td>
-                                    <td>UAAP</td>
-                                    <td>1st</td>
-                                    <td>Professional</td>
+                                <tr onclick="showTeamCard('Choco Mucho Flying Titans', 'Team Logo/Choco.png',  '9th Place', 'Desiree Cheng', 'Dante Alinsunurin', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Choco Mucho Flying Titans</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>20</td>
+                                    <td>20</td>
+                                    <td>
+                                        <span class="status-pill status-rebuilding">rebuilding</span>                      
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">8</td>
                                 </tr>
 
-                                <tr onclick="showTeamCard('Creamline Cool Smashers', '33:4', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')">
-                                    <td>1</td>
-                                    <td>Creamline Cool Smashers</td>
-                                    <td>12-3</td>
-                                    <td>UAAP</td>
-                                    <td>1st</td>
-                                    <td>Professional</td>
+                                <tr onclick="showTeamCard('Cignal Super Spikers', 'Team Logo/Cignal.png',  '7th Place', 'Dawn Catindig', 'Shaq Delos Santos', 'Premier Volleyball League', '1x Champion')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Cignal Super Spiker</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>50</td>
+                                    <td>50</td>
+                                    <td>
+                                        <span class="status-pill status-ontherise">On the Rise</span>                      
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">20</td>
                                 </tr>
+
+                                <tr onclick="showTeamCard('Creamline Cool Smashers', 'Team Logo/Creamline.png',  '6th Place', 'Alyssa Valdez', 'Sherwin Meneses', 'Premier Volleyball League', '10x Champion')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Choco Mucho Flying Titans</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>50</td>
+                                    <td>90</td>
+                                    <td><span class="status-pill status-contender">Contender</span></td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">24</td>
+                                </tr>
+                                
+                                <tr onclick="showTeamCard('Farm Fresh Foxies', 'Team Logo/Farm.png',  '7th Place', 'Louie Romero', 'Vacant', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Farm Fresh Foxies</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>50</td>
+                                    <td>90</td>
+                                    <td>
+                                        <span class="status-pill status-ontherise">On the Rise</span><br> 
+                                        <span class="status-pill status-darkhorse">Dark Horse</span>                                    
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">24</td>
+                                </tr>
+
+                                <tr onclick="showTeamCard('Galeries Tower Highrisers', 'Team Logo/Galeries.png',  '12th Place', 'Roselle Baliton', 'Godfrey Okumu', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Galeries Tower Highrisers</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>20</td>
+                                    <td>20</td>
+                                    <td>
+                                        <span class="status-pill status-rebuilding">Rebuilding</span>                      
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">8</td>
+                                </tr>
+
+                                <tr onclick="showTeamCard('Nxled Chamleons', 'Team Logo/Nxled.png',  '11th Place', 'Chiara Permentilla', 'Ettore Guidetti', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Nxled Chameleons</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>20</td>
+                                    <td>20</td>
+                                    <td>
+                                        <span class="status-pill status-rebuilding">Rebuilding</span><br>
+                                        <span class="status-pill status-darkhorse">Dark Horse</span>
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">8</td>
+                                </tr>
+
+                                <tr onclick="showTeamCard('Petro Gazz Angels', 'Team Logo/PetroGazz.png', 'Champion', 'Remy Palma', 'Gary Van Sickle', 'Premier Volleyball League', '5x Champion')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>Petro Gazz Angels</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>100</td>
+                                    <td>100</td>
+                                    <td>
+                                        <span class="status-pill status-contender">Contender</span>                      
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">40</td>
+                                </tr>
+
+                                <tr onclick="showTeamCard('PLDT High Speed Hitters', 'Team Logo/PLDT.png', '4th Place', 'Kath Arado', 'Rald Ricafort', 'Premier Volleyball League', '2x Champion')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>PLDT High Speed Hitters</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>75</td>
+                                    <td>100</td>
+                                    <td>
+                                        <span class="status-pill status-contender">Contender</span>                      
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">32.5</td>
+                                </tr>
+
+                                <tr onclick="showTeamCard('ZUS Coffee Thunderbelles', 'Team Logo/ZUS.png', 'Runner Up', 'Cloanne Mondonedo', 'Jerry Yee', 'Premier Volleyball League', 'None')" data-league="PVL">
+                                    <td class="rank-cell"></td> 
+                                    <td>ZUS Coffee Thunderbelles</td>
+                                    <td>PVL</td>
+                                    <td>-</td> 
+                                    <td>90</td>
+                                    <td>75</td>
+                                    <td>
+                                        <span class="status-pill status-ontherise">Contender</span><br>
+                                        <span class="status-pill status-darkhorse">Dark Horse</span><br>
+                                    </td>
+                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
+                                    <td class="power-value">34.5</td>
+                                </tr>                                
                             </tbody>
                         </table>
                     </div>
-                </div> 
+             
             </section>
 
             <section id="alas-view" class="window">
@@ -1332,7 +1433,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr onclick="openProfile('eya-laure')" data-league="pvl" data-position="oh">
+                                        <tr onclick="openProfile('eya-laure')" data-league="pvl" data-position="oh" >
                                                 <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                                 <td>
                                                     <div class="player-cell">
