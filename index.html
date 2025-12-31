@@ -423,106 +423,38 @@
 
         </section>
 
-            <section id="rankings-view" class="window">
-                <div class="blackout-overlay">
-                    <div class="aesthetic-lock-card">
-                        <div class="lock-visual">
-                            <div class="shimmer-circle"></div>
-                            <i class="fas fa-fingerprint"></i>
-                        </div>
-                        
-                        <div class="lock-text">
-                            <span class="status-top">Database Locked</span>
-                            <h2>Rankings Restricted</h2>
-                            <p>The Player Power Rankings are currently being recalibrated for <strong>2026 Season</strong>. Performance metrics are being synced.</p>
-                        </div>
+            <section id="rankings-view" class="window">      
+                <header class="main-header">
+                    <div class="title-container">
+                        <h2 class="section-title">Player Power Ranking</h2>
+                        <p class="as-of-date">as of Week 4, December 2025</p>
+                    </div>         
+                </header>                 
 
-                        <div class="lock-footer">
-                            <div class="recalibrating-indicator">
-                                <div class="dot-pulse"></div>
-                                <span>SYSTEM RECALIBRATING</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="restricted-content-hidden">
-                    <div class="filter-bar">
-                        <div class="filter-group">
-                            <i class="fas fa-filter"></i>
-                            <span>Filter by:</span>
-                            <select id="rankTeamFilter" onchange="filterRankings()" style="color: black !important; background-color: white;">
-                                <option value="all">All Teams</option>
-                                <option value="Choco">Choco Mucho</option> 
-                                <option value="Petro">Petro Gazz</option>
-                                <option value="Alas">Alas Pilipinas</option>
-                                <option value="Creamline">Creamline</option>
-                                <option value="DLSU">DLSU</option>
-                            </select>
-                        </div>
-
-                        <div class="search-group">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="rankNameSearch" onkeyup="filterRankings()" placeholder="Search Players...">
-                        </div>
-                    </div>
-                                    <header class="main-header">
-                                        <div class="title-container">
-                                            <h2 class="section-title">Player Power Ranking</h2>
-                                            <p class="as-of-date">as of Week 4, December 2025</p>
-                                        </div>         
-                                    </header>                 
-                                        <div class="table-wrapper">
-                                        <table class="data-table" id="rankingsTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Rank</th>
-                                                <th>Name</th>
-                                                <th>Team</th>
-                                                <th>Height</th>
-                                                <th>Age</th>
-                                                <th>Pos. Rank</th>
-                                                <th>College</th>
-                                                <th>Previous Ranking</th>                                           
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr onclick="showCardRanking('Brooke Van Sickle', 'OH', 'Most Valuable Player', 'PGA', 'Hawaii', '#3', 'No Data', 'The league\'s most versatile attacker.', 'Professional')">
-                                                <td class="rank-up">1 <i class="fas fa-caret-up"></i></td>
-                                                <td>Brooke Van Sickle</td>
-                                                <td>Petro Gazz</td>
-                                                <td>5'9"</td>
-                                                <td>25</td>
-                                                <td>#1 OH</td>
-                                                <td>Hawaii</td>
-                                                <td>5</td>
-                                            </tr>
-                                            </tr>
-                                            <tr onclick="showCardRanking('Brooke Van Sickle', 'OH', 'Most Valuable Player', 'PGA', 'Hawaii', '#3', 'No Data', 'The league\'s most versatile attacker.', 'Professional')">
-                                                <td>2</td>
-                                                <td>Angel Canino</td>
-                                                <td>DLSU / Alas</td>
-                                                <td>5'11"</td>
-                                                <td>21</td>
-                                                <td>#2 OH</td>
-                                                <td>De La Salle University</td>
-                                                <td>5</td>
-                                            </tr>
-                                            <tr onclick="showCardRanking('Brooke Van Sickle', 'OH', 'Most Valuable Player', 'PGA', 'Hawaii', '#3', 'No Data', 'The league\'s most versatile attacker.', 'Professional')">
-                                                <td>3</td>
-                                                <td>Jia De Guzman</td>
-                                                <td>Creamline</td>
-                                                <td>5'7"</td>
-                                                <td>29</td>
-                                                <td>#1 S</td>
-                                                <td>Ateneo</td>
-                                                <td>5</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                </div>
+                <div id="rankings-placeholder"></div>
             </section>
             
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch('rankings-table.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Could not find rankings-table.html. Check the file name!");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('rankings-placeholder').innerHTML = data;
+                        console.log("Table synced successfully!");
+                    })
+                    .catch(error => {
+                        console.error("Sync Error:", error);
+                        document.getElementById('rankings-placeholder').innerHTML = 
+                            `<p style="color:red;">Error loading table. See Console (F12) for details.</p>`;
+                    });
+            });
+            </script>          
+              
             <section id="teams-view" class="window">
                     <div class="filter-bar">
                             <div class="filter-group">
@@ -1450,9 +1382,7 @@
                                                 <td>
                                                     <div class="status-container">
                                                         <span class="status-pill status-national">National Team</span>     
-                                                        <span class="status-pill status-rumor">Transfer Rumor</span>     
-                                                        <span class="status-pill status-hot">Hot Prospect</span>                                    
-                                                        <span class="status-pill status-free">Free Agent</span>                                    
+                                                        <span class="status-pill status-committed">Committed</span>     
                                                     </div>
                                                 </td>
                                                 <td class="move-cell">
@@ -1627,9 +1557,7 @@
                                             <td>5’8”</td>
                                             <td>
                                                 <div class="status-container">
-                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
-                                                    <span class="status-pill status-hot">Hot Prospect</span>
-                                                    <span class="status-pill status-free">Free Agent</span>
+                                                    <span class="status-pill status-committed">Committed</span>
                                                 </div>
                                             </td>
                                             <td class="move-cell">
@@ -1655,8 +1583,7 @@
                                             <td>5’4”</td>
                                             <td>
                                                 <div class="status-container">
-                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
-                                                    <span class="status-pill status-free">Free Agent</span>
+                                                    <span class="status-pill status-committed">Committed</span>
                                                 </div>
                                             </td>
                                             <td class="move-cell">
@@ -2112,11 +2039,11 @@
                                             <td>5’0”</td>
                                             <td>
                                                 <div class="status-container">
-                                                    <span class="status-pill status-rumor">Transfer Rumor</span>
+                                                    <span class="status-pill status-Committed">Committed</span>
                                                 </div>
                                             </td>
                                             <td class="move-cell">
-                                                <span>Chery Tiggo Crossover</span>
+                                                <span>Mxled Chameleons</span>
                                                 <i class="fas fa-arrow-right transfer-icon"></i>                                           
                                                 <span>Choco Mucho Flying Titans</span>
                                             </td>
