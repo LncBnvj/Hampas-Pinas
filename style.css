@@ -569,11 +569,30 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #ccc;
+    color: #ffffff;
     font-size: 14px;
 }
 
-.filter-bar select, .filter-bar input {
+#rankNameSearch {
+    color: black !important; /* Forces the typed text to be black */
+}
+
+/* This targets the "Search Players..." placeholder text */
+#rankNameSearch::placeholder {
+    color: #666; /* A dark gray so it's visible but looks like a placeholder */
+}
+
+.filter-bar select{
+    background: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 8px 12px;
+    color: black;
+    outline: none;
+    transition: 0.3s;
+}
+
+.filter-bar input {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -585,7 +604,7 @@ body {
 
 .filter-bar input:focus, .filter-bar select:focus {
     border-color: #ffcc00;
-    background: rgba(255, 255, 255, 0.15);
+    background: white
 }
 
 .filter-bar input::placeholder {
@@ -595,7 +614,7 @@ body {
 /* This targets the dropdown box itself */
 #teamFilter {
     color: #000000; /* Sets the text color to black */
-    background-color: rgba(255, 255, 255, 0.9); /* Makes background slightly white for contrast */
+    background-color: rgba(228, 8, 8, 0.9); /* Makes background slightly white for contrast */
     border: 1px solid #ccc;
     padding: 5px 10px;
     border-radius: 5px;
@@ -2498,5 +2517,105 @@ input[type="radio"] { display: none; }
 
 .filter-group i {
     margin-right: 8px;
-    color: #666;
+    color: #ffffff;
 }
+
+/* Circular Image Container */
+.player-identity {
+    display: flex;
+    align-items: center;
+}
+
+.img-container {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%; /* Perfect Circle */
+    overflow: hidden;
+    border: 2px solid #eee;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Star Rating Styling */
+.star-rating {
+    font-size: 11px;
+    margin-top: 2px;
+    display: block;
+}
+
+.gold-star { color: #FFD700; }
+.gray-star { color: #ccc; }
+
+/* Rank Styling */
+.rank-cell { font-weight: 800; font-size: 1.1em; text-align: left; }
+
+.league-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    background: #f7f7f7;
+    color: rgb(0, 0, 0);
+    border: 1px solid #444;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: #ffd700;
+    color: black;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+    background: #444;
+}
+
+/* This ensures the info stays stacked and doesn't stretch weirdly */
+.portal-card-header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Transfer Portal Badge */
+.portal-badge {
+    background: #00f2ff; /* Neon Cyan */
+    color: #000;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+    animation: pulse-portal 2s infinite;
+}
+
+@keyframes pulse-portal {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Optional: Highlight the whole row for portal players */
+.player-row[data-portal="true"] {
+    background: rgba(0, 242, 255, 0.03) !important;
+}
+

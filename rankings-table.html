@@ -1,0 +1,523 @@
+<button class="tab-btn active" onclick="switchLeague('all')">All Leagues</button>
+<button class="tab-btn" onclick="switchLeague('PVL')">PVL</button>
+<button class="tab-btn" onclick="switchLeague('UAAP')">UAAP</button>
+
+<div class="filter-bar">
+    <div class="filter-group">
+        <i class="fas fa-filter"></i>
+        <span>Filter by:</span>
+        <select id="rankTeamFilter" onchange="filterAndRender()">
+            <option value="all">All Teams</option>
+            <option value="Akari Power Chargers">Akari Power Chargers</option> 
+            <option value="Petro Gazz">Petro Gazz</option>
+            <option value="Alas Pilipinas">Alas Pilipinas</option>
+            <option value="Creamline">Creamline</option>
+            <option value="DLSU">DLSU</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <i class="fas fa-star"></i>
+        <span>Stars:</span>
+        <select id="rankStarFilter" onchange="filterAndRender()">
+            <option value="all">All Stars</option>
+            <option value="5">5 Stars (Elite)</option>
+            <option value="4">4 Stars (Great)</option>
+            <option value="3">3 Stars (Solid)</option>
+            <option value="2">2 Stars (Prospect)</option>
+            <option value="1">1 Star (Developing)</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <i class="fas fa-thumbtack"></i>
+        <span>Position:</span>
+        <select id="rankPosFilter" onchange="filterAndRender()">
+            <option value="all">All Positions</option>
+            <option value="OH">Outside Hitter (OH)</option>
+            <option value="OP">Opposite Hitter (OP)</option>
+            <option value="MB">Middle Blocker (MB)</option>
+            <option value="S">Setter (S)</option>
+            <option value="L">Libero (L)</option>
+        </select>
+    </div>
+
+    <div class="search-group">
+        <i class="fas fa-search"></i>
+        <input type="text" id="rankNameSearch" onkeyup="filterAndRender()" placeholder="Search Players...">
+    </div>
+</div>
+<div class="table-wrapper">
+    <table class="data-table" id="rankingsTable">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Pos. Rank</th>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Age</th>
+                <th>Scout Grade</th>
+                <th>PR Rating</th>
+                <th>Previous</th>
+            </tr>   
+        </thead>
+        <tbody id="rankingTableBody">
+            <!-- AKARI POWER CHARGERS -->
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Marionne Angelique "Mars" Alba' 
+                data-pos="S" 
+                data-stars="4" 
+                data-pr="74.11" 
+                data-img="Player Ranking/1.png" 
+                data-award="Best Setter"
+                data-team="Akari Power Chargers" 
+                data-college="De La Salle University" 
+                data-statsscore="67.96"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Marionne Angelique "Mars" Alba</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>74.11</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>            
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Theo Bea Bonafe" 
+                data-pos="S" 
+                data-stars="2" 
+                data-pr="23.57" 
+                data-img="Player Ranking/2.png" 
+                data-award="-"
+                data-team="Choco Mucho Flying Titans" 
+                data-college="University of the Philippines" 
+                data-statsscore="3.73"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Theo Bea Bonafe</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>23.57</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Stephanie Bustrillo" 
+                data-pos="OP" 
+                data-stars="3" 
+                data-pr="24.00" 
+                data-img="Player Ranking/3.png" 
+                data-award="Best Opposite Spiker"
+                data-team="Akari Power Chargers" 
+                data-college="University of the Philippines" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Stephanie Bustrillo</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>B</td> <!--scout grade-->
+                <td>24.00</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>   
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Kamille Angelica Cal" 
+                data-pos="S" 
+                data-stars="2" 
+                data-pr="32.95" 
+                data-img="Player Ranking/4.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="University of the Philippines" 
+                data-statsscore="17.14"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Kamille Angelica Cal</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>32.95</td> <!--PR Rating-->
+                <td class="previous-cell">-</td>
+            </tr>            
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Joan Doguna" 
+                data-pos="OH" 
+                data-stars="2" 
+                data-pr="18.67" 
+                data-img="Player Ranking/5.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Lyceum of the Philipines University" 
+                data-statsscore="-"
+                data-draft="2025 | 3rd Round | 27th Pick">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Joan Doguna</td>
+                <td>Akari Power Chargers</td>
+                <td>25</td> <!--age-->
+                <td>C</td> <!--scout grade-->
+                <td>18.67</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr> 
+            
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Celine Elaiza "Ced" Domingo'
+                data-pos="MB" 
+                data-stars="4" 
+                data-pr="74.52" 
+                data-img="Player Ranking/6.png" 
+                data-award="Best Middle Blocker"
+                data-team="Akari Power Chargers" 
+                data-college="Far Eastern University" 
+                data-statsscore="70.86"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Celine Elaiza "Ced" Domingo</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>74.52</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>            
+        
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Faith Janine Shirley Nisperos" 
+                data-pos="OP" 
+                data-stars="3" 
+                data-pr="29.33" 
+                data-img="Player Ranking/7.png" 
+                data-award="Most Valuable Player"
+                data-team="Akari Power Chargers" 
+                data-college="Ateneo de Manila Unievrsity" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Faith Janine Shirley Nisperos</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>B+</td> <!--scout grade-->
+                <td>29.33</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>            
+        
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Erika Beatriz Raagas" 
+                data-pos="OH" 
+                data-stars="2" 
+                data-pr="22.84" 
+                data-img="Player Ranking/8.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Ateneo de Manila University" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Erika Beatriz Raagas</td>
+                <td>Akari Power Chargers</td>
+                <td>25</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>22.84</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>            
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Danielle Theris Ravena" 
+                data-pos="L" 
+                data-stars="2" 
+                data-pr="21.33" 
+                data-img="Player Ranking/9.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Ateneo de Manila University" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Danielle Theris "Dani" Ravena</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>21.33</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Mereophe "Fifi" Sharma'
+                data-pos="MB" 
+                data-stars="4" 
+                data-pr="71.25" 
+                data-img="Player Ranking/10.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="De La Salle University" 
+                data-statsscore="63.19"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Mereophe Aevangeline "Fifi" Sharma</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>71.25</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Grethcel Soltones" 
+                data-pos="OH" 
+                data-stars="4" 
+                data-pr="82.45" 
+                data-img="Player Ranking/11.png" 
+                data-award="Most Valuable Player"
+                data-team="Akari Power Chargers" 
+                data-college="San Sebastian College-Recoletos " 
+                data-statsscore="86.31"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Grethcel Soltones</td>
+                <td>Akari Power Chargers</td>
+                <td>30</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>82.45</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Christine Joy "Eli" Soyud'
+                data-pos="OP" 
+                data-stars="4" 
+                data-pr="76.05" 
+                data-img="Player Ranking/12.png" 
+                data-award="Best Opposite Spiker"
+                data-team="Akari Power Chargers" 
+                data-college="Adamson University" 
+                data-statsscore="75.64"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Christine Joy "Eli" Soyud</td>
+                <td>Akari Power Chargers</td>
+                <td>30</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>76.05</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Chenie Tagaod" 
+                data-pos="OH" 
+                data-stars="3" 
+                data-pr="38.17" 
+                data-img="Player Ranking/13.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Far Eastern University" 
+                data-statsscore="16.95"
+                data-draft="2025 | 1st Round | 10th Pick">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Chenie Tagaod</td>
+                <td>Akari Power Chargers</td>
+                <td>23</td> <!--age-->
+                <td>B+</td> <!--scout grade-->
+                <td>38.17</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Jamaica Villena" 
+                data-pos="MB" 
+                data-stars="2" 
+                data-pr="22.67" 
+                data-img="Player Ranking/14.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Emilio Aguinaldo College" 
+                data-statsscore="-"
+                data-draft="2025 | 2nd Round | 22th Pick">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Jamaica Villena</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>22.67</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Ylizyeth Justine Jazareno" 
+                data-pos="L" 
+                data-stars="5" 
+                data-pr="93.12" 
+                data-img="Player Ranking/15.png" 
+                data-award="Best Libero"
+                data-team="Akari Power Chargers" 
+                data-college="De La Salle University" 
+                data-statsscore="95.19"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Ylizyeth Justine Jazareno</td>
+                <td>Akari Power Chargers</td>
+                <td>25</td> <!--age-->
+                <td>S</td> <!--scout grade-->
+                <td>93.12</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Maxine "Max" Juangco'
+                data-pos="L" 
+                data-stars="3" 
+                data-pr="24.69" 
+                data-img="Player Ranking/16.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Far Eastern University" 
+                data-statsscore="1.14"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Alexandra Maxine "Max" Juangco</td>
+                <td>Akari Power Chargers</td>
+                <td>24</td> <!--age-->
+                <td>B</td> <!--scout grade-->
+                <td>24.69</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name='Ivy Keith "Ibyang" Lacsina'
+                data-pos="OH" 
+                data-stars="4" 
+                data-pr="31.02" 
+                data-img="Player Ranking/17.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="National University" 
+                data-statsscore="0.59"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Ivy Keith "Ibyang" Lacsina</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>A</td> <!--scout grade-->
+                <td>31.02</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Princess Ezra Madrigal" 
+                data-pos="MB" 
+                data-stars="2" 
+                data-pr="25.42" 
+                data-img="Player Ranking/18.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Far Eastern University" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Princess Ezra Madrigal</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>25.42</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="false" 
+                data-prev-rank="-"               
+                data-name="Cathrine Almazan" 
+                data-pos="OH" 
+                data-stars="1" 
+                data-pr="14.67" 
+                data-img="Player Ranking/19.png" 
+                data-award="-"
+                data-team="Akari Power Chargers" 
+                data-college="Emilio Aguinaldo College" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Cathrine Almazan</td>
+                <td>Akari Power Chargers</td>
+                <td>26</td> <!--age-->
+                <td>F</td> <!--scout grade-->
+                <td>14.67</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>

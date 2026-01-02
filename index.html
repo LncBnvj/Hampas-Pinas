@@ -426,8 +426,8 @@
             <section id="rankings-view" class="window">      
                 <header class="main-header">
                     <div class="title-container">
-                        <h2 class="section-title">Player Power Ranking</h2>
-                        <p class="as-of-date">as of Week 4, December 2025</p>
+                        <h2 class="section-title">2025 Season | Player Power Ranking</h2>
+                        <p class="as-of-date">as of Week 1, January 2026</p>
                     </div>         
                 </header>                 
 
@@ -436,48 +436,182 @@
             
             <script>
             document.addEventListener("DOMContentLoaded", () => {
+                // 1. Fetch the external table
                 fetch('rankings-table.html')
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Could not find rankings-table.html. Check the file name!");
-                        }
+                        if (!response.ok) throw new Error("File not found");
                         return response.text();
                     })
                     .then(data => {
+                        // 2. Inject the HTML into the placeholder
                         document.getElementById('rankings-placeholder').innerHTML = data;
-                        console.log("Table synced successfully!");
+                        console.log("Table synced. Starting auto-rank...");
+
+                        // 3. IMMEDIATELY trigger the ranking logic after injection
+                        filterAndRender(); 
                     })
                     .catch(error => {
                         console.error("Sync Error:", error);
-                        document.getElementById('rankings-placeholder').innerHTML = 
-                            `<p style="color:red;">Error loading table. See Console (F12) for details.</p>`;
                     });
             });
+
+            // The "Brain" of your table - This handles the sorting, stars, and images
+            let currentLeague = 'all';
+
+            function switchLeague(league) {
+                currentLeague = league;
+                
+                // Update Tab UI active states
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    // Match button text to league (handling "all" vs "All Leagues")
+                    if (btn.textContent.toLowerCase().includes(league.toLowerCase())) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                filterAndRender();
+            }
+
+            function filterAndRender() {
+                const tableBody = document.getElementById('rankingTableBody');
+                if (!tableBody) return;
+
+                const searchVal = document.getElementById('rankNameSearch').value.toLowerCase();
+                const teamFilter = document.getElementById('rankTeamFilter').value;
+                const posFilter = document.getElementById('rankPosFilter').value;
+                
+                // NEW: Get the Star Filter Value
+                const starFilter = document.getElementById('rankStarFilter').value;
+                
+                const rows = Array.from(tableBody.querySelectorAll('.player-row'));
+
+                rows.sort((a, b) => parseFloat(b.dataset.pr) - parseFloat(a.dataset.pr));
+
+                const posCounters = {};
+                let displayRank = 1; 
+
+                rows.forEach((row) => {
+                    const d = row.dataset;
+                    const playerName = d.name || row.querySelector('.name-cell').innerText;
+
+                    // MULTI-FILTER LOGIC
+                    const matchesLeague = (typeof currentLeague === 'undefined' || currentLeague === 'all' || d.league === currentLeague);
+                    const matchesTeam = (teamFilter === 'all' || d.team === teamFilter);
+                    const matchesPos = (posFilter === 'all' || d.pos === posFilter);
+                    const matchesSearch = playerName.toLowerCase().includes(searchVal);
+                    
+                    // NEW: Check if the stars match (d.stars comes from data-stars="5")
+                    const matchesStars = (starFilter === 'all' || d.stars === starFilter);
+
+                    // Update the main condition to include matchesStars
+                    if (matchesLeague && matchesTeam && matchesPos && matchesSearch && matchesStars) {
+                        row.style.display = ""; 
+                        tableBody.appendChild(row);
+
+                        // 2. ASSIGN RANKS ONLY TO VISIBLE ROWS
+                        const currentRank = displayRank; 
+                        const previousRank = parseInt(d.prevRank);
+                        
+                        // Determine Trend Icon
+                        let trendHtml = '';
+                        if (isNaN(previousRank)) {
+                            trendHtml = `<span style="color: #888; font-size: 10px; margin-left: 5px;">NEW</span>`;
+                        } else if (currentRank < previousRank) {
+                            trendHtml = `<i class="fas fa-caret-up" style="color: #00ff00; margin-left: 5px;"></i>`;
+                        } else if (currentRank > previousRank) {
+                            trendHtml = `<i class="fas fa-caret-down" style="color: #ff4444; margin-left: 5px;"></i>`;
+                        } else {
+                            trendHtml = `<span style="color: #888; font-size: 12px; margin-left: 5px;">-</span>`;
+                        }
+
+                        // Update visible Overall Rank Cell
+                        row.querySelector('.rank-cell').innerHTML = `
+                            <div style="display: flex; align-items: left; justify-content: left;">
+                                ${currentRank} ${trendHtml}
+                            </div>
+                        `;
+
+                        // Update Position Rank (#1 OH, #2 OH, etc.)
+                        const pos = d.pos;
+                        posCounters[pos] = (posCounters[pos] || 0) + 1;
+                        row.querySelector('.pos-rank-cell').innerHTML = `<span class="pos-rank-tag">#${posCounters[pos]} ${pos}</span>`;
+
+                        // RENDER NAME CELL & PORTAL BADGE
+                        const isPortal = d.portal === "true";
+                        const portalBadge = isPortal ? `<span class="portal-badge"><i class="fas fa-exchange-alt"></i> PORTAL</span>` : '';
+                        
+                        const starCount = parseInt(d.stars);
+                        let starsHtml = '';
+                        for (let i = 0; i < 5; i++) {
+                            starsHtml += `<span style="color: ${i < starCount ? '#FFD700' : '#444'}; font-size: 14px; margin-right: 2px;">★</span>`;
+                        }
+
+                        row.querySelector('.name-cell').innerHTML = `
+                            <div style="display: flex; align-items: center;">
+                                <div class="player-img-circle" style="width:40px; height:40px; border-radius:50%; overflow:hidden; border:2px solid ${isPortal ? '#00f2ff' : '#ffd700'}; flex-shrink:0;">
+                                    <img src="${d.img}" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                                <div style="margin-left: 10px; line-height: 1.2; text-align: left;">
+                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                        <span style="font-weight:bold; color:white; font-size: 14px; text-transform: capitalize;">${playerName}</span>
+                                        ${portalBadge}
+                                    </div>
+                                    <div style="display: flex;">${starsHtml}</div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Increment rank ONLY if the player was displayed
+                        displayRank++;
+
+                        row.onclick = () => {
+                            if(typeof showCardRanking === "function") {
+                                showCardRanking(
+                                    playerName, 
+                                    d.img, 
+                                    d.pos, 
+                                    d.award, 
+                                    d.team, 
+                                    d.college, 
+                                    d.statsscore, 
+                                    d.draft, 
+                                    d.stars // <--- Add this argument here
+                                );
+                            }
+                        };
+
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            }
             </script>          
               
             <section id="teams-view" class="window">
-                    <div class="filter-bar">
-                            <div class="filter-group">
-                                <i class="fas fa-trophy"></i>
-                                <span>Filter by League:</span>
-                                <select id="teamLeagueFilter" onchange="filterTeamsByLeagueRank()" style="color: black !important; background-color: white;">
-                                    <option value="all">All Leagues</option>
-                                    <option value="PVL">PVL</option>
-                                    <option value="UAAP">UAAP</option>
-                                    <option value="NCAA">NCAA</option>
-                                    <option value="MPVA">MPVA</option>
-                                </select>
-                                <i class="fas fa-search"></i>
-                                <span>Search Team:</span>
-                                <input type="text" id="teamSearchInput" onkeyup="filterTeams()" placeholder="Enter team name..." style="padding: 5px; border-radius: 20px; border: 1px solid #ccc;">                                
-                            </div>
-                        </div>
                                     <header class="main-header">
                                         <div class="title-container">
                                             <h2 class="section-title">Off Season Team Power Ranking</h2>
                                             <p class="as-of-date">as of Week 5, December 2025</p>
                                         </div>         
-                                    </header>       
+                                    </header>  
+                                    
+                                    <div class="filter-bar">
+                                        <div class="filter-group">
+                                            <i class="fas fa-trophy"></i>
+                                            <span>Filter by League:</span>
+                                            <select id="teamLeagueFilter" onchange="filterTeamsByLeagueRank()" style="color: black !important; background-color: white;">
+                                                <option value="all">All Leagues</option>
+                                                <option value="PVL">PVL</option>
+                                                <option value="UAAP">UAAP</option>
+                                                <option value="NCAA">NCAA</option>
+                                                <option value="MPVA">MPVA</option>
+                                            </select>
+                                            <i class="fas fa-search"></i>
+                                            <span>Search Team:</span>
+                                            <input type="text" id="teamSearchInput" onkeyup="filterTeams()" placeholder="Enter team name..." style="padding: 5px; border-radius: 20px; border: 1px solid #ccc;">                                
+                                        </div>
+                                    </div>                                    
 
                         <div class="table-wrapper">
                             <table class="data-table" id="teamRankingTable">
@@ -1365,6 +1499,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- 1 -->
                                         <tr onclick="openProfile('eya-laure')" data-league="pvl" data-position="oh" >
                                                 <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                                 <td>
@@ -1392,6 +1527,7 @@
                                                 </td>
                                         </tr>    
 
+                                        <!-- 2 -->
                                         <tr onclick="openProfile('aiza-pontillas')" data-league="pvl" data-position="op">
                                              <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1417,10 +1553,11 @@
                                             </td>
                                         </tr>
 
+                                        <!-- 3 -->
                                         <tr onclick="openProfile('ara-galang')" data-league="pvl" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
-                                                <div class="player-cell">
+                                                <div class="player-cell"> 
                                                     <img src="Tranfer Portal/8.jpg" class = "player-thumb" alt="Ara Galang">
                                                     <div class="player-info">
                                                         <span class="name">Victonara "Ara" Galang</span>
@@ -1442,6 +1579,7 @@
                                             </td>
                                         </tr>
 
+                                        <!-- 4 -->
                                         <tr onclick="openProfile('jen-nierva')"data-league="pvl" data-position="l">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1468,6 +1606,7 @@
                                             </td>
                                         </tr>       
                                         
+                                        <!-- 5 -->
                                         <tr onclick="openProfile('imee-hernandez')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1493,6 +1632,7 @@
                                             </td>
                                         </tr>     
 
+                                        <!-- 6 -->
                                         <tr onclick="openProfile('aby-marano')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1517,6 +1657,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 7 -->
                                         <tr onclick="openProfile('royse-tubino')"data-league="pvl" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1541,6 +1682,7 @@
                                             </td>
                                         </tr>                                        
 
+                                        <!-- 8 -->
                                         <tr onclick="openProfile('caitlin-viray')"data-league="pvl" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1567,6 +1709,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 9 -->
                                         <tr onclick="openProfile('alina-bicar')" data-league="pvl" data-position="s">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1593,6 +1736,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 10 -->
                                         <tr onclick="openProfile('mylene-paat')"data-league="pvl" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1620,6 +1764,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 11 -->
                                         <tr onclick="openProfile('camille-victoria')"data-league="pvl" data-position="mb op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1645,6 +1790,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 12 -->
                                         <tr onclick="openProfile('ces-robles')"data-league="pvl" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1671,6 +1817,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 13 -->
                                         <tr onclick="openProfile('renee-penafiel')"data-league="pvl" data-draft="2025" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1695,6 +1842,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 14 -->
                                         <tr onclick="openProfile('cherry-nunag')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1719,6 +1867,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 15 -->
                                         <tr onclick="openProfile('shaya-adorador')"data-league="pvl" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1743,6 +1892,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 16 -->
                                        <tr onclick="openProfile('jyne-soreno')"data-league="pvl" data-draft="2025" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1767,6 +1917,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 17 -->
                                         <tr onclick="openProfile('pauline-gaston')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1794,6 +1945,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 18 -->
                                         <tr onclick="openProfile('risa-sato')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1821,6 +1973,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 19 -->
                                         <tr onclick="openProfile('jules-samonte')"data-league="pvl" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1848,6 +2001,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 20 -->
                                         <tr onclick="openProfile('cza-carandang')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1872,6 +2026,7 @@
                                             </td>
                                         </tr>    
                                         
+                                        <!-- 21 -->
                                         <tr onclick="openProfile('seth-rodriquez')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1895,7 +2050,8 @@
                                                 <span>Uncommitted</span>
                                             </td> 
                                         </tr>                                       
-                                                                         
+                                               
+                                        <!-- 22 -->
                                         <tr onclick="openProfile('karen-verdeflor')"data-league="pvl" data-draft="2024" data-position="l">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1922,6 +2078,7 @@
                                             </td>
                                         </tr>   
                                                
+                                        <!-- 23 -->
                                         <tr onclick="openProfile('aduke-ogunsanya')"data-league="pvl" data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1946,6 +2103,7 @@
                                             </td>
                                         </tr> 
 
+                                        <!-- 24 -->
                                         <tr onclick="openProfile('joyme-cagande')"data-league="pvl" data-position="s">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1974,6 +2132,7 @@
                                             </td>
                                         </tr>   
 
+                                        <!-- 25 -->
                                         <tr onclick="openProfile('rhose-dapol')"data-league="pvl" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -1999,6 +2158,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 26 -->
                                         <tr onclick="openProfile('jasmine-nabor')"data-league="pvl" data-position="s">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2023,6 +2183,7 @@
                                             </td>
                                         </tr>  
 
+                                        <!-- 27 -->
                                         <tr onclick="openProfile('jai-atienza')"data-league="pvl"  data-position="mb">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2049,6 +2210,7 @@
                                             </td>
                                         </tr>     
 
+                                        <!-- 28 -->
                                         <tr onclick="openProfile('rachel-jorvina')"data-league="pvl" data-position="l">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2075,6 +2237,7 @@
                                             </td>
                                         </tr>      
 
+                                        <!-- 29 -->
                                         <tr onclick="openProfile('bia-general')"data-league="pvl" data-position="l">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2102,6 +2265,7 @@
                                             </td>
                                         </tr>    
                                         
+                                        <!-- 30 -->
                                         <tr onclick="openProfile('anngela-nunag')"data-league="pvl" data-position="l">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2126,6 +2290,7 @@
                                             </td>
                                         </tr> 
 
+                                        <!-- 31 -->
                                         <tr onclick="openProfile('ivy-perez')"data-league="pvl"  data-position="s">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2152,6 +2317,7 @@
                                             </td>
                                         </tr>       
 
+                                        <!-- 32 -->
                                         <tr onclick="openProfile('rizza-mandapat')"data-league="pvl" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2176,6 +2342,7 @@
                                             </td>
                                         </tr>                                         
 
+                                        <!-- 33 -->
                                         <tr onclick="openProfile('erika-deloria')"data-league="pvl" data-draft="2025" data-position="op">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                             <td>
@@ -2200,6 +2367,7 @@
                                             </td>
                                         </tr>      
 
+                                        <!-- 34 -->
                                         <tr onclick="openProfile('reyann-canete')"data-league="pvl" data-draft="2025" data-position="oh">
                                             <td class="rank-col auto-rank"></td> <td class="auto-pos"></td>                                               
                                                 <td>

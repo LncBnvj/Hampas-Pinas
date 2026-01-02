@@ -38,17 +38,39 @@
             updatePortalCard(name, playerImg, "Scouting Report", reason, tags, grid, false);
         }
 
-        // 2. PLAYER RANKING CARD - (isTeam = false)
-        function showCardRanking(name, playerImg, pos, award, team, hometown, jerseyno, draft, reason, level) {
-            const tags = `<span class="tag rising">${pos}</span> <span class="tag prospect">${team}</span> <span class="tag prospect">${level}</span>`;
+        // 2. PLAYER RANKING CARD - Updated to remove Reason/Scouting Report
+        function showCardRanking(name, playerImg, pos, award, team, college, statsscore, draft, stars) {
+            // 1. Generate Stars (Clean & Single Row)
+            const starCount = parseInt(stars) || 0;
+            let starsHtml = '<div class="card-stars-row" style="display:block; margin: 5px 0;">';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += `<span style="color: ${i < starCount ? '#FFD700' : '#444'}; font-size: 16px; margin-right: 2px;">★</span>`;
+            }
+            starsHtml += '</div>';
+
+            // 2. Generate the Tags (The blue/yellow pills)
+            const tagsHtml = `
+                <div style="display: flex; gap: 8px; margin-top: 5px;">
+                    <span class="tag rising">${pos}</span> 
+                    <span class="tag prospect">${team}</span>
+                </div>
+            `;
+            
+            // 3. Combine them: Stars first, then Tags
+            const combinedHeaderInfo = starsHtml + tagsHtml;
+
             const grid = `
-                <div class="info-item"><span>Jersey Number</span><strong>${jerseyno}</strong></div>
+                <div class="info-item"><span>Stats Score</span><strong>${statsscore}</strong></div>
                 <div class="info-item"><span>Notable Award</span><strong>${award}</strong></div>
-                <div class="info-item"><span>Hometown</span><strong>${hometown}</strong></div>
+                <div class="info-item"><span>College</span><strong>${college}</strong></div>
                 <div class="info-item"><span>Draft Class</span><strong>${draft}</strong></div>
             `;
-            updatePortalCard(name, playerImg, "Scouting Report", reason, tags, grid, false);
+
+            // Pass the combined string to your update function
+            updatePortalCard(name, playerImg, "", "", combinedHeaderInfo, grid, false);
         }
+
+        
 
         // 3. TEAM CARD - (isTeam = true)
         function showTeamCard(teamName, teamLogo, LastConf, captain, coach, league, championship) {
@@ -1682,3 +1704,5 @@ function updateSortIcons(activeIndex, isAscending) {
         icon.className = isAscending ? "fas fa-sort-up" : "fas fa-sort-down";
     }
 }
+
+
