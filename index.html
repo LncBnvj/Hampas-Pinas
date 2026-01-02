@@ -455,7 +455,6 @@
                     });
             });
 
-            // The "Brain" of your table - This handles the sorting, stars, and images
             let currentLeague = 'all';
 
             // 1. IMPROVED SWITCH FUNCTION
@@ -470,26 +469,36 @@
                 filterAndRender();
             }
 
-            // 2. MASTER RANK INITIALIZER
+            // 2. MASTER RANK INITIALIZER (RUNS ONCE)
             function initializeLeagueRanks() {
                 const tableBody = document.getElementById('rankingTableBody');
                 if (!tableBody) return;
 
                 const rows = Array.from(tableBody.querySelectorAll('.player-row'));
                 
-                // Sort by PR (Power Rating) once to set the permanent League Rank
+                // Sort by PR (Power Rating) once to establish the permanent ranking
                 rows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
 
+                const posCounters = {};
+
                 rows.forEach((row, index) => {
-                    // We use setAttribute to ensure the data is physically in the HTML
-                    row.setAttribute('data-league-rank', (index + 1).toString());
+                    // Set Global League Rank
+                    const leagueRank = (index + 1).toString();
+                    row.setAttribute('data-league-rank', leagueRank);
+
+                    // Set Position Rank
+                    const pos = row.dataset.pos || "N/A";
+                    posCounters[pos] = (posCounters[pos] || 0) + 1;
+                    
+                    // Lock the position rank into a custom attribute
+                    const posRankValue = posCounters[pos].toString();
+                    row.setAttribute('data-static-pos-rank', posRankValue);
                 });
 
                 filterAndRender();
             }
 
-            // 3. MAIN FILTER & RENDER (With "No-Undefined" Protection)
-// 3. MAIN FILTER & RENDER
+            // 3. MAIN FILTER & RENDER
             function filterAndRender() {
                 const tableBody = document.getElementById('rankingTableBody');
                 if (!tableBody) return;
@@ -501,19 +510,16 @@
                 
                 const rows = Array.from(tableBody.querySelectorAll('.player-row'));
 
-                // Always keep them sorted by PR
+                // Always keep sorted by PR
                 rows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
-
-                const posCounters = {};
 
                 rows.forEach((row) => {
                     const d = row.dataset;
                     
-                    // PROTECTION: If rank is missing, calculate it now
-                    if (!d.leagueRank) {
-                        const allRows = Array.from(tableBody.querySelectorAll('.player-row'));
-                        allRows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
-                        allRows.forEach((r, i) => r.setAttribute('data-league-rank', (i + 1).toString()));
+                    // RE-PROTECTION: Ensure attributes exist
+                    if (!row.getAttribute('data-league-rank')) {
+                        initializeLeagueRanks();
+                        return; 
                     }
 
                     const matchesLeague = (currentLeague === 'all' || d.league === currentLeague);
@@ -526,23 +532,19 @@
                         row.style.display = ""; 
                         tableBody.appendChild(row);
 
-                        // --- STATIC RANKING DISPLAY ---
-                        const currentRank = d.leagueRank; 
+                        // --- LEAGUE RANK DISPLAY ---
+                        const currentRank = row.getAttribute('data-league-rank'); 
                         const prevRankValue = d.prevRank; 
-
                         let trendHtml = '';
+                        
                         if (!prevRankValue || prevRankValue === "-" || prevRankValue === "NEW") {
                             trendHtml = `<span style="color: #888; font-size: 10px; margin-left: 5px;">NEW</span>`;
                         } else {
                             const pRank = parseInt(prevRankValue);
                             const cRank = parseInt(currentRank);
-                            if (cRank < pRank) {
-                                trendHtml = `<i class="fas fa-caret-up" style="color: #00ff00; margin-left: 5px;"></i>`;
-                            } else if (cRank > pRank) {
-                                trendHtml = `<i class="fas fa-caret-down" style="color: #ff4444; margin-left: 5px;"></i>`;
-                            } else {
-                                trendHtml = `<span style="color: #888; font-size: 12px; margin-left: 5px;">-</span>`;
-                            }
+                            if (cRank < pRank) trendHtml = `<i class="fas fa-caret-up" style="color: #00ff00; margin-left: 5px;"></i>`;
+                            else if (cRank > pRank) trendHtml = `<i class="fas fa-caret-down" style="color: #ff4444; margin-left: 5px;"></i>`;
+                            else trendHtml = `<span style="color: #888; font-size: 12px; margin-left: 5px;">-</span>`;
                         }
 
                         row.querySelector('.rank-cell').innerHTML = `
@@ -551,20 +553,14 @@
                             </div>
                         `;
 
-                        // --- POSITION RANK ---
-                        const pos = d.pos || "N/A";
-                        posCounters[pos] = (posCounters[pos] || 0) + 1;
-                        row.querySelector('.pos-rank-cell').innerHTML = `<span class="pos-rank-tag">#${posCounters[pos]} ${pos}</span>`;
+                        // --- POSITION RANK (FIXED: Pulls from Attribute) ---
+                        const staticPosRank = row.getAttribute('data-static-pos-rank') || "1";
+                        const posLabel = d.pos || "N/A";
+                        row.querySelector('.pos-rank-cell').innerHTML = `<span class="pos-rank-tag">#${staticPosRank} ${posLabel}</span>`;
 
                         // --- STARS & COLORS ---
                         const starCount = parseInt(d.stars) || 0;
-                        const starColors = {
-                            5: '#FFD700', // Gold
-                            4: '#F2E2E2', // White/Pink
-                            3: '#E65C00', // Orange
-                            2: '#6A3D9A', // Purple
-                            1: '#B30000'  // Red
-                        };
+                        const starColors = { 5: '#FFD700', 4: '#F2E2E2', 3: '#E65C00', 2: '#6A3D9A', 1: '#B30000' };
                         const activeColor = starColors[starCount] || '#FFD700';
 
                         let starsHtml = '';
@@ -591,31 +587,21 @@
                             </div>
                         `;
 
-                        // --- FIXED CLICK EVENT ---
-                        row.onclick = function() {
+                        // --- CLICK EVENT ---
+                        row.onclick = () => {
                             if (typeof showCardRanking === "function") {
-                                showCardRanking(
-                                    d.name,        // Use d.name instead of playerName
-                                    d.img, 
-                                    d.pos, 
-                                    d.award, 
-                                    d.team, 
-                                    d.college, 
-                                    d.statsscore, 
-                                    d.draft, 
-                                    d.stars
-                                );
+                                showCardRanking(d.name, d.img, d.pos, d.award, d.team, d.college, d.statsscore, d.draft, d.stars);
                             }
                         };
-
                     } else {
                         row.style.display = "none";
                     }
                 });
             }
 
+            window.addEventListener('DOMContentLoaded', initializeLeagueRanks);
             // Ensure it starts correctly
-            window.addEventListener('load', initializeLeagueRanks);         
+            window.addEventListener('DOMContentLoaded', initializeLeagueRanks);            
             </script>          
               
             <section id="teams-view" class="window">
