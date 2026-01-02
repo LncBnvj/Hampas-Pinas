@@ -458,21 +458,38 @@
             // The "Brain" of your table - This handles the sorting, stars, and images
             let currentLeague = 'all';
 
+            // 1. IMPROVED SWITCH FUNCTION
             function switchLeague(league) {
                 currentLeague = league;
-                
-                // Update Tab UI active states
                 document.querySelectorAll('.tab-btn').forEach(btn => {
                     btn.classList.remove('active');
-                    // Match button text to league (handling "all" vs "All Leagues")
                     if (btn.textContent.toLowerCase().includes(league.toLowerCase())) {
                         btn.classList.add('active');
                     }
+                });
+                filterAndRender();
+            }
+
+            // 2. MASTER RANK INITIALIZER
+            function initializeLeagueRanks() {
+                const tableBody = document.getElementById('rankingTableBody');
+                if (!tableBody) return;
+
+                const rows = Array.from(tableBody.querySelectorAll('.player-row'));
+                
+                // Sort by PR (Power Rating) once to set the permanent League Rank
+                rows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
+
+                rows.forEach((row, index) => {
+                    // We use setAttribute to ensure the data is physically in the HTML
+                    row.setAttribute('data-league-rank', (index + 1).toString());
                 });
 
                 filterAndRender();
             }
 
+            // 3. MAIN FILTER & RENDER (With "No-Undefined" Protection)
+// 3. MAIN FILTER & RENDER
             function filterAndRender() {
                 const tableBody = document.getElementById('rankingTableBody');
                 if (!tableBody) return;
@@ -480,81 +497,93 @@
                 const searchVal = document.getElementById('rankNameSearch').value.toLowerCase();
                 const teamFilter = document.getElementById('rankTeamFilter').value;
                 const posFilter = document.getElementById('rankPosFilter').value;
-                
-                // NEW: Get the Star Filter Value
                 const starFilter = document.getElementById('rankStarFilter').value;
                 
                 const rows = Array.from(tableBody.querySelectorAll('.player-row'));
 
-                rows.sort((a, b) => parseFloat(b.dataset.pr) - parseFloat(a.dataset.pr));
+                // Always keep them sorted by PR
+                rows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
 
                 const posCounters = {};
-                let displayRank = 1; 
 
                 rows.forEach((row) => {
                     const d = row.dataset;
-                    const playerName = d.name || row.querySelector('.name-cell').innerText;
+                    
+                    // PROTECTION: If rank is missing, calculate it now
+                    if (!d.leagueRank) {
+                        const allRows = Array.from(tableBody.querySelectorAll('.player-row'));
+                        allRows.sort((a, b) => parseFloat(b.dataset.pr || 0) - parseFloat(a.dataset.pr || 0));
+                        allRows.forEach((r, i) => r.setAttribute('data-league-rank', (i + 1).toString()));
+                    }
 
-                    // MULTI-FILTER LOGIC
-                    const matchesLeague = (typeof currentLeague === 'undefined' || currentLeague === 'all' || d.league === currentLeague);
+                    const matchesLeague = (currentLeague === 'all' || d.league === currentLeague);
                     const matchesTeam = (teamFilter === 'all' || d.team === teamFilter);
                     const matchesPos = (posFilter === 'all' || d.pos === posFilter);
-                    const matchesSearch = playerName.toLowerCase().includes(searchVal);
-                    
-                    // NEW: Check if the stars match (d.stars comes from data-stars="5")
+                    const matchesSearch = (d.name || "").toLowerCase().includes(searchVal);
                     const matchesStars = (starFilter === 'all' || d.stars === starFilter);
 
-                    // Update the main condition to include matchesStars
                     if (matchesLeague && matchesTeam && matchesPos && matchesSearch && matchesStars) {
                         row.style.display = ""; 
                         tableBody.appendChild(row);
 
-                        // 2. ASSIGN RANKS ONLY TO VISIBLE ROWS
-                        const currentRank = displayRank; 
-                        const previousRank = parseInt(d.prevRank);
-                        
-                        // Determine Trend Icon
+                        // --- STATIC RANKING DISPLAY ---
+                        const currentRank = d.leagueRank; 
+                        const prevRankValue = d.prevRank; 
+
                         let trendHtml = '';
-                        if (isNaN(previousRank)) {
+                        if (!prevRankValue || prevRankValue === "-" || prevRankValue === "NEW") {
                             trendHtml = `<span style="color: #888; font-size: 10px; margin-left: 5px;">NEW</span>`;
-                        } else if (currentRank < previousRank) {
-                            trendHtml = `<i class="fas fa-caret-up" style="color: #00ff00; margin-left: 5px;"></i>`;
-                        } else if (currentRank > previousRank) {
-                            trendHtml = `<i class="fas fa-caret-down" style="color: #ff4444; margin-left: 5px;"></i>`;
                         } else {
-                            trendHtml = `<span style="color: #888; font-size: 12px; margin-left: 5px;">-</span>`;
+                            const pRank = parseInt(prevRankValue);
+                            const cRank = parseInt(currentRank);
+                            if (cRank < pRank) {
+                                trendHtml = `<i class="fas fa-caret-up" style="color: #00ff00; margin-left: 5px;"></i>`;
+                            } else if (cRank > pRank) {
+                                trendHtml = `<i class="fas fa-caret-down" style="color: #ff4444; margin-left: 5px;"></i>`;
+                            } else {
+                                trendHtml = `<span style="color: #888; font-size: 12px; margin-left: 5px;">-</span>`;
+                            }
                         }
 
-                        // Update visible Overall Rank Cell
                         row.querySelector('.rank-cell').innerHTML = `
-                            <div style="display: flex; align-items: left; justify-content: left;">
+                            <div style="display: flex; align-items: center; font-weight: bold; color: white;">
                                 ${currentRank} ${trendHtml}
                             </div>
                         `;
 
-                        // Update Position Rank (#1 OH, #2 OH, etc.)
-                        const pos = d.pos;
+                        // --- POSITION RANK ---
+                        const pos = d.pos || "N/A";
                         posCounters[pos] = (posCounters[pos] || 0) + 1;
                         row.querySelector('.pos-rank-cell').innerHTML = `<span class="pos-rank-tag">#${posCounters[pos]} ${pos}</span>`;
 
-                        // RENDER NAME CELL & PORTAL BADGE
+                        // --- STARS & COLORS ---
+                        const starCount = parseInt(d.stars) || 0;
+                        const starColors = {
+                            5: '#FFD700', // Gold
+                            4: '#F2E2E2', // White/Pink
+                            3: '#E65C00', // Orange
+                            2: '#6A3D9A', // Purple
+                            1: '#B30000'  // Red
+                        };
+                        const activeColor = starColors[starCount] || '#FFD700';
+
+                        let starsHtml = '';
+                        for (let i = 0; i < 5; i++) {
+                            starsHtml += `<span style="color: ${i < starCount ? activeColor : '#444'}; font-size: 14px; margin-right: 2px;">★</span>`;
+                        }
+
+                        // --- NAME CELL ---
                         const isPortal = d.portal === "true";
                         const portalBadge = isPortal ? `<span class="portal-badge"><i class="fas fa-exchange-alt"></i> PORTAL</span>` : '';
                         
-                        const starCount = parseInt(d.stars);
-                        let starsHtml = '';
-                        for (let i = 0; i < 5; i++) {
-                            starsHtml += `<span style="color: ${i < starCount ? '#FFD700' : '#444'}; font-size: 14px; margin-right: 2px;">★</span>`;
-                        }
-
                         row.querySelector('.name-cell').innerHTML = `
                             <div style="display: flex; align-items: center;">
-                                <div class="player-img-circle" style="width:40px; height:40px; border-radius:50%; overflow:hidden; border:2px solid ${isPortal ? '#00f2ff' : '#ffd700'}; flex-shrink:0;">
+                                <div class="player-img-circle" style="width:40px; height:40px; border-radius:50%; overflow:hidden; border:2px solid ${activeColor}; flex-shrink:0;">
                                     <img src="${d.img}" style="width:100%; height:100%; object-fit:cover;">
                                 </div>
                                 <div style="margin-left: 10px; line-height: 1.2; text-align: left;">
                                     <div style="display: flex; align-items: center; gap: 5px;">
-                                        <span style="font-weight:bold; color:white; font-size: 14px; text-transform: capitalize;">${playerName}</span>
+                                        <span style="font-weight:bold; color:white; font-size: 14px;">${d.name}</span>
                                         ${portalBadge}
                                     </div>
                                     <div style="display: flex;">${starsHtml}</div>
@@ -562,13 +591,11 @@
                             </div>
                         `;
 
-                        // Increment rank ONLY if the player was displayed
-                        displayRank++;
-
-                        row.onclick = () => {
-                            if(typeof showCardRanking === "function") {
+                        // --- FIXED CLICK EVENT ---
+                        row.onclick = function() {
+                            if (typeof showCardRanking === "function") {
                                 showCardRanking(
-                                    playerName, 
+                                    d.name,        // Use d.name instead of playerName
                                     d.img, 
                                     d.pos, 
                                     d.award, 
@@ -576,7 +603,7 @@
                                     d.college, 
                                     d.statsscore, 
                                     d.draft, 
-                                    d.stars // <--- Add this argument here
+                                    d.stars
                                 );
                             }
                         };
@@ -586,6 +613,9 @@
                     }
                 });
             }
+
+            // Ensure it starts correctly
+            window.addEventListener('load', initializeLeagueRanks);         
             </script>          
               
             <section id="teams-view" class="window">
@@ -607,9 +637,6 @@
                                                 <option value="NCAA">NCAA</option>
                                                 <option value="MPVA">MPVA</option>
                                             </select>
-                                            <i class="fas fa-search"></i>
-                                            <span>Search Team:</span>
-                                            <input type="text" id="teamSearchInput" onkeyup="filterTeams()" placeholder="Enter team name..." style="padding: 5px; border-radius: 20px; border: 1px solid #ccc;">                                
                                         </div>
                                     </div>                                    
 
@@ -620,7 +647,7 @@
                                     <th>Rank</th>
                                     <th>Team Name</th>
                                     <th>League</th>   
-                                    <th>Roster Strenght</th>          
+                                    <th>Roster Strength</th>          
                                     <th>Legacy Point<br>(Last Conference)</th>
                                     <th>Projected Ceiling</th>
                                     <th>Status</th>
@@ -633,12 +660,12 @@
                                     <td class="rank-cell"></td> 
                                     <td>Akari Power Chargers</td>
                                     <td>PVL</td>
-                                    <td>-</td> 
+                                    <td>51.09</td> 
                                     <td>75</td>
                                     <td>90</td>
                                     <td><span class="status-pill status-contender">Contender</span></td>
-                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
-                                    <td class="power-value">31.5</td>
+                                    <td><span class="trend-icon trend-up">▲</span></td>                                    
+                                    <td class="power-value">62.15</td>
                                 </tr>
 
                                 <tr onclick="showTeamCard('Capital1 Solar Spiker', 'Team Logo/Capital1.png',  '8th Place', 'Roma Mae Doromal', 'Jorge de Brito', 'Premier Volleyball League', 'None')" data-league="PVL">
@@ -660,14 +687,14 @@
                                     <td class="rank-cell"></td> 
                                     <td>Choco Mucho Flying Titans</td>
                                     <td>PVL</td>
-                                    <td>-</td> 
+                                    <td>59.32</td> 
                                     <td>20</td>
-                                    <td>20</td>
+                                    <td>100</td>
                                     <td>
-                                        <span class="status-pill status-rebuilding">rebuilding</span>                      
+                                        <span class="status-pill status-contender">contender</span>                      
                                     </td>
-                                    <td><span class="trend-icon trend-neutral">—</span></td>                                    
-                                    <td class="power-value">8</td>
+                                    <td><span class="trend-icon trend-up">▲</span></td>                                    
+                                    <td class="power-value">51.60</td>
                                 </tr>
 
                                 <tr onclick="showTeamCard('Cignal Super Spikers', 'Team Logo/Cignal.png',  '7th Place', 'Dawn Catindig', 'Shaq Delos Santos', 'Premier Volleyball League', '1x Champion')" data-league="PVL">
@@ -2391,6 +2418,11 @@
                                                 <span>Uncommitted</span>
                                             </td>
                                         </tr> 
+
+
+
+
+
 
                                     </tbody>
                                 </table>
