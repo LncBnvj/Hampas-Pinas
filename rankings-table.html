@@ -8,6 +8,7 @@
         <span>Filter by:</span>
         <select id="rankTeamFilter" onchange="filterAndRender()">
             <option value="all">All Teams</option>
+            <option value="Free">Free Agent</option>
             <option value="Akari Power Chargers">Akari Power Chargers</option> 
             <option value="Choco Mucho">Choco Mucho Flying Titans</option>
             <option value="Cignal">Cignal Super Spikers</option>
@@ -1606,30 +1607,6 @@
                 data-league="PVL" 
                 data-portal="false" 
                 data-prev-rank="-"               
-                data-name='Michelle Morente'
-                data-pos="OH" 
-                data-stars="2" 
-                data-pr="22.67" 
-                data-img="Player Ranking/65.png" 
-                data-award="-"
-                data-team="Creamline" 
-                data-college="Ateneo de Manila University" 
-                data-statsscore="-"
-                data-draft="-">
-                <td class="rank-cell"></td>
-                <td class="pos-rank-cell"></td>
-                <td class="name-cell">Michelle Morente</td>
-                <td>Creamline Cool Smasher</td>
-                <td>31</td> <!--age-->
-                <td>C+</td> <!--scout grade-->
-                <td>22.67</td> <!--PR Rating-->
-                <td class="previous-cell">-</td> 
-            </tr>
-
-            <tr class="player-row" 
-                data-league="PVL" 
-                data-portal="false" 
-                data-prev-rank="-"               
                 data-name='Kyle Angela Negrito'
                 data-pos="S" 
                 data-stars="3" 
@@ -1840,7 +1817,33 @@
                 <td>B</td> <!--scout grade-->
                 <td>25.33</td> <!--PR Rating-->
                 <td class="previous-cell">-</td> 
-            </tr>            
+            </tr>      
+            
+            <!-- FREE AGENT -->
+            <tr class="player-row" 
+                data-league="PVL" 
+                data-portal="true" 
+                data-prev-rank="-"               
+                data-name='Michelle Morente'
+                data-pos="OH" 
+                data-stars="2" 
+                data-pr="22.67" 
+                data-img="Player Ranking/65.png" 
+                data-award="-"
+                data-team="Free" 
+                data-college="Ateneo de Manila University" 
+                data-statsscore="-"
+                data-draft="-">
+                <td class="rank-cell"></td>
+                <td class="pos-rank-cell"></td>
+                <td class="name-cell">Michelle Morente</td>
+                <td>Free Agent</td>
+                <td>31</td> <!--age-->
+                <td>C+</td> <!--scout grade-->
+                <td>22.67</td> <!--PR Rating-->
+                <td class="previous-cell">-</td> 
+            </tr>
+
         </tbody>
     </table>
 </div>
